@@ -1,23 +1,5 @@
-// This are color variables
-  $blue: #5429CC;
-  $red: #cc2947;
-
-// This are functions to use
-  @mixin allFlexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @mixin displayFlex($justifyContent: space-between, $alignItems:flex-end, $direction:row) {
-    display: flex;
-    justify-content: $justifyContent;
-    align-items: $alignItems;
-    flex-direction: $direction;
-  }
-
-  // This values are for responsive default
-* {
+ // This values are for responsive default
+ * {
   margin:0;
   padding:0;
   box-sizing: border-box;
