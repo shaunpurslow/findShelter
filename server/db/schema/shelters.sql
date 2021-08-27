@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS shelters CASCADE;
+
+CREATE TABLE shelters (
+  id SERIAL PRIMARY KEY NOT NULL,
+  shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  phone VARCHAR(10),
+  email VARCHAR(255),
+  password VARCHAR(255) NOT NULL,
+  is_manager BOOLEAN NOT NULL DEFAULT false
+);
