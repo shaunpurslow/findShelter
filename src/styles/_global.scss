@@ -1,0 +1,57 @@
+// This are color variables
+  $blue: #5429CC;
+  $red: #cc2947;
+
+// This are functions to use
+  @mixin allFlexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin displayFlex($justifyContent: space-between, $alignItems:flex-end, $direction:row) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $direction;
+  }
+
+  // This values are for responsive default
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html  { 
+  @media (max-width: 1080px) {
+    font-size: 93.75%; // 15px
+  }
+  @media (max-width: 720px) {
+    font-size: 87.5%; // 14px
+  }
+}
+
+body {
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Por default o CSS nao importa a fonte para esses elementos */
+body, input, textarea, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 600;
+}
+
+button { 
+  cursor: pointer; // clicável
+}
+
+[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

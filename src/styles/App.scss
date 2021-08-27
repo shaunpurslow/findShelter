@@ -1,0 +1,7 @@
+@import './global';
+
+.App-header {
+  @include displayFlex(space-between, center, row);
+  background-color: $red;
+  color: white;
+}
