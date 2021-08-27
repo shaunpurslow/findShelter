@@ -1,25 +1,23 @@
 header {
-  
   display: flex;
   align-items: space-between;
   justify-content: space-between;
-  margin: 0 1em;
-  
+
+  border-bottom: 2px solid black;
+
   .nav__left,
   .nav__right {
     display: flex;
     align-items: center;
-    
+    margin: 0 0.3em;
   }
 
   h1 {
     font-size: 1em;
-    margin-left: .2em;
+    margin-left: 0.2em;
   }
 
   .sign__in {
-    margin-right: .6em;
+    margin-right: 0.6em;
   }
-
-   
 }
