@@ -1,0 +1,25 @@
+header {
+  
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  margin: 0 1em;
+  
+  .nav__left,
+  .nav__right {
+    display: flex;
+    align-items: center;
+    
+  }
+
+  h1 {
+    font-size: 1em;
+    margin-left: .2em;
+  }
+
+  .sign__in {
+    margin-right: .6em;
+  }
+
+   
+}

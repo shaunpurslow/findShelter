@@ -3,14 +3,13 @@ import Header from './components/Header';
 
 import './styles/App.scss';
 
-
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       {/* Header */}
-        <Header />
-        {/* search */}
-        {/*Footer  */}
+      <Header />
+      {/* search */}
+      {/*Footer  */}
     </div>
   );
 }
