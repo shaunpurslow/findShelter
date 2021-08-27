@@ -1,0 +1,48 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: space-between;
+    padding: 1em 1em;
+    width: 60%;
+    max-width: 400px;
+
+    &__submit-btn {
+      width: 200px;
+      padding: 1em 0.5em;
+      background-color: lightblue;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .search__bar {
+    border: 1px solid grey;
+    display: flex;
+    padding: 0.5em;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  input {
+    border: none;
+    flex-grow: 1;
+    margin-left: 0.5em;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
