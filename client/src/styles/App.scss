@@ -1,4 +1,5 @@
-@import './global';
+@import './variables';
+
 
 .App-header {
   @include displayFlex(space-between, center, row);
