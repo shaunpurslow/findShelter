@@ -1,10 +1,12 @@
 import React from 'react'
-import '../styles/Header.module.scss'
+import AccessibleIcon from '@material-ui/icons/Accessible';
+import AddAlertIcon from '@material-ui/icons/AddAlert';
+import styles from '../styles/Header.module.scss'
 
 const Header = () => {
   return (
-    <div>
-      
+    <div >
+      <h1>I am the header</h1>
     </div>
   )
 }
