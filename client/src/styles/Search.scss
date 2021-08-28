@@ -1,4 +1,6 @@
-main {
+@import './variables';
+
+.search__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,6 +42,7 @@ main {
     border: none;
     flex-grow: 1;
     margin-left: 0.5em;
+    background-color: $col-light;
 
     &:focus {
     outline: none;

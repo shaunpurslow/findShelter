@@ -10,22 +10,18 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        {/* Header */}
-        <Header />
         <Switch>
-          {/* Search */}
+          {/* Main Page */}
           <Route exact path='/'>
+            <Header />
             <Search />
+            <Footer />
           </Route>
-
           {/* Register */}
           <Route path='/register'>
             <Register />
           </Route>
         </Switch>
-
-        {/*Footer  */}
-        <Footer />
       </div>
     </Router>
   );

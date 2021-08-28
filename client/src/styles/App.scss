@@ -3,10 +3,10 @@
 
 .App-header {
   @include displayFlex(space-between, center, row);
-  background-color: $red;
   color: white;
 }
 
 body {
-  
+  background-color: $col-light;
+  font-family: $font-stack;
 }
