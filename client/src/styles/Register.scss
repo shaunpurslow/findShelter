@@ -3,9 +3,10 @@
 .register__container {
   width: 87%;
   margin: 5em auto;
-  border: 1px solid $col-dark;
   border-radius: 15px;
   background-color: $col-medium;
+  padding: 10px;
+  box-shadow: 5px 5px $col-medium-dark;
 }
 
 .register__header {
@@ -46,7 +47,25 @@
     border: none;
     border-radius: 10px;
     margin-bottom: 1em;
-    
   }
 
+}
+
+span {
+ display: flex;
+ 
+ div {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+   
+
+   &:first-child {
+     padding-right: .8em;
+   }
+
+   &:last-child {
+     padding-left: .8em;
+   }
+ }
 }
