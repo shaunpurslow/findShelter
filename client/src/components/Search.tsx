@@ -6,15 +6,15 @@ const Search = () => {
   return (
     <main>
       <div className='container'>
-        <div className='search__bar' >
+        <div className='search__bar'>
           <SearchIcon />
-          <input type="text" placeholder='Enter your location' />
+          <input type='text' placeholder='Enter your location' />
           <LocationOnIcon />
         </div>
       </div>
-      <button className='container__submit-btn' >Search</button>
+      <button className='container__submit-btn'>Search</button>
     </main>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;
