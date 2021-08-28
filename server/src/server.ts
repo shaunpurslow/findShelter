@@ -31,8 +31,8 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ROUTES
-const shelterRoutes = require('./routes/shelter');
+// import routes
+import shelterRoutes from './routes/shelter';
 
 // mount routes
 app.use('/shelters', shelterRoutes(db));
