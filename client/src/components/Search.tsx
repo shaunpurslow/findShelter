@@ -7,9 +7,9 @@ const Search = () => {
     <main className='search__container'>
       <div className='container'>
         <div className='search__bar'>
-          <SearchIcon />
+          <SearchIcon className='search__icon'/>
           <input type='text' placeholder='Enter your location' />
-          <LocationOnIcon />
+          <LocationOnIcon className='icon' />
         </div>
       </div>
       <button className='container__submit-btn'>Search</button>
