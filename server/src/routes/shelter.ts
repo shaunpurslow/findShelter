@@ -8,7 +8,7 @@ const router = express.Router();
 
 // exports a function that ultimate returns a configured router
 // db connection provided using dependency injection pattern for increased testability
-module.exports = (dbconn) => {
+export default function (dbconn) {
   router.get('/', (req, res) => {
     dbconn
       .query('SELECT * FROM shelters;')
@@ -16,9 +16,9 @@ module.exports = (dbconn) => {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
+  // TODO: so.much.to.talk.about searching
   router.get('/search', (req, res) => {
     // TODO: move type definitions to seperate file
-    console.log(req.query);
     interface ISearchQueryParams {
       city?: string;
       province?: string;
@@ -36,7 +36,6 @@ module.exports = (dbconn) => {
       values.push(province);
     }
 
-    // make database requests
     dbconn
       .query(query, values)
       .then((data) => res.send(data.rows))
@@ -58,8 +57,73 @@ module.exports = (dbconn) => {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
-  router.patch('', (req, res) => {});
-  router.post('', (req, res) => {});
-  router.delete('', (req, res) => {});
+  router.post('/', (req, res) => {
+    const {
+      name,
+      street_address,
+      city,
+      province,
+      postal_code,
+      country,
+      phone,
+      email,
+      thumbnail_url,
+      website_url,
+      capacity,
+      couples,
+      female_only,
+      male_only,
+      family,
+      pets,
+    } = req.body;
+
+    dbconn
+      .query(
+        `
+        INSERT INTO shelters(
+          name,
+          street_address,
+          city,
+          province,
+          postal_code,
+          country,
+          phone,
+          email,
+          thumbnail_url,
+          website_url,
+          capacity,
+          couples,
+          female_only,
+          male_only,
+          family,
+          pets
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+        RETURNING *
+
+      `,
+        [
+          name,
+          street_address,
+          city,
+          province,
+          postal_code,
+          country,
+          phone,
+          email,
+          thumbnail_url,
+          website_url,
+          capacity,
+          couples,
+          female_only,
+          male_only,
+          family,
+          pets,
+        ]
+      )
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.status(500).json({ error: e.message }));
+  });
+
   return router;
-};
+}
