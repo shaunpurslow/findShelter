@@ -1,12 +1,9 @@
 const pg = require('pg');
 require('dotenv').config();
 
-const PORT = process.env.DB_URL;
-
-const conString = 'postgres://fxtukrlu:a1FelEAoXPmIcsYXHag1qnrAZJekZTBP@kashin.db.elephantsql.com/fxtukrlu'
-console.log(PORT)
+const conString = process.env.DB_URL;
 const client = new pg.Client(conString);
-
+console.log(conString);
 async function connect(client) {
   try {
     await client.connect()
@@ -25,4 +22,3 @@ async function connect(client) {
 }
 
 connect(client)
-
