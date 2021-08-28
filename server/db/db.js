@@ -1,20 +1,26 @@
 const pg = require('pg');
+require('dotenv').config();
 
-
-const conString = process.env.DB_URL
+const conString = 'postgres://fxtukrlu:a1FelEAoXPmIcsYXHag1qnrAZJekZTBP@kashin.db.elephantsql.com/fxtukrlu'
+console.log(process.env.DB_URL)
 const client = new pg.Client(conString);
-client.connect((err) => {
-  if (err) {
-    return console.error('could not connect to postgres', err);
-  }
 
-  console.log('connecting to elephantSQL')
-  // client.query('SELECT * FROM guests', (err, result) => {
-  //   if (err) {
-  //     return console.error('error running query', err);
-  //   }
-  //   console.log(result);
-  //   // >> output: 2018-08-23T14:02:57.117Z
-  //   client.end();
-  // });
-});
+async function connect(client) {
+  try {
+    await client.connect()
+    console.log(`Client connected.`)
+
+    const sql = `SELECT * FROM guests;`
+    const { rows } = await client.query(sql)
+    console.table(rows)
+  }
+  catch (ex) {
+    console.log("Some error" + ex)
+  }
+  finally {
+    await client.end()
+  }
+}
+
+connect(client)
+
