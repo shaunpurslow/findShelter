@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const conString = process.env.DB_URL;
 const client = new pg.Client(conString);
-
+console.log(conString);
 async function connect(client) {
   try {
     await client.connect()
@@ -22,4 +22,3 @@ async function connect(client) {
 }
 
 connect(client)
-
