@@ -4,7 +4,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const Search = () => {
   return (
-    <main>
+    <main className='search__container'>
       <div className='container'>
         <div className='search__bar'>
           <SearchIcon />

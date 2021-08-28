@@ -7,7 +7,7 @@ const Header = () => {
       {/* left */}
       <div className='nav__image'>
         <Link to='/'>
-          <img src='/img/find-shelter.png' alt='' />
+          <img src='/img/find-shelter.png' alt='logo' />
         </Link>
       </div>
 

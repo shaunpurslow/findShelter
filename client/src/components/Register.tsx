@@ -2,9 +2,9 @@ import '../styles/Register.scss';
 
 const Register = () => {
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
+    <main className='register__container'>
+      
+    </main>
   );
 };
 
