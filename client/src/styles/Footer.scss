@@ -1,24 +1,29 @@
-  footer {
-    .copyright {
-      border-top: 1px solid black;
-      text-align: center;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      justify-content: center;
-      display:flex;
+footer {
+  .copyright {
+    border-top: 1px solid black;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    display: flex;
+  }
+
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0.2em;
+
+    p {
+      margin-left: 0.1em;
     }
 
-    .footer__logo {
-      display: flex;
-      align-items: center;
-      margin-left: .2em;
-
-      p {
-        margin-left: .1em;
-      }
+    img {
+      width: 100%;
+      height: 30px;
+      margin-bottom: 0.5em;
+      margin-left: 0.5em;
     }
   }
-  
-
+}
