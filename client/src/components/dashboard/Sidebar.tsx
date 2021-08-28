@@ -1,15 +1,31 @@
 import '../../styles/dashboard/Sidebar.scss';
+import '../../styles/dashboard/MenuItem.scss';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
     <aside className='dashboard-sidebar'>
       <img src='/img/find-shelter-b.svg' alt='logo' />
-      <li>icon | Overview</li>
-      <li>icon | Reservations</li>
-      <li>icon | Find Shelters</li>
-      <li>icon | Guests</li>
-      <li>icon | My Shelter</li>
+      <li className='menu-item--selected'>
+        <img src='/img/overview.svg' alt='overview' />
+        <h2>Overview</h2>
+      </li>
+      <li className='menu-item'>
+        <img src='/img/reservation.svg' alt='reservation' />
+        <h2>Reservations</h2>
+      </li>
+      <li className='menu-item'>
+        <img src='/img/shelters.svg' alt='shelters' />
+        <h2>Find Shelters</h2>
+      </li>
+      <li className='menu-item'>
+        <img src='/img/guests.svg' alt='guests' />
+        <h2>Guests</h2>
+      </li>
+      <li className='menu-item'>
+        <img src='/img/myshelter.svg' alt='myshelter' />
+        <h2>My Shelter</h2>
+      </li>
     </aside>
   );
 };
