@@ -12,40 +12,55 @@
     align-items: center;
     flex-direction: space-between;
     padding: 1em 1em;
-    width: 60%;
+    width: 70%;
     max-width: 400px;
 
     &__submit-btn {
       width: 200px;
       padding: 1em 0.5em;
-      background-color: lightblue;
-      color: white;
+      background-color: $col-medium-dark;
+      color: $col-dark;
       font-weight: bold;
       border-radius: 5px;
       border: none;
-
-      &:hover {
-        cursor: pointer;
-      }
+      cursor:pointer;
     }
-  }
 
-  .search__bar {
-    border: 1px solid grey;
-    display: flex;
-    padding: 0.5em;
-    border-radius: 12px;
-    width: 100%;
-  }
+    &__submit-btn:hover {
+      background-color: $col-dark;
+      color: $col-light;
+      transition: .3s;
+    }
 
-  input {
-    border: none;
-    flex-grow: 1;
-    margin-left: 0.5em;
-    background-color: $col-light;
+    .search__bar {
+      border: 1px solid $col-dark;
+      display: flex;
+      padding: 0.5em;
+      border-radius: 50px;
+      width: 100%;
+    }
 
-    &:focus {
-    outline: none;
+    .search__icon,
+    .icon {
+      color: $col-dark;
+    }
+
+    .icon:hover {
+      color: $col-medium-dark;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input {
+      border: none;
+      flex-grow: 1;
+      margin-left: 0.5em;
+      background-color: $col-light;
+      font-size: 0.8em;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 }

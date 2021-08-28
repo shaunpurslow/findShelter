@@ -10,6 +10,11 @@ footer {
     right: 0;
     justify-content: center;
     display: flex;
+
+    p {
+      color: $col-medium-dark;
+      font-size: .9em;
+    }
   }
 
   .footer__logo {
