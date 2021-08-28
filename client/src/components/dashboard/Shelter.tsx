@@ -39,7 +39,9 @@ const Shelter = () => {
           <img src='/img/website.svg' alt="website" />
           <p>familynfriends.com</p>
         </span>
-        <strong>3 km away from here!</strong>
+        <span>
+          <strong>3 km away from here!</strong>
+        </span>
       </div>
     </div>
   );

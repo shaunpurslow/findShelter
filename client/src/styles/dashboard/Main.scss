@@ -51,7 +51,12 @@
 
   span {
     @include displayFlex(flex-start, flex-end);
-    padding-right: 1rem;
+    padding-top: 0.5rem;
+
+    strong {
+      padding-left: 2rem;
+      font-weight: 700;
+    }
   }
 
   img {
@@ -80,10 +85,5 @@
       object-fit: cover;
       object-position: center center;
     }
-  }
-
-  strong {
-    padding-left: 2rem;
-    font-weight: 700;
   }
 }
