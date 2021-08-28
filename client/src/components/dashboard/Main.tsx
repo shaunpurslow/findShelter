@@ -1,25 +1,17 @@
 import '../../styles/dashboard/Main.scss';
+import Overview from './Overview';
+import Shelter from './Shelter';
 
 // Will display items on the dashboard
 const Main = () => {
   return (
     <>
-      <div>
-        <h2>For Overview Component</h2>
-        <li>Capacity Card</li>
-        <li>Queue Card</li>
-        <li>Beds Remaining</li>
-      </div>
+      <Overview />
+      <Shelter />
       <div>
         <h2>For Reservation Component</h2>
         <li>Basic information of guest</li>
         <li>Shelter that did the reservation (if applies)</li>
-        <li>Within cards</li>
-      </div>
-      <div>
-        <h2>For Shelters Component</h2>
-        <li>Shelters Near Me</li>
-        <li>Organized by proximity</li>
         <li>Within cards</li>
       </div>
       <div>
