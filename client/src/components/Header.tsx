@@ -5,9 +5,8 @@ const Header = () => {
   return (
     <header className='header'>
       {/* left */}
-      <div className='nav__left'>
-        <HomeIcon />
-        <h1>findShelter</h1>
+      <div className='nav__image'>
+        <img src="/img/find-shelter.png" alt="" />
       </div>
 
       {/* Right */}
