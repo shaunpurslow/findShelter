@@ -11,6 +11,8 @@ function App() {
       <Header />
       {/* search */}
       <Search />
+      {/* Register */}
+      
       {/*Footer  */}
       <Footer />
     </div>
