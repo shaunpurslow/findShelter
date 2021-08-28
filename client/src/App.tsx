@@ -5,6 +5,7 @@ import Search from './components/Search';
 import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           {/* Register */}
           <Route path='/register'>
             <Register />
+          </Route>
+          {/* Dashborad */}
+          <Route path='/dashboard'>
+            <Dashboard />
           </Route>
         </Switch>
       </div>

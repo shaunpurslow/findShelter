@@ -1,0 +1,28 @@
+@import '../variables';
+@import '../global';
+
+.dashboard-header {
+  @include displayFlex(space-between, center);
+
+  h1 {
+    padding-left: 1em;
+  }
+
+  .dashboard-right-header {
+    @include displayFlex(flex-end, center);
+    flex-grow: 1;
+    padding-right: 1em;
+
+    h2 {
+      padding: 0 5em;
+    }
+
+    img {
+      max-width: 1em;
+
+      &:last-child {
+        max-width: 3em;
+      }
+    }
+  }
+}

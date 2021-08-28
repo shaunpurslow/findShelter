@@ -1,0 +1,11 @@
+@import '../variables';
+
+.dashboard-sidebar {
+  height: 100vh;
+  margin: 0;
+  flex-grow: 0.5;
+  background-color: $col-dark;
+  color: white;
+  box-sizing: border-box;
+  display: block;
+}
