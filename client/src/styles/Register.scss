@@ -5,23 +5,48 @@
   margin: 5em auto;
   border: 1px solid $col-dark;
   border-radius: 15px;
-  background-color: white;
+  background-color: $col-medium;
 }
 
 .register__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 1em 2em;
+
+  img {
+    width: 150px;
+  }
+
+  h2 {
+    font-size: .8em;
+    color: $col-medium-dark;
+  }
 }
 
 .registration-form {
   display: flex;
   flex-direction: column;
+  margin: 0 1.5em;
+
+   h3 {
+    color: $col-medium-dark;
+   }
 
   label {
-    margin: 1rem 0;
+    margin: .3rem 0;
+    color: $col-dark;
+  
   }
 
   input {
     height: 2rem;
+    background-color: $col-light;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    
   }
+
 }

@@ -77,7 +77,7 @@ const Register = () => {
       </div>
 
       <form onSubmit={handleSubmit} className='registration-form'>
-        <h3>Shelter Details</h3>
+        <h3>Shelter Registration</h3>
         <label htmlFor='shelter-name'>Shelter Name</label>
         <input
           name='shelter-name'
