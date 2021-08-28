@@ -5,6 +5,7 @@ interface Props {
   key: string;
   menu: string;
   selected: boolean;
+  setMenuItem: (e: any) => void;
 }
 
 const MenuItem = (props: Props) => {
@@ -18,7 +19,7 @@ const MenuItem = (props: Props) => {
   return (
     <li
       className={menuClass}
-      onClick={(e: any): any => console.log(props.menu)}>
+      onClick={(e: any): any => props.setMenuItem(props.menu)}>
       <img src={image} alt={props.menu} />
       <h2>{props.menu}</h2>
     </li>

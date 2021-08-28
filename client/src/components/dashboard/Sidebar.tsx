@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 interface Props {
   currentMenu: string;
   menuItems: string[];
-  onChange: (e: any) => void;
+  setMenuItem: (e: any) => void;
 }
 
 const Sidebar = (props: Props) => {
@@ -14,6 +14,7 @@ const Sidebar = (props: Props) => {
       key={menu}
       menu={menu}
       selected={menu === props.currentMenu}
+      setMenuItem={props.setMenuItem}
     />
   )
 

@@ -10,13 +10,16 @@ function Dashboard() {
     menuItems: ['Overview', 'Reservations', 'Find Shelters', 'Guests', 'My Shelter']
   });
 
+  const setMenuItem = (item: string): void =>
+    setMenu({ ...menu, currentMenu: item });
+
   return (
     <>
       <div className='dashboard-view'>
-        <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} onChange={(e: any) => setMenu(e)} />
+        <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
         <section className='dashboard'>
-          <Header />
-          <Main />
+          <Header currentMenu={menu.currentMenu} />
+          <Main currentMenu={menu.currentMenu} />
         </section>
       </div>
     </>
