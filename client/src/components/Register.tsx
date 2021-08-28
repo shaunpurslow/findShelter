@@ -39,7 +39,6 @@ const Register = ({ setAppState }) => {
               value={formValues.city}
               onChange={handleChange}
               type='text'
-              className='error'
             />
           </div>
 
