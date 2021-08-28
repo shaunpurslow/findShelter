@@ -21,7 +21,8 @@ header {
   }
 
   .sign__in:hover {
-    color: $col-dark;    
+    color: $col-dark;   
+    transition: 0.5s; 
   }
   .sign__in {
     margin-right: 0.6em;
@@ -36,8 +37,9 @@ header {
     background-color: $col-dark;
     color: $col-light;
     border-radius: 10px;
-    padding: 3px 10px;
+    padding: 4px 10px;
     font-weight: bold;
+    transition: 0.4s;
   }
   
   img {
