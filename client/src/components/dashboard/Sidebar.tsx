@@ -1,11 +1,11 @@
 import '../../styles/dashboard/Sidebar.scss';
 import '../../styles/dashboard/MenuItem.scss';
-import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
     <aside className='dashboard-sidebar'>
-      <img src='/img/find-shelter-b.svg' alt='logo' />
+      <img src='/img/find-shelter-b.svg' alt='logo' className='sidebar-logo' />
+
       <li className='menu-item--selected'>
         <img src='/img/overview.svg' alt='overview' />
         <h2>Overview</h2>
