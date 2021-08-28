@@ -1,18 +1,22 @@
 import '.././styles/Header.scss';
-import HomeIcon from '@material-ui/icons/Home';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className='header'>
       {/* left */}
       <div className='nav__image'>
-        <img src="/img/find-shelter.png" alt="" />
+        <Link to='/'>
+          <img src='/img/find-shelter.png' alt='' />
+        </Link>
       </div>
 
       {/* Right */}
       <div className='nav__right'>
         <p className='sign__in'>Sign In</p>
-        <button className='sign__up'>Sign Up</button>
+        <Link to='/register'>
+          <button className='sign__up'>Sign Up</button>
+        </Link>
       </div>
     </header>
   );
