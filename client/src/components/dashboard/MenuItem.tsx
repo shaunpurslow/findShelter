@@ -1,20 +1,26 @@
 import '../../styles/dashboard/MenuItem.scss';
 import classNames from "classnames";
 
-const MenuStatus = 'classes'
-// classNames('day-list__item', {
-//   'day-list__item--full': !props.spots,
-//   'day-list__item--selected': props.selected
-// })
+interface Props {
+  key: string;
+  menu: string;
+  selected: boolean;
+}
 
-const MenuItem = () => {
+const MenuItem = (props: Props) => {
+  const menuClass = classNames('menu-item', {
+    'menu-item--selected': props.selected,
+  })
+
+  const imageName = props.menu.split(' ').join('')
+  const image = `/img/${imageName}.svg`
+
   return (
     <li
-      onClick={() => console.log('Clicked!!!')}
-      className={MenuStatus}
-    >
-      <img src='/img/guests.svg' alt='guests' />
-      <h2>Overview</h2>
+      className={menuClass}
+      onClick={(e: any): any => console.log(props.menu)}>
+      <img src={image} alt={props.menu} />
+      <h2>{props.menu}</h2>
     </li>
   );
 };

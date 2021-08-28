@@ -4,7 +4,7 @@ const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
 
 const Shelter = () => {
   return (
-    <div className="individual-shelter">
+    <div className="individual-shelter" onClick={() => console.log('Open modal with more details about shelter')}>
       <div>
         <img src='/img/mock-shelter-1.jpg' alt='shelter' className='shelter-image' />
       </div>
