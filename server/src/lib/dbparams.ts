@@ -1,8 +1,11 @@
-let dbParams = {};
-if (process.env.DATABASE_URL) {
-  dbParams.connectionString = process.env.DATABASE_URL;
+import IParams from './dbparams.d';
+
+let params: IParams = {};
+
+if (process.env.DB_URL) {
+  params.connectionString = process.env.DB_URL;
 } else {
-  dbParams = {
+  params = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
@@ -11,4 +14,4 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-module.exports = dbParams;
+export default params;

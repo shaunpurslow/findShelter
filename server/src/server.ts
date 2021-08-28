@@ -1,19 +1,20 @@
 // load .env data into process.env
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
 // const ENV = process.env.ENV || 'development';
-const express = require('express');
+import express from 'express';
 const app = express();
-const morgan = require('morgan');
-const session = require('cookie-session');
+import morgan from 'morgan';
+import session from 'cookie-session';
 
 // PG database client/connection setup
-// const { Pool } = require('pg');
-// const dbParams = require('./lib/dbparams.js');
-// const db = new Pool(dbParams);
-// db.connect();
+import { Pool } from 'pg';
+import dbParams from './lib/dbparams';
+const db = new Pool(dbParams);
+db.connect();
 
 // MIDDLE WARE
 // Loading morgan logger first so all (static) HTTP requests are logged to STDOUT
@@ -31,6 +32,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // ROUTES
+const shelterRoutes = require('./routes/shelter');
+
+// mount routes
+app.use('/shelters', shelterRoutes(db));
 
 // start server
 app.listen(PORT, () => {
