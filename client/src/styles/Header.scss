@@ -10,7 +10,7 @@ header {
   .nav__right {
     display: flex;
     align-items: center;
-    margin: .2em 0.7em;
+    margin: .2em 1em;
     justify-content: center;
   }
   .sign__in,
@@ -20,25 +20,30 @@ header {
     font-family: $font-stack;
   }
 
-  .sign__in:hover,
-  .sign__up:hover {
-    background-color: $col-medium;
+  .sign__in:hover {
+    color: $col-dark;    
   }
   .sign__in {
     margin-right: 0.6em;
   }
 
   .sign__up {
-    background-color: $col-light;
     border: none;
     margin-bottom: .1em;
   }
-  
 
+  .sign__up:hover {
+    background-color: $col-dark;
+    color: $col-light;
+    border-radius: 10px;
+    padding: 3px 10px;
+    font-weight: bold;
+  }
+  
   img {
     width: 100%;
     height: 45px;
-    margin-bottom: 0.1em;
+    margin-top: .2em;
   }
 
   
