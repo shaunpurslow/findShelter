@@ -5,8 +5,14 @@ import Search from './components/Search';
 import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register';
+import { useState } from 'react';
 
 function App() {
+  const [appState, setAppState] = useState({
+    user: {},
+    shelter: {},
+  });
+
   return (
     <Router>
       <div className='App'>
@@ -19,7 +25,7 @@ function App() {
           </Route>
           {/* Register */}
           <Route path='/register'>
-            <Register />
+            <Register setAppState={setAppState} />
           </Route>
         </Switch>
       </div>

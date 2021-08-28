@@ -20,7 +20,7 @@
   }
 
   h2 {
-    font-size: .8em;
+    font-size: 0.8em;
     color: $col-medium-dark;
   }
 }
@@ -30,14 +30,13 @@
   flex-direction: column;
   margin: 0 1.5em;
 
-   h3 {
+  h3 {
     color: $col-medium-dark;
-   }
+  }
 
   label {
-    margin: .3rem 0;
+    margin: 0.3rem 0;
     color: $col-dark;
-  
   }
 
   input {
@@ -48,24 +47,22 @@
     border-radius: 10px;
     margin-bottom: 1em;
   }
-
 }
 
 span {
- display: flex;
- 
- div {
-   display: flex;
-   flex-direction: column;
-   flex-grow: 1;
-   
+  display: flex;
 
-   &:first-child {
-     padding-right: .8em;
-   }
+  div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-   &:last-child {
-     padding-left: .8em;
-   }
- }
+    &:first-child {
+      padding-right: 0.8em;
+    }
+
+    &:last-child {
+      padding-left: 0.8em;
+    }
+  }
 }
