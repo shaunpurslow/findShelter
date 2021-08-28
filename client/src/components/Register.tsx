@@ -9,7 +9,7 @@ const Register = ({ setAppState }) => {
     <main className='register__container'>
       <div className='register__header'>
         <img src='/img/find-shelter.png' alt='logo' />
-        <h2>Login</h2>
+        <h2>Register</h2>
       </div>
 
       <form onSubmit={handleSubmit} className='registration-form'>
@@ -77,7 +77,7 @@ const Register = ({ setAppState }) => {
           </div>
         </span>
 
-        <label htmlFor='capacity'>Number of Beds</label>
+        <label htmlFor='capacity'>Total Beds</label>
         <input
           name='capacity'
           id='capacity'
@@ -90,23 +90,29 @@ const Register = ({ setAppState }) => {
         />
 
         <h3>Staff Details</h3>
-        <label htmlFor='first_name'>First Name</label>
-        <input
-          name='first-name'
-          id='firstName'
-          value={formValues.firstName}
-          onChange={handleChange}
-          type='text'
-        />
 
-        <label htmlFor='last_name'>Last Name</label>
-        <input
-          name='last-name'
-          id='lastName'
-          value={formValues.lastName}
-          onChange={handleChange}
-          type='text'
-        />
+        <span>
+          <div>
+            <label htmlFor='first_name'>First Name</label>
+            <input
+              name='first-name'
+              id='firstName'
+              value={formValues.firstName}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+          <div>
+            <label htmlFor='last_name'>Last Name</label>
+            <input
+              name='last-name'
+              id='lastName'
+              value={formValues.lastName}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+        </span>
 
         <label htmlFor='email'>Email</label>
         <input
@@ -134,7 +140,7 @@ const Register = ({ setAppState }) => {
           onChange={handleChange}
           type='text'
         />
-        <button type='submit'>Register</button>
+        <button className='submit__button' type='submit'>Register</button>
       </form>
     </main>
   );

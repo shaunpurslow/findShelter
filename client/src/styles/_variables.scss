@@ -18,3 +18,10 @@
     align-items: $alignItems;
     flex-direction: $direction;
   }
+
+  @mixin mobile {
+    @media screen and (min-width: 350px) {
+      @content
+    }
+  }
+  

@@ -66,3 +66,52 @@ span {
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+.submit__button {
+  width: 200px;
+  padding: 1em 0.5em;
+  background-color: $col-medium-dark;
+  color: $col-dark;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 2rem auto;
+}
+
+button:hover {
+  background-color: $col-dark;
+  color: $col-light;
+  transition: 0.3s;
+}
+
+@media (min-width: 425px) {
+  .register__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 1em;
+
+    img {
+      width: 120px;
+    }
+
+    h2 {
+      font-size: 0.7em;
+      color: $col-medium-dark;
+    }
+  }
+
+  span {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+>>>>>>> features/design
