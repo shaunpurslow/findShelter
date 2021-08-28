@@ -19,11 +19,11 @@ const Register = () => {
 
   // TODO: move to a helper function folder and import into this file
   const validateInputs = () => {
-    const errors = [];
+    const errors: string[] = [];
     // validate inputs
     // password
     if (formValues.password !== formValues.passwordConfirmation) {
-      errors.push('passwords dont match');
+      errors.push("passwords don't match");
       //TODO: toggle error warning on the front end
     }
 
@@ -32,7 +32,7 @@ const Register = () => {
     const emailRegEx =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!emailRegEx.test(formValues.email)) {
-      errors.push('email doesnt match');
+      errors.push("passwords doesn't match");
     }
 
     // postal code
