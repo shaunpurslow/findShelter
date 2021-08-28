@@ -23,10 +23,8 @@ const Register = () => {
     // validate inputs
     // password
     if (formValues.password !== formValues.passwordConfirmation) {
-      errors.push('email doesnt match');
-      console.log('emails dont match');
+      errors.push('passwords dont match');
       //TODO: toggle error warning on the front end
-      return false;
     }
 
     // email
@@ -34,8 +32,7 @@ const Register = () => {
     const emailRegEx =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!emailRegEx.test(formValues.email)) {
-      console.log('bad email');
-      return false;
+      errors.push('email doesnt match');
     }
 
     // postal code
@@ -44,10 +41,16 @@ const Register = () => {
     const postalCodeRegEx =
       /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i;
     if (!postalCodeRegEx.test(formValues.postalCode)) {
-      console.log('bad postal code');
-      return false;
+      errors.push('bad postal code');
     }
 
+    if (errors.length !== 0) {
+      // TODO: remove this - only here for debugging
+      for (const error of errors) {
+        console.log(error);
+      }
+      return false;
+    }
     return true;
   };
 
