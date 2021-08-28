@@ -1,3 +1,27 @@
+@import './variables';
+
 .register__container {
-  
+  width: 87%;
+  margin: 5em auto;
+  border: 1px solid $col-dark;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.register__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin: 1rem 0;
+  }
+
+  input {
+    height: 2rem;
+  }
 }
