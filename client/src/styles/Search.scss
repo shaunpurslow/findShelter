@@ -40,9 +40,9 @@ main {
     border: none;
     flex-grow: 1;
     margin-left: 0.5em;
-  }
 
-  input:focus {
+    &:focus {
     outline: none;
+    }
   }
 }
