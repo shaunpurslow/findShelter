@@ -1,11 +1,15 @@
 import '../../styles/dashboard/Main.scss';
 
-const Overview = () => {
+interface Props {
+  capacity: number;
+}
+
+const Overview = (props: Props) => {
   return (
     <div className='overview-cards'>
       <div>
         <header>CAPACITY</header>
-        <strong>100</strong>
+        <strong>{props.capacity}</strong>
       </div>
       <div>
         <header>QUEUE</header>

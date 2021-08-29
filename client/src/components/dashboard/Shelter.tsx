@@ -2,9 +2,29 @@ import { useState } from 'react';
 import '../../styles/dashboard/Main.scss';
 import ModalShelter from './ModalShelter';
 
+interface Props {
+  key: number;
+  name: string;
+  street_address: string;
+  city: string;
+  province: string;
+  postal_code: string;
+  country: string;
+  phone: string;
+  email: string;
+  thumbnail_url: string;
+  website_url: string;
+  capacity: number;
+  couples: boolean;
+  female_only: boolean;
+  male_only: boolean;
+  family: boolean;
+  pets: boolean;
+}
+
 const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
 
-const Shelter = () => {
+const Shelter = (props: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -15,38 +35,38 @@ const Shelter = () => {
   const shelterView = (
     <div className="individual-shelter" onClick={toggleModal}>
       <div>
-        <img src='/img/mock-shelter-1.jpg' alt='shelter' className='shelter-image' />
+        <img src={props.thumbnail_url} alt='shelter' className='shelter-image' />
       </div>
 
       <div>
-        <h2>Family And Friends Community Shelter</h2>
+        <h2>{props.name}</h2>
         <span>
-          <img src={filters(true)} alt="couples" />
+          <img src={filters(props.couples)} alt="couples" />
           <h4>couples</h4>
-          <img src={filters(false)} alt="female only" />
+          <img src={filters(props.female_only)} alt="female only" />
           <h4>female only</h4>
-          <img src={filters(false)} alt="male only" />
+          <img src={filters(props.male_only)} alt="male only" />
           <h4>male only</h4>
-          <img src={filters(true)} alt="family" />
+          <img src={filters(props.family)} alt="family" />
           <h4>families</h4>
-          <img src={filters(true)} alt="pets" />
+          <img src={filters(props.pets)} alt="pets" />
           <h4>pets</h4>
         </span>
         <span>
           <img src='/img/location.svg' alt="location" />
-          <p>303 1st Street SW, Calgary/AB, T2P 0A5</p>
+          <p>{props.street_address}, {props.city}/{props.province}, {props.postal_code}</p>
         </span>
         <span>
           <img src='/img/phone.svg' alt="phone" />
-          <p>(403)296-8000</p>
+          <p>{props.phone}</p>
         </span>
         <span>
           <img src='/img/email.svg' alt="email" />
-          <p>info@familynfriends.com</p>
+          <p>{props.email}</p>
         </span>
         <span>
           <img src='/img/website.svg' alt="website" />
-          <p>familynfriends.com</p>
+          <p>{props.website_url}</p>
         </span>
         <span>
           <strong>3 km away from here!</strong>
