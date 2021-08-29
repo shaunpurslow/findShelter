@@ -8,7 +8,7 @@ const Register = ({ setAppState }) => {
   return (
     <main className='register__container'>
       <div className='register__header'>
-        <img src='/img/find-shelter.png' alt='logo' />
+        <img src='/img/find-shelter.svg' alt='logo' />
         <h2>Register</h2>
       </div>
 
