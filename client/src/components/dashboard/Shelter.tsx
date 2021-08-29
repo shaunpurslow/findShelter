@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import '../../styles/dashboard/Main.scss';
+import ModalShelter from './ModalShelter';
 
 const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
 
 const Shelter = () => {
-  return (
-    <div className="individual-shelter" onClick={() => console.log('Open modal with more details about shelter')}>
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    console.log(showModal)
+    setShowModal(prev => !prev)
+  }
+
+  const shelterView = (
+    <div className="individual-shelter" onClick={toggleModal}>
       <div>
         <img src='/img/mock-shelter-1.jpg' alt='shelter' className='shelter-image' />
       </div>
@@ -43,8 +52,10 @@ const Shelter = () => {
           <strong>3 km away from here!</strong>
         </span>
       </div>
-    </div>
+    </div >
   );
+
+  return (showModal ? <ModalShelter toggleModal={toggleModal} showModal={showModal} /> : shelterView);
 };
 
 export default Shelter;
