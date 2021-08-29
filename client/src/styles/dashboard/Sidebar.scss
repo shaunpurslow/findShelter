@@ -1,0 +1,14 @@
+@import '../variables';
+
+.dashboard-sidebar {
+  @include displayFlex(flex-start, center, column);
+  height: 100vh;
+  margin: 0;
+  width: 350px;
+  background-color: $col-dark;
+  color: white;
+
+  .sidebar-logo {
+    padding: 3em 0 6em;
+  }
+}

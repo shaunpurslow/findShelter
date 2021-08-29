@@ -1,4 +1,6 @@
- // This values are for responsive default
+@import './variables';
+
+// This values are for responsive default
  * {
   margin:0;
   padding:0;
@@ -15,14 +17,13 @@ html  {
 }
 
 body {
-  background-color: var(--background);
+  background-color: $col-light;
   -webkit-font-smoothing: antialiased;
-  
 }
 
 
 body, input, textarea, button {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-stack;
   font-weight: 400;
 }
 
