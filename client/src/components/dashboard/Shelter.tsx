@@ -25,15 +25,8 @@ interface Props {
 const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
 
 const Shelter = (props: Props) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    console.log(showModal)
-    setShowModal(prev => !prev)
-  }
-
-  const shelterView = (
-    <div className="individual-shelter" onClick={toggleModal}>
+  return (
+    <div className="individual-shelter">
       <div>
         <img src={props.thumbnail_url} alt='shelter' className='shelter-image' />
       </div>
@@ -87,11 +80,7 @@ const Shelter = (props: Props) => {
         </div>
       </div>
     </div >
-
-
   );
-
-  return (showModal ? <ModalShelter toggleModal={toggleModal} showModal={showModal} /> : shelterView);
 };
 
 export default Shelter;
