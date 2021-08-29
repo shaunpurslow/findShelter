@@ -42,7 +42,7 @@
 }
 
 .individual-shelter {
-  @include displayFlex(flex-start, stretch, row);
+  @include displayFlex(space-between, stretch, row);
   margin:0;
   padding:0;
   box-sizing: border-box;
@@ -91,6 +91,11 @@
     }
   }
 
+  .shelter-info {
+    padding: 1rem;
+    flex-grow: 1;
+  }
+
   &:hover {
     box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
   }
@@ -113,10 +118,29 @@
   visibility: visible;
 }
 
-// .modal {
-//   background: white;
-//   padding: 2.4rem;
-//   position: relative;
-//   width: 90%;
-//   max-width: 600px;
-// }
+.info-cards {
+  @include displayFlex(space-between, center);
+
+  div {
+    color:  $col-dark;
+
+    header {
+      @include displayFlex(center, center, row);
+      margin-top: 2rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    strong {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 3rem;
+      padding-top: 0.5rem;
+    }
+  }
+}
