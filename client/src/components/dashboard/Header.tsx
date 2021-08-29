@@ -2,6 +2,9 @@ import '../../styles/dashboard/Header.scss';
 
 interface Props {
   currentMenu: string;
+  first_name: string;
+  last_name: string;
+  thumbnail_url: string;
 }
 
 const Header = (props: Props) => {
@@ -11,8 +14,8 @@ const Header = (props: Props) => {
       <span className='dashboard-right-header'>
         <img src='/img/search.svg' alt='search' />
         <img src='/img/divider.svg' alt='divider' />
-        <h3>Staff User</h3>
-        <img src='/img/familyfriends-avatar.png' alt='logo' />
+        <h3>{props.first_name + ' ' + props.last_name}</h3>
+        <img src={props.thumbnail_url} alt='logo' />
       </span>
 
     </header>

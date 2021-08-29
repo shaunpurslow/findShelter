@@ -11,7 +11,7 @@ const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
 const ModalShelter = (props: Props) => {
   return (
     <div className="modal-overlay" onClick={() => props.toggleModal}>
-      <Shelter />
+      <h1>This is a Modal</h1>
     </div>
   )
 };

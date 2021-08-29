@@ -124,5 +124,21 @@ export default function (dbconn) {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
+  // Route to get information from the shelter to the dashboard
+  router.get('/login/:id', (req, res) => {
+    const { id } = req.params;
+    dbconn
+      .query(
+        `
+        SELECT first_name, last_name, shelters.thumbnail_url, shelters.capacity FROM staff
+        JOIN shelters on shelters.id = shelter_id
+        WHERE staff.id = $1;
+        `,
+        [id]
+      )
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.status(500).json({ error: e.message }));
+  });
+
   return router;
 }

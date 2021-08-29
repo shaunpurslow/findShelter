@@ -13,6 +13,10 @@
     border-radius: 0.25rem;
     color:  $col-dark;
 
+    &:hover {
+      box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+    }
+
     header {
       display: flex;
       align-items: center;
@@ -85,6 +89,10 @@
       object-fit: cover;
       object-position: center center;
     }
+  }
+
+  &:hover {
+    box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
   }
 }
 
