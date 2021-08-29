@@ -7,7 +7,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register';
 import Dashboard from './components/dashboard/Dashboard';
 
+import { useState } from 'react';
+
 function App() {
+  const [appState, setAppState] = useState({
+    user: {},
+    shelter: {},
+  });
+
   return (
     <Router>
       <div className='App'>
@@ -20,7 +27,7 @@ function App() {
           </Route>
           {/* Register */}
           <Route path='/register'>
-            <Register />
+            <Register setAppState={setAppState} />
           </Route>
           {/* Dashborad */}
           <Route path='/dashboard'>

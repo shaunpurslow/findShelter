@@ -31,10 +31,14 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ROUTES
-const shelterRoutes = require('./routes/shelter');
+// import routes
+import accessRoutes from './routes/access';
+import registerRoutes from './routes/register';
+import shelterRoutes from './routes/shelter';
 
 // mount routes
+app.use('/login', accessRoutes(db));
+app.use('/register', registerRoutes(db));
 app.use('/shelters', shelterRoutes(db));
 
 // start server

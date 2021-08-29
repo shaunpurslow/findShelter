@@ -1,73 +1,9 @@
-import { useState } from 'react';
+import useRegistrationForm from '../hooks/useRegistrationForm';
 import '../styles/Register.scss';
 
-const Register = () => {
-  const [formValues, setFormValues] = useState({
-    shelterName: '',
-    capacity: '',
-    streetAddress: '',
-    city: '',
-    province: '',
-    postalCode: '',
-    country: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-  });
-
-  // TODO: move to a helper function folder and import into this file
-  const validateInputs = () => {
-    const errors: string[] = [];
-    // validate inputs
-    // password
-    if (formValues.password !== formValues.passwordConfirmation) {
-      errors.push("passwords don't match");
-      //TODO: toggle error warning on the front end
-    }
-
-    // email
-    // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
-    const emailRegEx =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emailRegEx.test(formValues.email)) {
-      errors.push("passwords doesn't match");
-    }
-
-    // postal code
-    // only supports canadian postal codes
-    // https://stackoverflow.com/questions/15774555/efficient-regex-for-canadian-postal-code-function
-    const postalCodeRegEx =
-      /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i;
-    if (!postalCodeRegEx.test(formValues.postalCode)) {
-      errors.push('bad postal code');
-    }
-
-    if (errors.length !== 0) {
-      // TODO: remove this - only here for debugging
-      for (const error of errors) {
-        console.log(error);
-      }
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const inputsNotCorrect = !validateInputs();
-    if (inputsNotCorrect) {
-      return;
-    }
-    // send info to db
-    console.log('SUCCESS');
-  };
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [id]: value }));
-  };
+const Register = ({ setAppState }) => {
+  const [formValues, handleChange, handleSubmit] =
+    useRegistrationForm(setAppState);
 
   return (
     <main className='register__container'>
@@ -77,7 +13,7 @@ const Register = () => {
       </div>
 
       <form onSubmit={handleSubmit} className='registration-form'>
-        <h3>Shelter Details</h3>
+        <h3>Shelter Registration</h3>
         <label htmlFor='shelter-name'>Shelter Name</label>
         <input
           name='shelter-name'
@@ -86,8 +22,62 @@ const Register = () => {
           onChange={handleChange}
           type='text'
         />
+        <label htmlFor='street-address'>Street Address</label>
+        <input
+          name='street-address'
+          id='streetAddress'
+          value={formValues.streetAddress}
+          onChange={handleChange}
+          type='text'
+        />
+        <span>
+          <div>
+            <label htmlFor='city'>City</label>
+            <input
+              name='city'
+              id='city'
+              value={formValues.city}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
 
-        <label htmlFor='capacity'>Number of Beds</label>
+          <div>
+            <label htmlFor='province'>Province</label>
+            <input
+              name='province'
+              id='province'
+              value={formValues.province}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+        </span>
+
+        <span>
+          <div>
+            <label htmlFor='postal-code'>Postal Code</label>
+            <input
+              name='postal-code'
+              id='postalCode'
+              value={formValues.postalCode}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+          <div>
+            <label htmlFor='country'>Country</label>
+            <input
+              name='country'
+              id='country'
+              value={formValues.country}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+        </span>
+
+        <label htmlFor='capacity'>Total Beds</label>
         <input
           name='capacity'
           id='capacity'
@@ -99,69 +89,30 @@ const Register = () => {
           step='1'
         />
 
-        <label htmlFor='street-address'>Street Address</label>
-        <input
-          name='street-address'
-          id='streetAddress'
-          value={formValues.streetAddress}
-          onChange={handleChange}
-          type='text'
-        />
-
-        <label htmlFor='city'>City</label>
-        <input
-          name='city'
-          id='city'
-          value={formValues.city}
-          onChange={handleChange}
-          type='text'
-        />
-
-        <label htmlFor='province'>Province</label>
-        <input
-          name='province'
-          id='province'
-          value={formValues.province}
-          onChange={handleChange}
-          type='text'
-        />
-
-        <label htmlFor='postal-code'>postal Code</label>
-        <input
-          name='postal-code'
-          id='postalCode'
-          value={formValues.postalCode}
-          onChange={handleChange}
-          type='text'
-        />
-
-        <label htmlFor='country'>Country</label>
-        <input
-          name='country'
-          id='country'
-          value={formValues.country}
-          onChange={handleChange}
-          type='text'
-        />
-
         <h3>Staff Details</h3>
-        <label htmlFor='first_name'>First Name</label>
-        <input
-          name='first-name'
-          id='firstName'
-          value={formValues.firstName}
-          onChange={handleChange}
-          type='text'
-        />
 
-        <label htmlFor='last_name'>Last Name</label>
-        <input
-          name='last-name'
-          id='lastName'
-          value={formValues.lastName}
-          onChange={handleChange}
-          type='text'
-        />
+        <span>
+          <div>
+            <label htmlFor='first_name'>First Name</label>
+            <input
+              name='first-name'
+              id='firstName'
+              value={formValues.firstName}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+          <div>
+            <label htmlFor='last_name'>Last Name</label>
+            <input
+              name='last-name'
+              id='lastName'
+              value={formValues.lastName}
+              onChange={handleChange}
+              type='text'
+            />
+          </div>
+        </span>
 
         <label htmlFor='email'>Email</label>
         <input
@@ -189,7 +140,7 @@ const Register = () => {
           onChange={handleChange}
           type='text'
         />
-        <button type='submit'>Register</button>
+        <button className='submit__button' type='submit'>Register</button>
       </form>
     </main>
   );
