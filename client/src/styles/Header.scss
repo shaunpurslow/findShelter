@@ -5,7 +5,8 @@ header {
   align-items: space-between;
   justify-content: space-between;
   border-bottom: 1px solid $col-medium;
-
+  
+  
   .nav__image,
   .nav__right {
     display: flex;
@@ -45,6 +46,5 @@ header {
   img {
     width: 100%;
     height: 45px;
-    margin-top: .2em;
   }
 }

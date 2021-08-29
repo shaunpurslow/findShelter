@@ -59,7 +59,8 @@ function App() {
           <Route path='/dashboard'>
             <Dashboard />
           </Route>
-          <Route path='/test'>
+          <Route path='/user'>
+            <Header />
             {shelter}
           </Route>
         </Switch>

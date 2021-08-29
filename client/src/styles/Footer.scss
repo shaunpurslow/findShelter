@@ -1,15 +1,19 @@
 @import './variables';
 
 footer {
+  
+  
   .copyright {
     border-top: 1px solid $col-medium;
-    text-align: center;
     position: absolute;
+    justify-content: center;
+    display: flex;
+    text-align: center;
     bottom: 0;
     left: 0;
     right: 0;
-    justify-content: center;
-    display: flex;
+    padding-top: .4em;
+    // margin-top: 2em;
 
     p {
       color: $col-medium-dark;
@@ -24,6 +28,7 @@ footer {
 
     p {
       margin-left: 0.1em;
+      
     }
 
     img {
