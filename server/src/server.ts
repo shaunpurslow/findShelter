@@ -16,10 +16,7 @@ import dbParams from './lib/dbparams';
 const db = new Pool(dbParams);
 db.connect();
 
-// MIDDLE WARE
-// Loading morgan logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+// Middleware
 app.use(morgan('dev'));
 
 app.use(
@@ -31,17 +28,19 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// import routes
+// Import routes
 import accessRoutes from './routes/access';
 import registerRoutes from './routes/register';
 import shelterRoutes from './routes/shelter';
+import reservationRoutes from './routes/reservations';
 
-// mount routes
+// Mount routes
 app.use('/login', accessRoutes(db));
 app.use('/register', registerRoutes(db));
 app.use('/shelters', shelterRoutes(db));
+app.use('/reservations', reservationRoutes(db));
 
-// start server
+// Start server
 app.listen(PORT, () => {
   console.log(`Find Shelter Server listening on port ${PORT}`);
 });
