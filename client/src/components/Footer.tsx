@@ -5,7 +5,7 @@ const Footer = () => {
       <div className='copyright'>
         <p>&copy; 2021 |</p>
         <div className='footer__logo'>
-          <img src="/img/find-shelter.png" alt="" />
+          <img src="/img/find-shelter.svg" alt="" />
         </div>
       </div>
     </footer>
