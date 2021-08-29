@@ -2,7 +2,6 @@
  * All routes for shelter resource are defined here
  */
 
-// const express = require('express');
 import express from 'express';
 const router = express.Router();
 
