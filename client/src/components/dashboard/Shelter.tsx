@@ -22,64 +22,88 @@ interface Props {
   pets: boolean;
 }
 
-const filters = boolean => boolean ? '/img/yes.svg' : '/img/no.svg';
+const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
 
 const Shelter = (props: Props) => {
   return (
-    <div className="individual-shelter">
+    <div className='individual-shelter'>
       <div>
-        <img src={props.thumbnail_url} alt='shelter' className='shelter-image' />
+        <img
+          src={props.thumbnail_url}
+          alt='shelter'
+          className='shelter-image'
+        />
       </div>
 
-      <div className="shelter-info">
+      <div className='shelter-info'>
         <h2>{props.name}</h2>
-        <span>
-          <img src={filters(props.couples)} alt="couples" />
-          <h4>couples</h4>
-          <img src={filters(props.female_only)} alt="female only" />
-          <h4>female only</h4>
-          <img src={filters(props.male_only)} alt="male only" />
-          <h4>male only</h4>
-          <img src={filters(props.family)} alt="family" />
-          <h4>families</h4>
-          <img src={filters(props.pets)} alt="pets" />
-          <h4>pets</h4>
+        <span className='shelter-info__filter'>
+          <div>
+            <h4>female</h4>
+            <img src={filters(props.female_only)} alt='female only' />
+          </div>
+          <div>
+            <h4>male</h4>
+            <img src={filters(props.male_only)} alt='male only' />
+          </div>
+          <div>
+            <h4>couples</h4>
+            <img src={filters(props.couples)} alt='couples' />
+          </div>
+          <div>
+            <h4>families</h4>
+            <img src={filters(props.family)} alt='family' />
+          </div>
+          <div>
+            <h4>pets</h4>
+            <img src={filters(props.pets)} alt='pets' />
+          </div>
         </span>
-        <span>
-          <img src='/img/location.svg' alt="location" />
-          <p>{props.street_address}, {props.city}/{props.province}, {props.postal_code}</p>
-        </span>
-        <span>
-          <img src='/img/phone.svg' alt="phone" />
-          <p>{props.phone}</p>
-        </span>
-        <span>
-          <img src='/img/email.svg' alt="email" />
-          <p>{props.email}</p>
-        </span>
-        <span>
-          <img src='/img/website.svg' alt="website" />
-          <p>{props.website_url}</p>
-        </span>
-        <span>
-          <strong>3 km away from here!</strong>
-        </span>
-      </div>
-      <div className='info-cards'>
+
         <div>
-          <header>CAPACITY</header>
-          <strong>{props.capacity}</strong>
-          <header>QUEUE</header>
-          <strong>3</strong>
+          <span className='shelter-info__details'>
+            <img src='/img/location.svg' alt='location' />
+            <p>
+              {props.street_address}, {props.city}/{props.province},{' '}
+              {props.postal_code}
+            </p>
+          </span>
+          <span className='shelter-info__details'>
+            <img src='/img/phone.svg' alt='phone' />
+            <p>{props.phone}</p>
+          </span>
+          <span className='shelter-info__details'>
+            <img src='/img/email.svg' alt='email' />
+            <p>{props.email}</p>
+          </span>
+          <span className='shelter-info__details'>
+            <img src='/img/website.svg' alt='website' />
+            <p>{props.website_url}</p>
+          </span>
         </div>
-        <div>
-          <header>BEDS FILLED</header>
-          <strong>53</strong>
-          <header>BEDS REMAINING</header>
-          <strong>44</strong>
+        <div className='info-cards'>
+          <div className='info-cards--queue'>
+            <header>QUEUE</header>
+            <strong>3</strong>
+          </div>
+          <div className='info-cards--beds'>
+            <header>BEDS LEFT</header>
+            <strong>44</strong>
+          </div>
+          <div className='info-cards--capacity'>
+            <header>CAPACITY</header>
+            <strong>{props.capacity}</strong>
+          </div>
         </div>
       </div>
-    </div >
+      <span className='shelter__km'>
+        <strong>3 km away from here!</strong>
+      </span>
+      <div className='bottom__buttons'>
+        <button>Directions</button>
+        <button>Reserve Now</button>
+      </div>
+    </div>
   );
 };
 
