@@ -130,7 +130,7 @@ export default function (dbconn) {
     dbconn
       .query(
         `
-        SELECT first_name, last_name, shelters.thumbnail_url, shelters.capacity FROM staff
+        SELECT first_name, last_name, shelters.thumbnail_url, shelters.capacity, shelters.id AS shelter_id FROM staff
         JOIN shelters on shelters.id = shelter_id
         WHERE staff.id = $1;
         `,

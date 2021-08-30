@@ -58,7 +58,7 @@ function App() {
           </Route>
           {/* Dashborad */}
           <Route path='/dashboard'>
-            <Dashboard />
+            <Dashboard setAppState={setAppState} />
           </Route>
           <Route path='/user'>
             <Header />
