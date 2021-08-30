@@ -5,13 +5,17 @@ import '../../styles/dashboard/Dashboard.scss';
 import { useState } from 'react';
 import useShelterInfo from '../../hooks/useShelterInfo';
 
-function Dashboard() {
+interface Props {
+  setAppState: {};
+}
+
+function Dashboard(props: Props) {
   const [menu, setMenu] = useState({
     currentMenu: 'Overview',
     menuItems: ['Overview', 'Reservations', 'Find Shelters', 'Guests', 'My Shelter']
   });
 
-  const shelterInfo = useShelterInfo();
+  const shelterInfo = useShelterInfo(props.setAppState);
 
   const setMenuItem = (item: string): void =>
     setMenu({ ...menu, currentMenu: item });
