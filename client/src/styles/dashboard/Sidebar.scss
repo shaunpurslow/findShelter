@@ -1,6 +1,6 @@
 @import '../variables';
 
-<<<<<<< HEAD
+
 .dashboard-sidebar {
   @include displayFlex(flex-start, center, column);
   height: 100vh;
@@ -8,13 +8,13 @@
   width: 350px;
   background-color: $col-dark;
   color: $col-light;
-=======
+
 @media only screen and (max-width: 768px) {
   .dashboard-sidebar {
     display: none;
   }
 }
->>>>>>> f3c5c9d436e3f763fee801639214a02e09bb887d
+
 
 @media only screen and (min-width: 768px) {
   .dashboard-sidebar {
@@ -30,4 +30,4 @@
     }
   }
 }
-
+}
