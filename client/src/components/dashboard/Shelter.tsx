@@ -91,7 +91,7 @@ const Shelter = (props: Props) => {
             <strong>44</strong>
           </div>
           <div className='info-cards--capacity'>
-            <header >CAPACITY</header>
+            <header>CAPACITY</header>
             <strong>{props.capacity}</strong>
           </div>
         </div>
@@ -99,7 +99,7 @@ const Shelter = (props: Props) => {
       <span className='shelter__km'>
         <strong>3 km away from here!</strong>
       </span>
-      <div className="bottom__buttons">
+      <div className='bottom__buttons'>
         <button>Directions</button>
         <button>Reserve Now</button>
       </div>
