@@ -10,6 +10,7 @@ import useShelters from './hooks/useShelters';
 import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
+import Reservation from './components/user/Reservation';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -62,6 +63,10 @@ function App() {
           <Route path='/user'>
             <Header />
             {shelter}
+          </Route>
+          <Route path='/reservation'>
+            <Header />
+            <Reservation />
           </Route>
           <Route path='/login'>
             <Login />
