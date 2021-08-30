@@ -3,12 +3,13 @@ import Header from './components/user/Header';
 import Search from './components/user/Search';
 import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './components/user/Register';
+import Register from './components/admin/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import useShelters from './hooks/useShelters';
 
 import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
+import Login from './components/admin/Login';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -61,6 +62,9 @@ function App() {
           <Route path='/user'>
             <Header />
             {shelter}
+          </Route>
+          <Route path='/login'>
+            <Login />
           </Route>
         </Switch>
       </div>
