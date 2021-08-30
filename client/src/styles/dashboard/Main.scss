@@ -394,7 +394,8 @@
     // @include displayFlex(center, center, column);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: 11px;
+    text-align: center;
 
     div {
       margin-top: 1.5em;
@@ -423,70 +424,6 @@
         font-weight: 600;
         line-height: 3rem;
         padding-top: 0.5rem;
-      }
-    }
-  }
-
-  .reservations {
-    flex-wrap: wrap;
-    @include displayFlex(flex-start, center, row);
-
-    .reservation-card {
-      @include displayFlex(space-between, stretch, row);
-      min-width: 420px;
-      max-width: 768px;
-      box-sizing: border-box;
-      font-size: 1.2rem;
-      margin: 2em 0 0 2em;
-      background-color: white;
-      border-radius: 1rem;
-      color: $col-dark;
-
-      div {
-        @include displayFlex(space-between, flex-start, column);
-        padding: 1rem;
-        padding-left: 2rem;
-
-        div {
-          padding: 0;
-          padding-right: 1rem;
-          align-self: center;
-        }
-      }
-
-      span {
-        @include displayFlex(flex-start, flex-end);
-
-        &:first-child {
-          @include displayFlex(center, flex-start, column);
-          padding-bottom: 1rem;
-        }
-      }
-
-      // icons
-      img {
-        height: 1.2rem;
-        width: 1.2rem;
-        margin: 0 0.5rem;
-      }
-
-      &:hover {
-        box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
-      }
-
-      .confirm-reservation {
-        background-color: $col-dark;
-        width: 125px;
-        height: 30px;
-        border-radius: 0.1rem;
-        color: white;
-        decoration: none;
-        border: none;
-
-        &:hover {
-          background-color: #87bf63;
-          opacity: 0.9;
-        }
       }
     }
   }
