@@ -1,0 +1,150 @@
+@import '../variables';
+
+.reservation__container {
+  width: 87%;
+  margin: 5em auto;
+  border-radius: 15px;
+  background-color: $col-medium;
+  padding: 10px;
+  box-shadow: 5px 5px $col-medium-dark;
+}
+
+.reservation__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 2em;
+
+  img {
+    width: 170px;
+  }
+
+  h2 {
+    font-size: 1em;
+    color: $col-medium-dark;
+    margin-top: 1em;
+  }
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1.5em;
+
+  h3 {
+    color: $col-medium-dark;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  label {
+    margin: 0.3rem 0;
+    color: $col-dark;
+  }
+
+  input {
+    height: 2rem;
+    background-color: $col-light;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    padding-left: 1em;
+  }
+}
+
+.reservation__buttons {
+  flex-direction: column;
+  
+  .reservation__submit__button {
+    width: 200px;
+    padding: 1em 0.5em;
+    background-color: $col-medium-dark;
+    color: $col-dark;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    
+  }
+}
+
+.reservation__submit__button:hover {
+  background-color: $col-dark;
+  color: $col-light;
+  transition: 0.3s;
+}
+
+@media only screen and (max-width: 420px) {
+  .reservation__container {
+    width: 90%;
+  }
+  .reservation__header {
+    img {
+      width: 100px;
+      margin-right: 0.5em;
+    }
+
+    h2 {
+      font-size: 0.8em;
+      margin-top: 1.2em;
+    }
+  }
+
+  .reservation-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1em;
+
+    h3 {
+      margin-bottom: 1em;
+    }
+    
+  }
+
+  span {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      &:first-child {
+        padding-right: 0em;
+      }
+
+      &:last-child {
+        padding-left: 0em;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .reservation__container {
+    width: 60%;
+    margin: 5em auto;
+    border-radius: 15px;
+    background-color: $col-medium;
+    padding: 20px;
+    box-shadow: 5px 5px $col-medium-dark;
+
+    
+  }
+  .reservation__buttons {
+    display: flex;
+    margin-left: 10em;
+    margin-right: 10em;
+
+  
+  }
+  .reservation__submit__button {
+    width: 200px;
+    padding: 1em 0.5em;
+    background-color: $col-medium-dark;
+    color: $col-dark;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 2rem auto;
+  }
+  }
