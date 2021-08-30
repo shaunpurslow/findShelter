@@ -1,10 +1,9 @@
-import React from 'react';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Search from './components/Search';
+import Footer from './components/user/Footer';
+import Header from './components/user/Header';
+import Search from './components/user/Search';
 import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './components/Register';
+import Register from './components/user/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import useShelters from './hooks/useShelters';
 

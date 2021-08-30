@@ -1,5 +1,5 @@
-import useRegistrationForm from '../hooks/useRegistrationForm';
-import '../styles/Register.scss';
+import useRegistrationForm from '../../hooks/useRegistrationForm';
+import '../../styles/user/Register.scss';
 
 const Register = ({ setAppState }) => {
   const [formValues, handleChange, handleSubmit] =

@@ -1,4 +1,4 @@
-@import './variables';
+@import '../variables';
 
 .register__container {
   width: 87%;
@@ -34,6 +34,7 @@
   h3 {
     color: $col-medium-dark;
     margin-top: 2em;
+    margin-bottom: 2em;
   }
 
   label {

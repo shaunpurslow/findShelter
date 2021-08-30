@@ -1,4 +1,4 @@
-import '.././styles/Search.scss';
+import '../../styles/user/Search.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
