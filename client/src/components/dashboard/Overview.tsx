@@ -1,7 +1,7 @@
 import '../../styles/dashboard/Main.scss';
 
 interface Props {
-  capacity: number;
+  capacity: string;
 }
 
 const Overview = (props: Props) => {

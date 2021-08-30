@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 8080;
 import express from 'express';
 const app = express();
 import morgan from 'morgan';
-import session from 'cookie-session';
+import cookieSession from 'cookie-session';
+
+// cors
+import cors from 'cors';
 
 // PG database client/connection setup
 import { Pool } from 'pg';
@@ -18,13 +21,18 @@ db.connect();
 
 // Middleware
 app.use(morgan('dev'));
+app.use(cors());
 
 app.use(
-  session({
+  cookieSession({
     name: 'session',
-    keys: ['key1', 'key2'],
+    keys: ['key1'],
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
 );
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

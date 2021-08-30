@@ -57,7 +57,7 @@ CREATE TABLE reservations (
   id SERIAL PRIMARY KEY NOT NULL,
   shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
   guest_id INT REFERENCES guests(id) ON DELETE CASCADE,
-  reservation_date date NOT NULL
+  reservation_date date NOT NULL,
   is_confirmed BOOLEAN NOT NULL DEFAULT false
 );
 

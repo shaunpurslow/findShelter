@@ -2,7 +2,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Main from './Main';
 import '../../styles/dashboard/Dashboard.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useShelterInfo from '../../hooks/useShelterInfo';
 
 interface Props {
@@ -14,6 +14,20 @@ function Dashboard(props: Props) {
     currentMenu: 'Overview',
     menuItems: ['Overview', 'Reservations', 'Find Shelters', 'Guests', 'My Shelter']
   });
+  const [user, setUser] = useState({
+    id: '',
+    first_name: '',
+    last_name: '',
+    capacity: '',
+    thumbnail_url: ''
+  });
+
+  const dataLocalStorage: any = localStorage.getItem('userData');
+  const userData = JSON.parse(dataLocalStorage);
+
+  useEffect(() => {
+    setUser(prev => ({ ...prev, ...userData }))
+  }, [])
 
   const shelterInfo = useShelterInfo(props.setAppState);
 
@@ -27,13 +41,13 @@ function Dashboard(props: Props) {
         <section className='dashboard'>
           <Header
             currentMenu={menu.currentMenu}
-            first_name={shelterInfo.first_name}
-            last_name={shelterInfo.last_name}
-            thumbnail_url={shelterInfo.thumbnail_url}
+            first_name={user.first_name}
+            last_name={user.last_name}
+            thumbnail_url={user.thumbnail_url}
           />
           <Main
             currentMenu={menu.currentMenu}
-            capacity={shelterInfo.capacity}
+            capacity={user.capacity}
           />
         </section>
       </div>

@@ -3,19 +3,18 @@ import { useState, useEffect } from 'react';
 
 const useShelterInfo = (setAppState) => {
   const [shelterInfo, setShelterInfo] = useState({
-    first_name: 'Dwight',
-    last_name: 'Schrute',
-    thumbnail_url: 'https://picsum.photos/200',
-    capacity: 100
+    first_name: '',
+    last_name: '',
+    thumbnail_url: '',
+    capacity: 0
   });
 
   useEffect((): void => {
     Promise.all([
-      axios.get(`/login/:id`),
+      axios.get(`http://localhost:8080/shelters/login/`),
     ])
       .then(response => {
-        const shelter: any = response;
-        console.log(shelter);
+        const shelter: any = response[0].data[0];
 
         setShelterInfo(prev => ({
           ...prev, ...shelter

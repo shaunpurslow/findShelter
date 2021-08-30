@@ -1,7 +1,7 @@
 INSERT INTO shelters
 (id, name, street_address, city, province,postal_code, country, phone, email, thumbnail_url, website_url,capacity, couples, female_only, male_only, family, pets)
 VALUES
-(1, 'Family & Friends', '303 1st Street SW', 'AB', 'Alberta', 'T2P 0A5', 'Canada', 4032968000, 'info@familynfriends.com', 'https://picsum.photos/200', 'familynfriends.com', 100, true, false, false, true, true),
+(1, 'Family & Friends', '303 1st Street SW', 'Calgary', 'AB', 'T2P 0A5', 'Canada', 4032968000, 'info@familynfriends.com', 'https://picsum.photos/200', 'familynfriends.com', 100, true, false, false, true, true),
 (2, 'Women Support', '405 5 Ave SW', 'Calgary', 'AB', 'T2G 2C4', 'Canada', 4032968000, 'info@womensupport.ca', 'https://picsum.photos/200', 'womensupport.ca', 100, false, true, false, true, true),
 (3, 'Mens Shelter ', '650 W 41st Ave', 'Vancouver', 'BC', 'V5Z 2M9', 'Canada', 4032968000, 'info@womensupport.ca', 'https://picsum.photos/200', 'womensupport.ca', 100, false, false, true, false, true);
 

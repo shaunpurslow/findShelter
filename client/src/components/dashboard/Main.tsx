@@ -9,7 +9,7 @@ import useShelters from '../../hooks/useShelters';
 
 interface Props {
   currentMenu: string;
-  capacity: number;
+  capacity: string;
 }
 
 const Main = (props: Props) => {

@@ -3,6 +3,7 @@
  */
 
 import express from 'express';
+const session = require('express-session');
 const router = express.Router();
 
 // exports a function that ultimate returns a configured router
@@ -16,24 +17,45 @@ export default function (dbconn) {
   });
 
   // TODO: so.much.to.talk.about searching
-  router.get('/search', (req, res) => {
-    // TODO: move type definitions to seperate file
-    interface ISearchQueryParams {
-      city?: string;
-      province?: string;
-    }
-    const { city, province }: ISearchQueryParams = req.query;
-    const values: string[] = [`%${city}%`];
-    let query: string = `
-        SELECT *
-        FROM shelters
-        WHERE LOWER(city) LIKE LOWER($1)
-      `;
+  // router.get('/search', (req, res) => {
+  //   // TODO: move type definitions to seperate file
+  //   interface ISearchQueryParams {
+  //     city?: string;
+  //     province?: string;
+  //   }
+  //   const { city, province }: ISearchQueryParams = req.query;
+  //   const values: string[] = [`%${city}%`];
+  //   let query: string = `
+  //       SELECT *
+  //       FROM shelters
+  //       WHERE LOWER(city) LIKE LOWER($1)
+  //     `;
 
-    if (province) {
-      query += `AND LOWER(province) LIKE LOWER($2)`;
-      values.push(province);
+  //   if (province) {
+  //     query += `AND LOWER(province) LIKE LOWER($2)`;
+  //     values.push(province);
+  //   }
+
+  //   dbconn
+  //     .query(query, values)
+  //     .then((data) => res.send(data.rows))
+  //     .catch((e) => res.status(500).json({ error: e.message }));
+  // });
+
+  router.get('/search', (req, res) => {
+    interface ISearchQueryParams {
+      value?: string;
     }
+    const { value }: ISearchQueryParams = req.query;
+    const values: string[] = [`%${value}%`];
+    let query: string = `
+      SELECT * FROM shelters
+    WHERE LOWER(city) LIKE LOWER($1)
+    OR LOWER(province) LIKE LOWER($1)
+    OR LOWER(name) LIKE LOWER($1)
+    OR LOWER(postal_code) LIKE LOWER($1)
+    OR LOWER(street_address) LIKE LOWER($1);
+      `;
 
     dbconn
       .query(query, values)
@@ -127,6 +149,9 @@ export default function (dbconn) {
   // Route to get information from the shelter to the dashboard
   router.get('/login/:id', (req, res) => {
     const { id } = req.params;
+    console.log('params', req.params)
+    console.log('session', session)
+
     dbconn
       .query(
         `
