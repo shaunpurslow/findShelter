@@ -45,17 +45,52 @@ export default function (dbconn) {
   router.get('/search', (req, res) => {
     interface ISearchQueryParams {
       value?: string;
+      couples?: string;
+      female_only?: string;
+      male_only?: string;
+      family?: string;
+      pets?: string;
     }
-    const { value }: ISearchQueryParams = req.query;
-    const values: string[] = [`%${value}%`];
+
+
+    const { value,
+      couples,
+      female_only,
+      male_only,
+      family,
+      pets }: ISearchQueryParams = req.query;
+
+    const booleanValues = [
+      couples,
+      female_only,
+      male_only,
+      family,
+      pets
+    ];
+
+    const mapValues = booleanValues.map(value => (value === 'true' ? '' : 'NOT'));
+
+    const values: string[] = [...mapValues];
     let query: string = `
-      SELECT * FROM shelters
-    WHERE LOWER(city) LIKE LOWER($1)
-    OR LOWER(province) LIKE LOWER($1)
-    OR LOWER(name) LIKE LOWER($1)
-    OR LOWER(postal_code) LIKE LOWER($1)
-    OR LOWER(street_address) LIKE LOWER($1);
-      `;
+    SELECT * FROM shelters
+    WHERE
+    $1 couples
+    OR $2 female_only
+    OR $3 male_only	
+    OR $4 family	
+    OR $5 pets`
+
+    if (value) {
+      values.push(`%${value}%`);
+      query += `AND LOWER(city) LIKE LOWER($6)
+      OR LOWER(province) LIKE LOWER($6)
+      OR LOWER(name) LIKE LOWER($6)
+      OR LOWER(postal_code) LIKE LOWER($6)
+      OR LOWER(street_address) LIKE LOWER($6);`
+
+    } else {
+      query += `;`
+    }
 
     dbconn
       .query(query, values)
