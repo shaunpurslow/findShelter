@@ -35,12 +35,15 @@ const Search = (props: Props) => {
 
   // use effect: get search queries from database when values state changes
   useEffect(() => {
-    axios.get(`http://localhost:8080/search/?value=${searchQuery}`)
+    axios.get(`http://localhost:8080/shelters/search/?value=${searchQuery}`)
       .then(res => {
+        console.log(res.data)
         setShelters(prev => res.data)
       })
       .catch(err => console.error(err))
   }, [searchQuery])
+
+
 
   return (
     <main className='search__container'>
@@ -70,7 +73,7 @@ const Search = (props: Props) => {
           <label htmlFor='pets'>Pets</label>
         </span>
 
-        {shelters.length ? <ShelterItems shelters={shelters} /> : null}
+        {searchQuery.length ? <ShelterItems shelters={shelters} /> : null}
 
       </div>
     </main>
