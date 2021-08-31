@@ -61,7 +61,7 @@ const ShelterCard = (props: Props) => {
           </div>
         </span>
 
-        <div>
+        <div className='contact__detail'>
           <span className='shelter-info__details'>
             <img src='/img/location.svg' alt='location' />
             <p>
