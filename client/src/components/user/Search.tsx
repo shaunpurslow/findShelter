@@ -2,10 +2,10 @@ import '../../styles/user/Search.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import classNames from 'classnames';
 
-import ShelterItems from './ShelterItems'
-import useShelters from '../../hooks/useShelters';
+import ShelterItems from './ShelterItems';
 
 interface Props {
   setSearch: any;
@@ -14,67 +14,151 @@ const Search = (props: Props) => {
   // saved data from search query
   // const [shelters, setShelters] = useShelters();
   const [shelters, setShelters] = useState([]);
-  console.log(shelters);
 
   // controlled search input
   const [searchQuery, setSearchQuery] = useState('');
+  const [filters, setFilters] = useState({
+    maleOnly: false,
+    femaleOnly: false,
+    couples: false,
+    families: false,
+    pets: false,
+  });
 
   const handleChange = (e) => {
-    interface ISearchValue {
-      value: string;
-    }
-    setSearchQuery((prev) => e.target.value)
+    setSearchQuery((prev) => e.target.value);
   };
-
-  // const newShelters = shelters.filter(shelter => (
-  //   searchQuery.includes(shelter.name) || searchQuery.includes(shelter.street_address) || searchQuery.includes(shelter.city)
-  // ));
-
-  // console.log('This is newShelters ', newShelters)
-  // console.log('This is searchQuery ', searchQuery)
 
   // use effect: get search queries from database when values state changes
   useEffect(() => {
-    axios.get(`http://localhost:8080/shelters/search/?value=${searchQuery}`)
-      .then(res => {
-        console.log(res.data)
-        setShelters(prev => res.data)
+    axios
+      .get(`http://localhost:8080/shelters/search/?value=${searchQuery}`)
+      .then((res) => {
+        setShelters((prev) => res.data);
       })
-      .catch(err => console.error(err))
-  }, [searchQuery])
+      .catch((err) => console.error(err));
+  }, [searchQuery]);
 
+  const handleCheckboxChange = (e) => {
+    setFilters((prev) => ({ ...prev, [e.target.id]: e.target.checked }));
+  };
 
+  const filterResults = (arrayOfShelters) => {
+    const results = arrayOfShelters.filter((shelter) => {
+      if (filters.maleOnly && !shelter['male_only']) {
+        return false;
+      }
+      if (filters.femaleOnly && !shelter['female_only']) {
+        return false;
+      }
+      if (filters.pets && !shelter['pets']) {
+        return false;
+      }
+      if (filters.couples && !shelter['couples']) {
+        return false;
+      }
+      if (filters.families && !shelter['families']) {
+        return false;
+      }
+      return true;
+    });
+
+    return results;
+  };
+
+  // custom class names with conditional visiblity for search results
+  const searchResultStyles = classNames('container--search-results', {
+    hidden: !searchQuery.length,
+  });
+
+  // https://www.pluralsight.com/guides/how-to-use-geolocation-call-in-reactjs
+  const handleLocationClick = (e) => {
+    console.log('clicked location button');
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log('Latitude is :', position.coords.latitude);
+      console.log('Longitude is :', position.coords.longitude);
+    });
+  };
 
   return (
-    <main className='search__container'>
-      <div className='container'>
-
+    <main className='container--main-page'>
+      <div className='container--search-bar'>
         <div className='search__bar'>
           <SearchIcon className='search__icon' />
           <input
+            className='search__bar--input'
             type='text'
             placeholder='Enter your location'
             value={searchQuery}
             onChange={handleChange}
           />
-          <LocationOnIcon className='icon' />
+          <LocationOnIcon className='icon' onClick={handleLocationClick} />
         </div>
 
-        <span className='filters-checkbox'>
-          <input type='checkbox' id='female' name='female' value='female_only' />
-          <label htmlFor='female'>Female Only</label>
-          <input type='checkbox' id='male' name='male' value='male_only' />
-          <label htmlFor='male'>Male Only</label>
-          <input type='checkbox' id='couples' name='couples' value='couples' />
-          <label htmlFor='couples'>Couples</label>
-          <input type='checkbox' id='families' name='families' value='family' />
-          <label htmlFor='families'>Families</label>
-          <input type='checkbox' id='pets' name='pets' value='pets' />
-          <label htmlFor='pets'>Pets</label>
+        {/* FILTERS */}
+        <span className='search-filters'>
+          <div className='search-filters__checkbox'>
+            <input
+              type='checkbox'
+              id='femaleOnly'
+              name='female'
+              value='female_only'
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='femaleOnly'>Female Only</label>
+          </div>
+
+          <div className='search-filters__checkbox'>
+            <input
+              type='checkbox'
+              id='maleOnly'
+              name='male'
+              value='male_only'
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='maleOnly'>Male Only</label>
+          </div>
+
+          <div className='search-filters__checkbox'>
+            <input
+              type='checkbox'
+              id='couples'
+              name='couples'
+              value='couples'
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='couples'>Couples</label>
+          </div>
+
+          <div className='search-filters__checkbox'>
+            <input
+              type='checkbox'
+              id='families'
+              name='families'
+              value='family'
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='families'>Families</label>
+          </div>
+
+          <div className='search-filters__checkbox'>
+            <input
+              type='checkbox'
+              id='pets'
+              name='pets'
+              value='pets'
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='pets'>Pets</label>
+          </div>
         </span>
+      </div>
 
-        {searchQuery.length ? <ShelterItems shelters={shelters} /> : null}
-
+      {/* results container */}
+      <div className={searchResultStyles}>
+        {searchQuery.length ? (
+          <ShelterItems shelters={filterResults(shelters)} />
+        ) : null}
       </div>
     </main>
   );
