@@ -1,15 +1,36 @@
 import '../../styles/user/Search.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { useState } from 'react';
 
-const Search = () => {
+interface Props {
+  setSearch: any;
+}
+const Search = (props: Props) => {
+  const [values, setValues] = useState('')
+
+  const handleChange = (e) => {
+    interface IDic {
+      value: string;
+    }
+    const { value }: IDic = e.target;
+    setValues(value);
+    console.log('value', value)
+    console.log('values >>>', values)
+    props.setSearch(prev => ({ ...prev, values }));
+  }
 
   return (
     <main className='search__container'>
       <div className='container'>
         <div className='search__bar'>
           <SearchIcon className='search__icon' />
-          <input type='text' placeholder='Enter your location' />
+          <input
+            type='text'
+            placeholder='Enter your location'
+            value={values}
+            onChange={handleChange}
+          />
           <LocationOnIcon className='icon' />
         </div>
         <span className='filters-checkbox'>
