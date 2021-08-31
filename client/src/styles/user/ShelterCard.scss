@@ -1,0 +1,432 @@
+@import '../variables';
+@import '../global';
+
+.card__container {
+
+// .overview-cards {
+//   margin: 2em;
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 1rem;
+
+//   div {
+//     background: white;
+//     padding: 1.5rem 2rem;
+//     border-radius: 0.25rem;
+//     color: $col-dark;
+
+//     &:hover {
+//       box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+//     }
+
+//     header {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       decoration: none;
+//     }
+
+//     strong {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       margin-top: 1rem;
+//       font-size: 3rem;
+//       font-weight: 600;
+//       line-height: 3rem;
+//     }
+
+//     &:last-child {
+//       background: $col-dark;
+//       color: white;
+//     }
+//   }
+// }
+
+.individual__shelter {
+  @include displayFlex(space-between, stretch, row);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  margin: 2em;
+
+  background-color: white;
+  border-radius: 1rem;
+  color: $col-dark;
+
+  span {
+    @include displayFlex(flex-start, flex-end);
+    padding-top: 0.5rem;
+
+    strong {
+      padding-left: 2rem;
+      font-weight: 700;
+    }
+  }
+
+  img {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin: 0 0.5rem;
+  }
+
+  div {
+    margin: 0;
+    box-sizing: border-box;
+
+    &:first-child {
+      padding-right: 1rem;
+    }
+
+    .shelter-image {
+      margin: 0;
+      height: 100%;
+      width: 250px;
+      border-radius: 1rem 0 0 1rem;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  .shelter-info {
+    padding: 1rem;
+    flex-grow: 1;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+  }
+}
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(77, 79, 115, 0.8);
+
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-cards {
+  @include displayFlex(space-between, center, row);
+  div {
+    margin-top: 1.5em;
+    color: $col-dark;
+
+    header {
+      @include displayFlex(center, center, row);
+      margin-top: 2rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    strong {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 3rem;
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+.reservations {
+  flex-wrap: wrap;
+  @include displayFlex(flex-start, center, row);
+
+  .reservation-card {
+    @include displayFlex(space-between, stretch, row);
+    min-width: 420px;
+    max-width: 768px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    margin: 2em 0 0 2em;
+    background-color: white;
+    border-radius: 1rem;
+    color: $col-dark;
+
+    div {
+      @include displayFlex(space-between, flex-start, column);
+      padding: 1rem;
+      padding-left: 2rem;
+
+      div {
+        padding: 0;
+        padding-right: 1rem;
+        align-self: center;
+      }
+    }
+
+    span {
+      @include displayFlex(flex-start, flex-end);
+
+      &:first-child {
+        @include displayFlex(center, flex-start, column);
+        padding-bottom: 1rem;
+      }
+    }
+
+    // icons
+    img {
+      height: 1.2rem;
+      width: 1.2rem;
+      margin: 0 0.5rem;
+    }
+
+    &:hover {
+      box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+    }
+
+    .confirm-reservation {
+      background-color: $col-dark;
+      width: 125px;
+      height: 30px;
+      border-radius: 0.1rem;
+      color: white;
+      decoration: none;
+      border: none;
+
+      &:hover {
+        background-color: #87bf63;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+}
+
+@media only screen and (max-width: 1024px) {
+  //capacity blocks right side
+  .overview-cards {
+    margin: 2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+
+    div {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 0.25rem;
+      color: $col-dark;
+
+      &:hover {
+        box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        decoration: none;
+      }
+
+      strong {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+        font-size: 3rem;
+        font-weight: 600;
+        line-height: 3rem;
+      }
+
+      &:last-child {
+        background: $col-dark;
+        color: white;
+      }
+    }
+  }
+
+  // main card
+  .individual__shelter {
+    @include displayFlex(space-between, stretch, column);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    margin: 2em;
+
+    background-color: white;
+    border-radius: 1rem;
+    color: $col-dark;
+
+    span {
+      @include displayFlex(flex-start, center, column);
+      padding-top: 0.5rem;
+
+      strong {
+        padding-left: 2rem;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+
+    .shelter-info {
+      h2 {
+        text-align: center;
+        font-size: 1em;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shelter-info__filter {
+      @include displayFlex(flex-start, start, column);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        h4 {
+          margin-left: 5px;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    .shelter-info__details {
+      display: flex;
+      flex-direction: row;
+      font-size: 0.8em;
+      // align-self: flex-start;
+      width: 80%;
+      margin: 0 auto;
+
+      &:first-child {
+        margin-top: 1em;
+      }
+    }
+
+    img {
+      height: 1rem;
+      width: 1rem;
+      margin: 0 0.5rem;
+    }
+
+    div {
+      margin: 0;
+      box-sizing: border-box;
+
+      .shelter-image {
+        margin: 0;
+        width: 100%;
+        height: 250px;
+        border-radius: 1rem 0 0 1rem;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      &:last-child {
+        padding: 0rem;
+      }
+    }
+
+    .shelter-info {
+      padding: 1rem;
+      flex-grow: 1;
+
+      &__filters {
+        display: flex;
+        flex-direction: row;
+      }
+      h4 {
+        text-align: center;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+    }
+
+    .contact__section {
+      display: flex;
+      flex-direction: row;
+      font-size: 0.8em;
+    }
+
+    .shelter__km {
+      strong {
+        font-size: .8em;
+        text-align: center;
+        padding: 0;
+      }
+    }
+
+    .bottom__buttons {
+      display: flex;
+      justify-content: space-around;
+      margin: 1.5em;
+
+      button {
+        width: 95px;
+        padding: 0.3em 0em;
+        background-color: $col-medium-dark;
+        color: $col-dark;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+
+        button:hover {
+          background-color: $col-dark;
+          color: $col-light;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
+  .info-cards {
+    // @include displayFlex(center, center, column);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 11px;
+    text-align: center;
+
+    div {
+      margin-top: 1.5em;
+      color: $col-dark;
+
+      header {
+        @include displayFlex(center, center);
+        margin-top: 1rem;
+        font-size: 0.5em;
+        font-weight: bold;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .bed__numbers {
+        display: flex;
+      }
+
+      strong {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 3rem;
+        padding-top: 0.5rem;
+      }
+    }
+  }
+}
