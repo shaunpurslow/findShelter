@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
+import useSearch from './hooks/useSearch';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -18,7 +19,8 @@ function App() {
     shelter: {},
   });
 
-  const shelters = useShelters();
+  const [shelters, setShelters] = useShelters();
+  const [search, setSearch] = useSearch();
 
   const shelter = shelters.map(shelter =>
     <Shelter
@@ -48,9 +50,19 @@ function App() {
         <Switch>
           {/* Main Page */}
           <Route exact path='/'>
-            <Header />
-            <Search />
-            <Footer />
+            {search.length < 3 ?
+              <>
+                <Header />
+                <Search setSearch={setSearch} />
+                <Footer />
+              </> :
+              <>
+                <Header />
+                <Search setSearch={setSearch} />
+                {shelter}
+                <Footer />
+              </>
+            }
           </Route>
           {/* Register */}
           <Route path='/register'>

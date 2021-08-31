@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Main = (props: Props) => {
-  const shelters = useShelters();
+  const [shelters, setShelters] = useShelters();
 
   const shelter = shelters.map(shelter =>
     <Shelter
