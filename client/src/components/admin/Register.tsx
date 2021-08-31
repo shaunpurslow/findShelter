@@ -140,7 +140,14 @@ const Register = ({ setAppState }) => {
           onChange={handleChange}
           type='text'
         />
-        <button className='submit__button' type='submit'>Register</button>
+        <div className='button__container'>
+          <button className='submit__button' type='submit'>
+            Register
+          </button>
+          <button className='submit__button' type='submit'>
+            Cancel
+          </button>
+        </div>
       </form>
     </main>
   );
