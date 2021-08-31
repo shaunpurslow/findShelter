@@ -1,8 +1,8 @@
 @import '../variables';
 
 .login__container {
-  width: 87%;
-  margin: 5em auto;
+  width: 80%;
+  margin: 10em auto;
   border-radius: 15px;
   background-color: $col-medium;
   padding: 10px;
@@ -49,20 +49,28 @@
     border: none;
     border-radius: 10px;
     margin-bottom: 1em;
+    padding-left: 1em;
   }
+}
+
+.button__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: space-between;
+  margin-top: 0.5em;
 }
 
 .login__submit__button {
   width: 200px;
-  padding: 1em 0.5em;
+  padding: 1.5em 0.5em;
   background-color: $col-medium-dark;
   color: $col-dark;
   font-weight: bold;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  margin: 4rem auto;
-  margin-bottom: 8em;
+  margin: 0.5rem auto;
 }
 
 button:hover {
@@ -71,19 +79,44 @@ button:hover {
   transition: 0.3s;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 768px) {
   .login__container {
-    width: 50%;
+    width: 80%;
   }
   .login__header {
     img {
-      width: 100px;
-      margin-right: 2em;
+      width: 110px;
+      margin-right: 3em;
     }
+  }
 
-    h2 {
-      font-size: 0.8em;
-      margin-top: 1.2em;
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1em;
+
+    h3 {
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+  }
+
+  .button__container {
+    margin: 0.8em;
+    margin-top: 0.8em;
+  }
+
+  .login__submit__button {
+    width: 120px;
+    padding: 0.5em 0.2em;
+    margin-top: 0.2em;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .login__header {
+    img {
+      margin-right: 2em;
     }
   }
 
@@ -97,29 +130,9 @@ button:hover {
     }
   }
 
-  span {
-    display: flex;
-    flex-direction: column;
-
-    div {
-      &:first-child {
-        padding-right: 0em;
-      }
-
-      &:last-child {
-        padding-left: 0em;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .login__container {
-    width: 60%;
-    margin: 5em auto;
-    border-radius: 15px;
-    background-color: $col-medium;
-    padding: 20px;
-    box-shadow: 5px 5px $col-medium-dark;
+  .login__submit__button {
+    width: 150px;
+    padding: 0.7em 0.2em;
+    margin-top: 0.2em;
   }
 }
