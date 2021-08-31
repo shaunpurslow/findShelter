@@ -54,6 +54,7 @@ export default function (dbconn) {
   });
 
   router.post('/', (req, res) => {
+    console.log(req.body);
     const { shelter_id, guest_id, reservation_date } = req.body;
     if (!shelter_id || !guest_id || !reservation_date) {
       res.status(400).json({
