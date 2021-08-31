@@ -1,26 +1,26 @@
 import '../../styles/admin/Login.scss';
 import { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [value, setValue] = useState({
     email: '',
     password: '',
-  })
+  });
 
-  const [loginAttempt, setLoginAttempt] = useState({ attempt: false })
+  const [loginAttempt, setLoginAttempt] = useState({ attempt: false });
 
   const handleSubmit = () => {
-    axios.post('http://localhost:8080/login/', value)
+    axios
+      .post('http://localhost:8080/login/', value)
       .then((res) => {
         localStorage.setItem('userData', JSON.stringify(res.data.user));
-        setLoginAttempt({ attempt: true })
+        setLoginAttempt({ attempt: true });
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   const handleChange = (e) => {
@@ -30,14 +30,12 @@ const Login = () => {
     }
     const { name, value }: IDic = e.target;
 
-    setValue(prev => ({ ...prev, [name]: value }));
-  }
+    setValue((prev) => ({ ...prev, [name]: value }));
+  };
 
   const loggedIn = localStorage.getItem('userData');
   if (loggedIn) {
-    return (
-      <Redirect to='/dashboard' />
-    )
+    return <Redirect to='/dashboard' />;
   }
 
   return (
@@ -49,35 +47,36 @@ const Login = () => {
 
       <form
         className='login-form'
-        autoComplete="off"
-        onSubmit={event => event.preventDefault()}
+        autoComplete='off'
+        onSubmit={(event) => event.preventDefault()}
       >
-
         <h3>Login</h3>
         <label htmlFor='email'>Email</label>
         <input
-          className="login-email"
-          name="email"
-          type="text"
+          className='login-email'
+          name='email'
+          type='text'
           value={value.email}
           onChange={handleChange}
-          placeholder="email"
+          placeholder='email'
         />
         <label htmlFor='password'>Password</label>
         <input
-          className="login-password"
-          name="password"
-          type="password"
-          placeholder="password"
+          className='login-password'
+          name='password'
+          type='password'
+          placeholder='password'
           value={value.password}
           onChange={handleChange}
         />
-        <button
-          className='login__submit__button'
-          type='submit'
-          onClick={handleSubmit}>
-          Login
-        </button>
+        <div className='button__container'>
+          <button className='login__submit__button' type='submit' onClick={handleSubmit}>
+            Login
+          </button>
+          <button className='login__submit__button' type='submit'>
+            Cancel
+          </button>
+        </div>
       </form>
     </main>
   );
