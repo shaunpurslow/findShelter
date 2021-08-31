@@ -184,7 +184,7 @@
       }
 
       .shelter-info__filter {
-        @include displayFlex(flex-start, start, column);
+        @include displayFlex(center, start, column);
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
@@ -199,12 +199,18 @@
         }
       }
 
+      .contact__detail {
+        
+        display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      }
       .shelter-info__details {
         display: flex;
         flex-direction: row;
         font-size: 0.8em;
-        width: 78%;
         margin: 0 auto;
+        
+        
 
         &:first-child {
           margin-top: 0.7em;
@@ -219,6 +225,7 @@
       div {
         // margin: 0;
         // box-sizing: border-box;
+        text-align: center;
 
         .shelter-image {
           // margin: 0;
@@ -244,7 +251,7 @@
 
         button {
           width: 95px;
-          padding: 0.3em 0em;
+          padding: 0.1em 0em;
           background-color: $col-medium-dark;
           color: $col-dark;
           font-weight: bold;
@@ -262,14 +269,11 @@
     }
 
     .info-cards {
-      // @include displayFlex(center, center, column);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 11px;
-      text-align: center;
 
       div {
-        margin-top: 1.5em;
+        margin-top: 1.3em;
         color: $col-dark;
 
         header {
@@ -282,11 +286,6 @@
             margin-top: 0;
           }
         }
-
-        .bed__numbers {
-          display: flex;
-        }
-
         strong {
           display: flex;
           align-items: center;
