@@ -27,9 +27,14 @@ const Login = () => {
           // onChange={handleChange}
           type='text'
         />
+        <div className='button__container'>
         <button className='login__submit__button' type='submit'>
           Login
         </button>
+        <button className='login__submit__button' type='submit'>
+         Cancel
+        </button>
+        </div>
       </form>
     </main>
   );
