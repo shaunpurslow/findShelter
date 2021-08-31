@@ -6,31 +6,19 @@ import express from 'express';
 const router = express.Router();
 
 export default function (dbconn) {
-  router.get('/', (req, res) => {
-    const { shelter_id } = req.body;
+  router.get('/search', (req, res) => {
+    const { shelter_id } = req.query;
+    console.log(shelter_id);
     if (!shelter_id) {
       res.status(400).json({ error: 'missing shelter id' });
       return;
     }
     const query = `
-      SELECT 
-        r.reservation_date,
-        g.id as guest_id,
-        g.first_name,
-        g.last_name,
-        g.emergency_contact,
-        g.emergency_name,
-        g.phone,
-        g.email,
-        st.status
-      FROM reservations r
-      JOIN shelters s
-        ON r.shelter_id = s.id
-      JOIN guests g
-        ON r.guest_id = g.id
-      JOIN status st
-        ON g.id = st.guest_id
-      WHERE r.shelter_id = $1;
+      SELECT *
+      FROM reservations
+      JOIN guests
+      ON reservations.guest_id = guests.id
+      WHERE shelter_id = $1;
     `;
     const values = [shelter_id];
     dbconn
@@ -53,29 +41,112 @@ export default function (dbconn) {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
+  // receive POST req to create a new reso
+
+  // check the shelter to see if guest is already there
+  // make query to database where shelterid is the one given
+  // check if shelter has a current guest with the same first name last name
+
   router.post('/', (req, res) => {
-    console.log(req.body);
-    const { shelter_id, guest_id, reservation_date } = req.body;
-    if (!shelter_id || !guest_id || !reservation_date) {
+    const {
+      first_name,
+      last_name,
+      phone,
+      email,
+      emergency_number,
+      emergency_name,
+      shelter_id,
+      reservation_date,
+    } = req.body;
+    // check if all of the required info has been sent over
+    if (!first_name || !last_name || !emergency_name || !emergency_number) {
       res.status(400).json({
-        error: 'shelter_id, guest_id, or reservation_date missing',
+        error:
+          'first_name, last_name, emergency_number or emergency_name missing',
       });
       return;
     }
+
+    // make the query
     const query = `
-      INSERT INTO reservations( 
-        reservation_date, 
-        guest_id,
-        shelter_id
-      )
-      VALUES ($1, $2, $3)
-      RETURNING *;
+      SELECT *
+      FROM shelters
+      JOIN reservations
+        ON shelters.id = reservations.shelter_id
+      JOIN guests
+        ON guests.id = reservations.guest_id
+      WHERE shelter_id = $1
+        AND LOWER(first_name) = LOWER($2)
+        AND LOWER(last_name) = LOWER($3)
     `;
-    const values = [reservation_date, guest_id, shelter_id];
+    const values = [shelter_id, first_name, last_name];
 
     dbconn
       .query(query, values)
-      .then((data) => res.send(data.rows))
+      .then((data) => {
+        // IF exists:
+        // use that id to create the new reso
+        if (data.rows.length) {
+          const { guest_id } = data.rows[0];
+          const createReservationQuery = `
+            INSERT INTO reservations(
+              reservation_date,
+              guest_id,
+              shelter_id
+              )
+            VALUES ($1, $2, $3)
+            RETURNING *;
+          `;
+          const values = [reservation_date, guest_id, shelter_id];
+          dbconn
+            .query(createReservationQuery, values)
+            .then((data) => res.send(data.rows))
+            .catch((e) => res.status(500).json({ error: e.message }));
+          return;
+        }
+
+        // ELSE IF DOESNT EXIST:
+        // create a new guest
+
+        const createNewGuestQuery = `
+          INSERT INTO guests(
+            first_name, 
+            last_name, 
+            emergency_number,   
+            emergency_name
+          )
+          VALUES ($1, $2, $3, $4)
+          RETURNING *;
+        `;
+        const values = [
+          first_name,
+          last_name,
+          emergency_number,
+          emergency_name,
+        ];
+
+        dbconn
+          .query(createNewGuestQuery, values)
+          .then((data) => {
+            const { id: guest_id } = data.rows[0];
+            // create new reservation with the new guest
+            const createNewGuestsReservation = `
+              INSERT INTO reservations(
+              reservation_date,
+              guest_id,
+              shelter_id
+              )
+            VALUES ($1, $2, $3)
+            RETURNING *;
+            `;
+            const values = [reservation_date, guest_id, shelter_id];
+            dbconn
+              .query(createNewGuestsReservation, values)
+              .then((data) => res.send(data.rows))
+              .catch((e) => res.status(500).json({ error: e.message }));
+          })
+          .catch((e) => res.status(500).json({ error: e.message }));
+      })
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 

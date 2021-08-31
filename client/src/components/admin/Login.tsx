@@ -16,6 +16,13 @@ const Login = () => {
       .post('http://localhost:8080/login/', value)
       .then((res) => {
         localStorage.setItem('userData', JSON.stringify(res.data.user));
+
+        return axios.get(
+          `http://localhost:8080/reservations/search?shelter_id=${res.data.user.id}`
+        );
+      })
+      .then((res) => {
+        localStorage.setItem('reservationsData', JSON.stringify(res.data));
         setLoginAttempt({ attempt: true });
       })
       .catch((err) => {
@@ -48,8 +55,7 @@ const Login = () => {
       <form
         className='login-form'
         autoComplete='off'
-        onSubmit={(event) => event.preventDefault()}
-      >
+        onSubmit={(event) => event.preventDefault()}>
         <h3>Login</h3>
         <label htmlFor='email'>Email</label>
         <input
@@ -70,7 +76,10 @@ const Login = () => {
           onChange={handleChange}
         />
         <div className='button__container'>
-          <button className='login__submit__button' type='submit' onClick={handleSubmit}>
+          <button
+            className='login__submit__button'
+            type='submit'
+            onClick={handleSubmit}>
             Login
           </button>
           <button className='login__submit__button' type='submit'>
