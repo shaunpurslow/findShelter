@@ -36,7 +36,7 @@ const ShelterCard = (props: Props) => {
         />
       </div>
 
-      <div className='shelter-info'>
+      <div className='shelter__info'>
         <h2>{props.name}</h2>
         <span className='shelter-info__filter'>
           <div>
@@ -97,6 +97,7 @@ const ShelterCard = (props: Props) => {
           </div>
         </div>
       </div>
+      
       <span className='shelter__km'>
         <strong>3 km away from here!</strong>
       </span>
