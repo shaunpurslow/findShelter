@@ -1,11 +1,9 @@
-import Overview from '../../dashboard/Overview';
-import Shelter from '../../dashboard/Shelter';
-import Reservations from '../../dashboard/Reservations';
-import Guests from '../../dashboard/Guests';
-import MyShelter from '../../dashboard/MyShelter';
 import useShelters from '../../../hooks/useShelters';
-import { MainContainer } from './styles';
-
+import { Overview } from '../Overview';
+import { Shelter } from '../Shelter';
+import { Reservation } from '../Reservation';
+import { Guests } from '../Guests';
+import { MyShelter } from '../MyShelter';
 
 interface Props {
   currentMenu: string;
@@ -60,7 +58,7 @@ export const Main = (props: Props) => {
     case 'Reservations':
       return (
         <>
-          <Reservations />
+          <Reservation />
         </>
       );
     case 'My Shelter':

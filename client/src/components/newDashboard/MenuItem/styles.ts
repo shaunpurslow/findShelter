@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const List = styled.li`
 @media only screen and (min-width: 768px) {
   .menu-item {
-    @include displayFlex(flex-start, center, row);
     width: 100%;
     decoration: none;
     padding: 1.5em 0 1.5em 2em;
@@ -21,7 +20,6 @@ export const List = styled.li`
   }
 
   .menu-item--selected {
-    @include displayFlex(flex-start, center, row);
     width: 100%;
     decoration: none;
     background-color: $col-dark-2;

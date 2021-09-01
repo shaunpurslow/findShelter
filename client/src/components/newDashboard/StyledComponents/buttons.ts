@@ -8,7 +8,7 @@ export const Button = styled.button`
       padding: 0 2rem;
       decoration: none;
       border-radius: 0.25rem;
-      height: 2rem;
+      min-height: 2rem;
       transition: filter 0.2s;
 
       &:hover {

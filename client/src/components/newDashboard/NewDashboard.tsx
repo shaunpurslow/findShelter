@@ -4,7 +4,7 @@ import { GlobalStyle } from '../../styles/global'
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { Main } from './Main';
-import { Container } from './styles';
+import { Container, MainContainer } from './styles';
 
 interface Props {
   setAppState: {};
@@ -40,7 +40,7 @@ function NewDashboard(props: Props) {
       <GlobalStyle />
       <Container>
         <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
-        <section className='dashboard'>
+        <MainContainer>
           <Header
             currentMenu={menu.currentMenu}
             first_name={user.first_name}
@@ -51,7 +51,7 @@ function NewDashboard(props: Props) {
             currentMenu={menu.currentMenu}
             capacity={user.capacity}
           />
-        </section>
+        </MainContainer>
       </Container>
     </>
   )

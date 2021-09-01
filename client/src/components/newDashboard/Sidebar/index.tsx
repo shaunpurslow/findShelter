@@ -1,4 +1,4 @@
-import { Aside } from './styles';
+import { Aside, Image } from './styles';
 import MenuItem from '../MenuItem'
 
 interface Props {
@@ -19,7 +19,7 @@ export const Sidebar = (props: Props) => {
 
   return (
     <Aside>
-      <img
+      <Image
         src='/img/find-shelter-b.svg'
         alt='logo'
         className='sidebar-logo'
