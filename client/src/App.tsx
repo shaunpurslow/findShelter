@@ -6,13 +6,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/admin/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import useShelters from './hooks/useShelters';
-
 import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
-import ShelterCard from './components/dashboard/ShelterCard';
 
 function App() {
 
@@ -65,11 +63,11 @@ function App() {
           </Route>
           {/* Register */}
           <Route path='/register'>
-            <Register setAppState={setAppState} />
+            <Register setAppState={'setAppState'} />
           </Route>
           {/* Dashborad */}
           <Route path='/dashboard'>
-            <Dashboard setAppState={setAppState} />
+            <Dashboard setAppState={'setAppState'} />
           </Route>
           <Route path='/user'>
             <Header />
