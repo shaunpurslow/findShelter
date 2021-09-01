@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react';
+import ReactMapGL from 'react-map-gl';
 
-export const Map = () => {
+const Map = () => {
+  const [viewport, setViewport] = useState({
+    latitude: 51.0460954,
+    longitude: -114.065465,
+    zoom: 10,
+    width: '100vw',
+    height: '100vh',
+  });
   return (
     <div>
-     <h1>I am a map</h1> 
+      <ReactMapGL
+        {...viewport}
+        mapStyle='mapbox://styles/shaunp/ckt1vwitu1i0d17tduz00lie2'
+        onViewportChange={(viewport) => setViewport(viewport)}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      >
+        HERE IS OUR MAP
+      </ReactMapGL>
     </div>
-  )
-}
+  );
+};
+
+export default Map;
