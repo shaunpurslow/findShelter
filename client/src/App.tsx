@@ -50,12 +50,14 @@ function App() {
             {search.length < 3 ? (
               <>
                 <Header />
+                {/* Emmanuel Look at this issue ? */}
                 <Search setSearch={setSearch} />
                 <Footer />
               </>
             ) : (
               <>
                 <Header />
+                {/* Emmanuel Look at this issue ? */}
                 <Search setSearch={setSearch} />
                 {shelter}
                 <Footer />
