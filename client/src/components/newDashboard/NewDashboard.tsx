@@ -71,6 +71,7 @@ function NewDashboard(props: any) {
             currentMenu={menu.currentMenu}
             capacity={dashboardState.user.capacity}
             dashboardState={dashboardState}
+            setDashboardState={setDashboardState}
           />
         </MainContainer>
       </Container>

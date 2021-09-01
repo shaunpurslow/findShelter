@@ -9,6 +9,7 @@ interface Props {
   currentMenu: string;
   capacity: string;
   dashboardState: any;
+  setDashboardState: any;
 }
 
 export const Main = (props: Props) => {
@@ -57,7 +58,10 @@ export const Main = (props: Props) => {
     case 'Reservations':
       return (
         <>
-          <Reservation dashboardState={props.dashboardState} />
+          <Reservation
+            dashboardState={props.dashboardState}
+            setDashboardState={props.setDashboardState}
+          />
         </>
       );
     case 'My Shelter':

@@ -36,7 +36,7 @@ align-items: stretch;
       &:first-child {
         display: flex;
         justify-content: flex-start;
-      align-items: center;
+        align-items: center;
         flex-direction: column;
         padding-bottom: 1rem;
       }

@@ -15,7 +15,6 @@ module.exports = function (dbconn) {
   router.post('/', (req, res) => {
     const { email, password: suppliedPassword } = req.body;
 
-
     const query = `
     SELECT 
     staff.id AS staff_id, 
