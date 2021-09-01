@@ -1,5 +1,5 @@
 import '../../styles/dashboard/Header.scss';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 interface Props {
@@ -10,18 +10,15 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const [isLogged, setIsLogged] = useState({ logged: true })
-
+  const [isLogged, setIsLogged] = useState({ logged: true });
 
   const destroySession = () => {
-    localStorage.removeItem('userData');
-    setIsLogged({ logged: false })
+    localStorage.clear();
+    setIsLogged({ logged: false });
   };
 
   if (!isLogged.logged) {
-    return (
-      <Redirect to='/login' />
-    )
+    return <Redirect to='/login' />;
   }
 
   return (
@@ -32,9 +29,8 @@ const Header = (props: Props) => {
         <img src='/img/divider.svg' alt='divider' />
         <h3>{props.first_name + ' ' + props.last_name}</h3>
         <img src={props.thumbnail_url} alt='logo' />
-        <button onClick={destroySession} >logout</button>
+        <button onClick={destroySession}>logout</button>
       </span>
-
     </header>
   );
 };
