@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import '../../styles/dashboard/Main.scss';
-import ModalShelter from './ModalShelter';
 import { Redirect } from 'react-router';
 import { useHistory, useLocation } from 'react-router-dom';
 
