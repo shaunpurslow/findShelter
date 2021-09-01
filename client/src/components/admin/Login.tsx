@@ -3,27 +3,20 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props: any) => {
+  // controlled input
   const [value, setValue] = useState({
     email: '',
     password: '',
   });
 
-  const [loginAttempt, setLoginAttempt] = useState({ attempt: false });
-
   const handleSubmit = () => {
     axios
       .post('http://localhost:8080/login/', value)
       .then((res) => {
-        localStorage.setItem('userData', JSON.stringify(res.data.user));
-
-        return axios.get(
-          `http://localhost:8080/reservations/search?shelter_id=${res.data.user.id}`
-        );
-      })
-      .then((res) => {
-        localStorage.setItem('reservationsData', JSON.stringify(res.data));
-        setLoginAttempt({ attempt: true });
+        const userData = res.data
+        localStorage.setItem('user', JSON.stringify(userData));
+        props.setLoggedInUser((prev) => ({ ...userData }))
       })
       .catch((err) => {
         console.log(err);
@@ -40,9 +33,10 @@ const Login = () => {
     setValue((prev) => ({ ...prev, [name]: value }));
   };
 
-  const loggedIn = localStorage.getItem('userData');
+  const localStorageUser: any = localStorage.getItem('user');
+  const loggedIn = JSON.parse(localStorageUser);
   if (loggedIn) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/new-dashboard' />;
   }
 
   return (

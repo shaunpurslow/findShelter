@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Aside = styled.aside`
 @media only screen and (min-width: 767px) {
+  position: fixed;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -9,8 +10,7 @@ export const Aside = styled.aside`
   flex-direction: column;
   height: 100vh;
   margin: 0;
-  min-width: 300px;
-  max-width: 10vw;
+  width: 250px;
   background-color: var(--dark);
   color: var(--light);
 }
@@ -27,7 +27,7 @@ export const Aside = styled.aside`
 `
 export const Image = styled.img`
     @media only screen and (min-width: 767px) {
-      width: 200px;
+      width: 180px;
       margin: 2rem;
       margin-top: 3rem;
       margin-bottom: 5rem;

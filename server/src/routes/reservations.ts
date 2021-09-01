@@ -5,6 +5,7 @@
 import express from 'express';
 const router = express.Router();
 
+// use this query to the REFACTOR route: /shelters/:id/reservations 
 export default function (dbconn) {
   router.get('/search', (req, res) => {
     const { shelter_id } = req.query;

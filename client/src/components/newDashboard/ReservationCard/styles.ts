@@ -11,10 +11,13 @@ align-items: stretch;
     margin: 2em 0 0 2em;
     background-color: white;
     border-radius: 1rem;
-    color: $col-dark;
+    color: var(--dark);
 
     div {
-      @include displayFlex(space-between, flex-start, column);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
       padding: 1rem;
       padding-left: 2rem;
 
@@ -26,10 +29,15 @@ align-items: stretch;
     }
 
     span {
-      @include displayFlex(flex-start, flex-end);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
 
       &:first-child {
-        @include displayFlex(center, flex-start, column);
+        display: flex;
+        justify-content: flex-start;
+      align-items: center;
+        flex-direction: column;
         padding-bottom: 1rem;
       }
     }

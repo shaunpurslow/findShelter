@@ -4,8 +4,12 @@ export const List = styled.li`
 @media only screen and (min-width: 767px) {
     display: flex;
     width: 100%;
-    padding: 1.5em 0 1.5em 2em;
+    padding: 1rem 0 1rem 1.5rem;
     list-style: none;
+
+    h2 {
+      font-size: 1.2rem;
+    }
 
     img {
       margin-right: 1.5em;
@@ -45,14 +49,18 @@ export const ListSelected = styled.li`
 @media only screen and (min-width: 767px) {
   display: flex;
   width: 100%;
+  padding: 1rem 0 1rem 1.5rem;
   background-color: var(--more-dark);
   color: var(--medium);
-  padding: 1.5em 0 1.5em 2em;
   -moz-box-shadow: inset 0 0 0.2em #000000;
   -webkit-box-shadow: inset 0 0 0.2em #000000;
   box-shadow: inset 0 0 0.2em #000000;
   color: white;
   list-style: none;
+
+  h2 {
+      font-size: 1.2rem;
+    }
 
   img {
     color: white;

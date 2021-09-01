@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { Button } from '../StyledComponents/buttons';
+import axios from 'axios';
 
 interface Props {
   key: number;
@@ -13,9 +15,38 @@ interface Props {
   is_confirmed: boolean;
   status: string;
   reservation_date: string;
+  setHistory: any;
 }
 
 export const ReservationCard = (props: Props) => {
+  const [confirmStatus, setConfirmStatus] = useState({
+    is_confirmed: props.is_confirmed,
+  });
+
+  const handleConfirmClick = (e) => {
+    setConfirmStatus((prev) => ({
+      is_confirmed: prev.is_confirmed ? false : true,
+    }));
+  };
+
+  // REFACTOR: get this to not run on initial render
+  useEffect(() => {
+    axios
+      .put(`http://localhost:8080/reservations/${props.id}`, confirmStatus)
+      .then((res) => {
+        return axios.get(
+          `http://localhost:8080/reservations/search?shelter_id=${res.data[0].shelter_id}`
+        );
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.removeItem('reservationsData');
+        localStorage.setItem('reservationsData', JSON.stringify(res.data));
+        // props.setHistory((prev) => [...prev, 'updated']);
+      })
+      .catch((e) => console.log(e.message));
+  }, [confirmStatus]);
+
   return (
     <Container>
       <div>
@@ -44,7 +75,7 @@ export const ReservationCard = (props: Props) => {
         <div>
           {props.is_confirmed ?
             <strong>CONFIRMED</strong>
-            : <Button>CONFIRM</Button>}
+            : <Button onClick={handleConfirmClick}>CONFIRM</Button>}
         </div>
       </div>
     </Container>
