@@ -1,4 +1,4 @@
-import { List } from './styles';
+import { List, ListSelected } from './styles';
 import classNames from "classnames";
 
 interface Props {
@@ -9,20 +9,25 @@ interface Props {
 }
 
 const MenuItem = (props: Props) => {
-  const menuClass = classNames('menu-item', {
-    'menu-item--selected': props.selected,
-  })
-
   const imageName = props.menu.split(' ').join('')
   const image = `/img/${imageName}.svg`
 
   return (
-    <List
-      className={menuClass}
-      onClick={(e: any): any => props.setMenuItem(props.menu)}>
-      <img src={image} alt={props.menu} />
-      <h2>{props.menu}</h2>
-    </List>
+    <>
+      {!props.selected ?
+        (<List
+          onClick={(e: any): any => props.setMenuItem(props.menu)}>
+          <img src={image} alt={props.menu} />
+          <h2>{props.menu}</h2>
+        </List>)
+        :
+        (<ListSelected
+          onClick={(e: any): any => props.setMenuItem(props.menu)}>
+          <img src={image} alt={props.menu} />
+          <h2>{props.menu}</h2>
+        </ListSelected>)
+      }
+    </>
   );
 };
 

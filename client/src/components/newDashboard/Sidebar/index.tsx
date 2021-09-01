@@ -22,7 +22,6 @@ export const Sidebar = (props: Props) => {
       <Image
         src='/img/find-shelter-b.svg'
         alt='logo'
-        className='sidebar-logo'
       />
       {menuList}
     </Aside>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Aside = styled.aside`
+@media only screen and (min-width: 767px) {
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -12,15 +13,30 @@ export const Aside = styled.aside`
   max-width: 10vw;
   background-color: var(--dark);
   color: var(--light);
+}
 
   @media only screen and (max-width: 768px) {
-    width: 50px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    top: 0;
+    width: 100%;
+    background-color: var(--dark);
+    height: 100px;
 }
 `
 export const Image = styled.img`
-    min-width: 200px;
-    max-width: 8vw;
-    margin: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+    @media only screen and (min-width: 767px) {
+      width: 200px;
+      margin: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 5rem;
+    }
+
+    @media only screen and (max-width: 768px) {
+      justify-self: center;
+      align-self: center;
+      width: 40px;
+      content:url('/img/shelter.svg');
+    }
 `
