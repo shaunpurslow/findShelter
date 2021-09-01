@@ -1,8 +1,9 @@
-import Shelter from '../dashboard/Shelter'
-const ShelterItems = ({ shelters }) => {
+import Shelter from '../dashboard/Shelter';
 
-  const sheltersArray = shelters.map(shelter =>
+const ShelterItems = ({ shelters }) => {
+  const sheltersArray = shelters.map((shelter) => (
     <Shelter
+      id={shelter.id}
       key={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
@@ -21,12 +22,12 @@ const ShelterItems = ({ shelters }) => {
       family={shelter.family}
       pets={shelter.pets}
     />
-  )
+  ));
   return (
     <>
       <ul>{sheltersArray}</ul>
     </>
-  )
-}
+  );
+};
 
 export default ShelterItems;

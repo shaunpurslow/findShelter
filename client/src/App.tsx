@@ -15,17 +15,14 @@ import useSearch from './hooks/useSearch';
 import ShelterCard from './components/dashboard/ShelterCard';
 
 function App() {
-  const [appState, setAppState] = useState({
-    user: {},
-    shelter: {},
-  });
 
   const [shelters, setShelters] = useShelters();
   const [search, setSearch] = useSearch();
 
-  const shelter = shelters.map(shelter =>
-    <ShelterCard
+  const shelter = shelters.map((shelter) => (
+    <Shelter
       key={shelter.id}
+      id={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
       city={shelter.city}
@@ -43,7 +40,7 @@ function App() {
       family={shelter.family}
       pets={shelter.pets}
     />
-  )
+  ));
 
   return (
     <Router>
@@ -51,19 +48,20 @@ function App() {
         <Switch>
           {/* Main Page */}
           <Route exact path='/'>
-            {search.length < 3 ?
+            {search.length < 3 ? (
               <>
                 <Header />
                 <Search setSearch={setSearch} />
                 <Footer />
-              </> :
+              </>
+            ) : (
               <>
                 <Header />
                 <Search setSearch={setSearch} />
                 {shelter}
                 <Footer />
               </>
-            }
+            )}
           </Route>
           {/* Register */}
           <Route path='/register'>

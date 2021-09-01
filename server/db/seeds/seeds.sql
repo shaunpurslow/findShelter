@@ -5,11 +5,11 @@ VALUES
 (2, 'Women Support', '405 5 Ave SW', 'Calgary', 'AB', 'T2G 2C4', 'Canada', 4032968000, 'info@womensupport.ca', 'https://picsum.photos/200', 'womensupport.ca', 100, false, true, false, true, true),
 (3, 'Mens Shelter ', '650 W 41st Ave', 'Vancouver', 'BC', 'V5Z 2M9', 'Canada', 4032968000, 'info@womensupport.ca', 'https://picsum.photos/200', 'womensupport.ca', 100, false, false, true, false, true);
 
-INSERT INTO guests (first_name, last_name, emergency_contact,   emergency_name)
+INSERT INTO guests (first_name, last_name, emergency_number, emergency_name)
 VALUES
 ('John', 'Fulano', 4032008000, 'Shaun'),
 ('Jane', 'Ciclano', 4038002222, 'Ricardo'),
-('Jonas', 'Beltrano', 4032008000, 'Emmanuel');
+('John', 'Smith', 4032008000, 'Emmanuel');
 
 INSERT INTO staff
 (shelter_id, first_name, last_name, phone, email, password, is_manager)
@@ -27,8 +27,8 @@ VALUES
 (1, 1, '2021-05-21'),
 (1, 2, '2021-05-20'),
 (1, 2, '2021-05-21'),
-(1, 3, '2021-05-20'),
-(1, 3, '2021-05-21'),
+(1, 2, '2021-05-20'),
+(1, 2, '2021-05-21'),
 (2, 1, '2021-05-20'),
 (2, 1, '2021-05-21'),
 (2, 2, '2021-05-20'),

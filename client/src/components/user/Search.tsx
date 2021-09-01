@@ -12,7 +12,6 @@ interface Props {
 }
 const Search = (props: Props) => {
   // saved data from search query
-  // const [shelters, setShelters] = useShelters();
   const [shelters, setShelters] = useState([]);
 
   // controlled search input
