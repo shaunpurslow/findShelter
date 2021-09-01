@@ -12,12 +12,9 @@ import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
+import ShelterCard from './components/dashboard/ShelterCard';
 
 function App() {
-  const [appState, setAppState] = useState({
-    user: {},
-    shelter: {},
-  });
 
   const [shelters, setShelters] = useShelters();
   const [search, setSearch] = useSearch();
