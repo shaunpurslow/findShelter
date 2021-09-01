@@ -13,7 +13,10 @@ width: 100%;
 `
 
 export const MainContainer = styled.main`
-
+@media only screen and (min-width: 767px) {
+  margin-left: 250px;
+  width: 100%;
+}
 @media only screen and (max-width: 768px) {
   width: 100%;
   display: flex;

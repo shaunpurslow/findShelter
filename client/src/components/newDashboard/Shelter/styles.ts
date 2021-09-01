@@ -7,12 +7,10 @@ export const Container = styled.div`
     align-items: stretch;
     padding: 0;
     box-sizing: border-box;
-    font-size: 1.2rem;
     margin: 2rem;
     background-color: white;
     border-radius: 1rem;
     color: var(--dark);
-    max-width: 100vw;
   }
 
   &:hover {

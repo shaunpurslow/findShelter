@@ -8,12 +8,11 @@ import { MyShelter } from '../MyShelter';
 interface Props {
   currentMenu: string;
   capacity: string;
+  dashboardState: any;
 }
 
 export const Main = (props: Props) => {
-  const [shelters, setShelters] = useShelters();
-
-  const shelter = shelters.map(shelter =>
+  const shelter = props.dashboardState.shelters.map(shelter =>
     <Shelter
       key={shelter.id}
       name={shelter.name}
@@ -58,7 +57,7 @@ export const Main = (props: Props) => {
     case 'Reservations':
       return (
         <>
-          <Reservation />
+          <Reservation dashboardState={props.dashboardState} />
         </>
       );
     case 'My Shelter':

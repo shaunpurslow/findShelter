@@ -14,10 +14,26 @@ import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
 import Confirmation from './components/user/Confirmation';
 
-function App() {
+interface ILoggedInUser {
+  id: number | string;
+  first_name: string;
+  last_name: string;
+  shelter_id: number | string;
+  capacity: number | string;
+  thumbnail_url: string;
+}
 
+function App() {
   const [shelters, setShelters] = useShelters();
   const [search, setSearch] = useSearch();
+  const [loggedInUser, setLoggedInUser] = useState<any>({
+    id: '',
+    first_name: '',
+    last_name: '',
+    shelter_id: '',
+    capacity: '',
+    thumbnail_url: '',
+  });
 
   const shelter = shelters.map((shelter) => (
     <Shelter
@@ -75,21 +91,21 @@ function App() {
           </Route>
           {/* Temporary Dashborad */}
           <Route path='/new-dashboard'>
-            <NewDashboard setAppState={'setAppState'} />
+            <NewDashboard loggedInUser={loggedInUser} />
           </Route>
           <Route path='/user'>
             <Header />
             {shelter}
-            </Route>
+          </Route>
           <Route path='/confirmation'>
-              <Confirmation />
+            <Confirmation />
           </Route>
           <Route path='/reservation'>
             <Header />
             <Reservation />
           </Route>
           <Route path='/login'>
-            <Login />
+            <Login setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
           </Route>
         </Switch>
       </div>

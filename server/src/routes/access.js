@@ -15,9 +15,10 @@ module.exports = function (dbconn) {
   router.post('/', (req, res) => {
     const { email, password: suppliedPassword } = req.body;
 
+
     const query = `
     SELECT 
-    staff.id AS id, 
+    staff.id AS staff_id, 
     first_name, 
     last_name, 
     password, 
@@ -33,30 +34,18 @@ module.exports = function (dbconn) {
     dbconn
       .query(query, values)
       .then((data) => {
-        const {
-          id,
-          password: dataPassword,
-          first_name,
-          last_name,
-          capacity,
-          thumbnail_url,
-        } = data.rows[0];
+        const user = data.rows[0];
 
-        if (suppliedPassword !== dataPassword) {
+        if (suppliedPassword !== user.password) {
           res.status(401).json({ error: 'unauthorized access' });
           return;
         }
-        const userData = {
-          id,
-          first_name,
-          last_name,
-          capacity,
-          thumbnail_url,
-        };
 
-        return res.send({ user: userData });
+        console.log('user ', user)
+
+        return res.send({ ...user });
       })
-      .catch((e) => res.status(500).json({ error: e.message }));
+      .catch((e) => res.status(500).json({ error: e }));
   });
 
   return router;

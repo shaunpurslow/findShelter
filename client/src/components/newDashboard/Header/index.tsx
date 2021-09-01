@@ -14,9 +14,10 @@ export function Header(props: Props) {
   const [isLogged, setIsLogged] = useState({ logged: true })
 
   const destroySession = () => {
-    localStorage.removeItem('userData');
+    localStorage.clear();
     setIsLogged({ logged: false })
   };
+
 
   if (!isLogged.logged) {
     return (
