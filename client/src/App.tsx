@@ -13,7 +13,7 @@ import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
 import Confirmation from './components/user/Confirmation';
-import { Map } from './components/user/Map';
+import Map from './components/user/Map';
 
 function App() {
 
