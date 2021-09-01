@@ -5,6 +5,7 @@ import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/admin/Register';
 import Dashboard from './components/dashboard/Dashboard';
+import NewDashboard from './components/dashboard/NewDashboard';
 import useShelters from './hooks/useShelters';
 
 import { useState } from 'react';
@@ -71,6 +72,10 @@ function App() {
           {/* Dashborad */}
           <Route path='/dashboard'>
             <Dashboard setAppState={setAppState} />
+          </Route>
+          {/* Temporary Dashborad */}
+          <Route path='/new-dashboard'>
+            <NewDashboard setAppState={setAppState} />
           </Route>
           <Route path='/user'>
             <Header />
