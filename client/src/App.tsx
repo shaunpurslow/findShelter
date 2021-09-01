@@ -5,7 +5,7 @@ import './styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/admin/Register';
 import Dashboard from './components/dashboard/Dashboard';
-import NewDashboard from './components/dashboard/NewDashboard';
+import NewDashboard from './components/newDashboard/NewDashboard';
 import useShelters from './hooks/useShelters';
 
 import { useState } from 'react';

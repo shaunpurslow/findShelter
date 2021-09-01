@@ -13,6 +13,10 @@ h1 {
   font-size: 2rem;
   font-weight: 700;
 }
+
+button {
+  margin-right: 1em;
+}
 `
 
 export const UserInfo = styled.span`
@@ -20,19 +24,20 @@ export const UserInfo = styled.span`
   justify-content: flex-end;
   align-items: center;
   flex-grow: 1;
-  padding-right: 1em;
+  padding-right: 1rem;
 
   h2 {
-    padding: 0 5em;
+    padding: 0 5rem;
   }
 
   img {
-    max-width: 1em;
-    margin: 0 1em;
+    margin: 0 1rem;
     border-radius: 30px;
+    width: 3em;
+    height: 3em;
 
-      &:last-child {
-      max-width: 3em;
+    &:first-child {
+      max-width: 1.5rem;
     }
   }
   `

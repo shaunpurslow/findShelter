@@ -1,10 +1,10 @@
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Main from './Main';
-import '../../styles/dashboard/Dashboard.scss';
 import { useState, useEffect } from 'react';
 import useShelterInfo from '../../hooks/useShelterInfo';
 import { GlobalStyle } from '../../styles/global'
+import { Header } from './Header';
+import { Sidebar } from './Sidebar';
+import { Main } from './Main';
+import { Container } from './styles';
 
 interface Props {
   setAppState: {};
@@ -37,8 +37,8 @@ function NewDashboard(props: Props) {
 
   return (
     <>
-      <div className='dashboard-view'>
-        <GlobalStyle />
+      <GlobalStyle />
+      <Container>
         <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
         <section className='dashboard'>
           <Header
@@ -52,7 +52,7 @@ function NewDashboard(props: Props) {
             capacity={user.capacity}
           />
         </section>
-      </div>
+      </Container>
     </>
   )
 }
