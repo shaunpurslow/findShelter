@@ -12,22 +12,28 @@ interface Props {
 function Dashboard(props: Props) {
   const [menu, setMenu] = useState({
     currentMenu: 'Overview',
-    menuItems: ['Overview', 'Reservations', 'Find Shelters', 'Guests', 'My Shelter']
+    menuItems: [
+      'Overview',
+      'Reservations',
+      'Find Shelters',
+      'Guests',
+      'My Shelter',
+    ],
   });
   const [user, setUser] = useState({
     id: '',
     first_name: '',
     last_name: '',
     capacity: '',
-    thumbnail_url: ''
+    thumbnail_url: '',
   });
 
   const dataLocalStorage: any = localStorage.getItem('userData');
   const userData = JSON.parse(dataLocalStorage);
 
   useEffect(() => {
-    setUser(prev => ({ ...prev, ...userData }))
-  }, [])
+    setUser((prev) => ({ ...prev, ...userData }));
+  }, []);
 
   const shelterInfo = useShelterInfo(props.setAppState);
 
@@ -37,7 +43,11 @@ function Dashboard(props: Props) {
   return (
     <>
       <div className='dashboard-view'>
-        <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
+        <Sidebar
+          currentMenu={menu.currentMenu}
+          menuItems={menu.menuItems}
+          setMenuItem={setMenuItem}
+        />
         <section className='dashboard'>
           <Header
             currentMenu={menu.currentMenu}
@@ -45,15 +55,11 @@ function Dashboard(props: Props) {
             last_name={user.last_name}
             thumbnail_url={user.thumbnail_url}
           />
-          <Main
-            currentMenu={menu.currentMenu}
-            capacity={user.capacity}
-          />
+          <Main currentMenu={menu.currentMenu} capacity={user.capacity} />
         </section>
       </div>
     </>
-  )
+  );
 }
 
 export default Dashboard;
-
