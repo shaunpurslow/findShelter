@@ -1,9 +1,46 @@
 import '../../styles/user/Reservation.scss';
-
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 const Reservation = () => {
+  const [value, setValue] = useState({
+    first_name: '',
+    last_name: '',
+    phone: '',
+    email: '',
+    emergency_contact: '',
+    emergency_phone: ''
+  });
 
-  
+  const [reserved, setReserved] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:8080/reservations/', value)
+      .then((res) => {
+        setReserved(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChange = (e) => {
+    interface IDic {
+      [name: string]: string;
+      value: string;
+    }
+    const { name, value }: IDic = e.target;
+
+    setValue((prev) => ({ ...prev, [name]: value }));
+  };
+
+  if (reserved) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <main className='reservation__container'>
@@ -15,31 +52,31 @@ const Reservation = () => {
       <form className='reservation-form'>
         <h3>Reservation</h3>
 
-        <label htmlFor='firstName'>First Name</label>
+        <label htmlFor='first_name'>First Name</label>
         <input
-          name='firstName'
+          name='first_name'
           id='first-name'
-          // value={formValues.shelterName}
-          // onChange={handleChange}
+          value={value.first_name}
+          onChange={handleChange}
           type='text'
           placeholder='required'
         />
-        <label htmlFor='lastName'>Last Name</label>
+        <label htmlFor='last_name'>Last Name</label>
         <input
-          name='lastName'
+          name='last_name'
           id='last-name'
-          // value={formValues.shelterName}
-          // onChange={handleChange}
+          value={value.last_name}
+          onChange={handleChange}
           type='text'
           placeholder='required'
         />
 
-        <label htmlFor='phoneNumber'>Phone Number</label>
+        <label htmlFor='phone'>Phone Number</label>
         <input
-          name='phoneNumber'
+          name='phone'
           id='phone-number'
-          // value={formValues.streetAddress}
-          // onChange={handleChange}
+          value={value.phone}
+          onChange={handleChange}
           type='text'
           placeholder='not required'
         />
@@ -47,37 +84,40 @@ const Reservation = () => {
         <input
           name='email'
           id='email'
-          // value={formValues.streetAddress}
-          // onChange={handleChange}
+          value={value.email}
+          onChange={handleChange}
           type='email'
           placeholder='not required'
         />
-        <label htmlFor='emergencyContactName'>Emergency Contact Name</label>
+        <label htmlFor='emergency_contact'>Emergency Contact Name</label>
         <input
-          name='emergencyContactName'
+          name='emergency_contact'
           id='emergency-contact-name'
-          // value={formValues.streetAddress}
-          // onChange={handleChange}
+          value={value.emergency_contact}
+          onChange={handleChange}
           type='text'
           placeholder='required'
         />
-        <label htmlFor='emergencyContactNum'>Emergency Contact #</label>
+        <label htmlFor='emergency_phone'>Emergency Contact #</label>
         <input
-          name='emergencyContactNum'
+          name='emergency_phone'
           id='emergency-contact-num'
-          // value={formValues.streetAddress}
-          // onChange={handleChange}
+          value={value.emergency_phone}
+          onChange={handleChange}
           type='email'
           placeholder='required'
         />
         <div>
-     
+
         </div>
         <div className='reservation__buttons'>
-          <button className='reservation__submit__button' type='submit'>
+          <button className='reservation__submit__button' type='submit'
+            onClick={handleSubmit}>
             Login
           </button>
-          <button className='reservation__submit__button'>Cancel</button>
+          <button className='reservation__submit__button'>
+            Cancel
+          </button>
         </div>
       </form>
     </main>
