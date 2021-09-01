@@ -12,6 +12,7 @@ import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
+import Confirmation from './components/user/Confirmation';
 
 function App() {
 
@@ -50,12 +51,14 @@ function App() {
             {search.length < 3 ? (
               <>
                 <Header />
+                {/* Emmanuel Look at this issue ? */}
                 <Search setSearch={setSearch} />
                 <Footer />
               </>
             ) : (
               <>
                 <Header />
+                {/* Emmanuel Look at this issue ? */}
                 <Search setSearch={setSearch} />
                 {shelter}
                 <Footer />
@@ -77,6 +80,9 @@ function App() {
           <Route path='/user'>
             <Header />
             {shelter}
+            </Route>
+          <Route path='/confirmation'>
+              <Confirmation />
           </Route>
           <Route path='/reservation'>
             <Header />
