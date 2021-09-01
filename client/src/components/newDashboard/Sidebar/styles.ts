@@ -22,7 +22,7 @@ export const Aside = styled.aside`
     top: 0;
     width: 100%;
     background-color: var(--dark);
-    height: 100px;
+    height: 75px;
 }
 `
 export const Image = styled.img`
@@ -36,7 +36,8 @@ export const Image = styled.img`
     @media only screen and (max-width: 768px) {
       justify-self: center;
       align-self: center;
-      width: 40px;
+      width: 35px;
+      margin: 1rem;
       content:url('/img/shelter.svg');
     }
 `

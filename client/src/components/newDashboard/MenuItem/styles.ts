@@ -90,10 +90,10 @@ export const ListSelected = styled.li`
   &:hover {
     opacity: 0.8;
   }
-    }
 
-    h2 {
+  h2 {
       display: none;
+    }
     }
 `
 

@@ -20,7 +20,7 @@ export const Overview = (props: Props) => {
         <strong>53</strong>
       </Card>
       <Card>
-        <header>BEDS REMAINING</header>
+        <header>BEDS LEFT</header>
         <strong>44</strong>
       </Card>
     </Wrapper>

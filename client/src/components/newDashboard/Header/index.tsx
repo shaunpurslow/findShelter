@@ -28,8 +28,6 @@ export function Header(props: Props) {
     <HeaderContainer>
       <h1>{props.currentMenu}</h1>
       <UserInfo>
-        {/* <img src='/img/search.svg' alt='search' />
-        <img src='/img/divider.svg' alt='divider' /> */}
         <h3>{props.first_name ? props.first_name + ' ' + props.last_name : 'Machado de Assis'}</h3>
         <img src={props.thumbnail_url ? props.thumbnail_url : 'https://picsum.photos/200'} alt='logo' />
         <Button onClick={destroySession}>

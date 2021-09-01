@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+@media only screen and (min-width: 767px) {
   margin: 2em;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+@media only screen and (max-width: 768px) {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 0 auto;
+}
 `
 
 export const Card = styled.div`
@@ -38,5 +47,23 @@ export const Card = styled.div`
       background-color: var(--dark);
       color: white;
     }
+
+    @media only screen and (max-width: 768px) {
+      &:nth-child(3) {
+        margin-bottom: 1rem;
+      }
+
+      &:nth-child(4) {
+        margin-bottom: 1rem;
+      }
+
+      &:nth-child(even) {
+        margin-right: 0.5rem;
+      }
+
+      &:nth-child(odd) {
+        margin-left: 0.5rem;
+      }
+}
 `
 

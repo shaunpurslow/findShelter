@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
+width: 100%;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -17,9 +18,15 @@ h1 {
 button {
   margin-right: 1em;
 }
+
+@media only screen and (max-width: 768px) {
+  h1 {
+      font-size: 1.5rem;
+    }
 `
 
 export const UserInfo = styled.span`
+@media only screen and (min-width: 767px) {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -38,6 +45,13 @@ export const UserInfo = styled.span`
 
     &:first-child {
       max-width: 1.5rem;
+    }
+  }
+}
+
+  @media only screen and (max-width: 768px) {
+    h3, img {
+      display: none;
     }
   }
   `
