@@ -6,7 +6,8 @@
   .confirmation__section {
     background-color: $col-medium;
     @include displayFlex(center, center, column);
-    width: 65%;
+    max-width: 100%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 3em;
     border-radius: 30px;
@@ -32,10 +33,37 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+
+
+@media screen and (max-width: 487px) {
   .confirmation__container {
+    height: 50vh;
+  
     .confirmation__section {
-      width: 80%;
+      width: 87%;
+      margin: 0 auto;
+      margin-top: 3em;
+      border-radius: 30px;
+      padding: 1.5em 1em;
+    
+    }
+    .header__section {
+      @include displayFlex(center, center, row);
+      margin-bottom: .5em;
+  
+      .check__icon {
+        font-size: 1.4em;
+        margin-right: 0.2em;
+        color: $col-dark;
+      }
+      .title {
+        font-size: 1em;
+      }
+    }
+    .message {
+      padding: 1em 1em;
+      font-size: .8em;
+
     }
   }
 }
