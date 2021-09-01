@@ -12,6 +12,7 @@ import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
+import ShelterCard from './components/dashboard/ShelterCard';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -23,7 +24,7 @@ function App() {
   const [search, setSearch] = useSearch();
 
   const shelter = shelters.map(shelter =>
-    <Shelter
+    <ShelterCard
       key={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
