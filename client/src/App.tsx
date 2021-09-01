@@ -11,6 +11,7 @@ import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
+import Confirmation from './components/user/Confirmation';
 
 function App() {
 
@@ -69,9 +70,8 @@ function App() {
           <Route path='/dashboard'>
             <Dashboard setAppState={'setAppState'} />
           </Route>
-          <Route path='/user'>
-            <Header />
-            {shelter}
+          <Route path='/confirmation'>
+              <Confirmation />
           </Route>
           <Route path='/reservation'>
             <Header />
