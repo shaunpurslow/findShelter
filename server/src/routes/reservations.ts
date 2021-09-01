@@ -14,7 +14,18 @@ export default function (dbconn) {
       return;
     }
     const query = `
-      SELECT *
+      SELECT 
+        reservations.id as id,
+        shelter_id,
+        guest_id,
+        reservations.reservation_date,
+        reservations.is_confirmed,
+        guests.first_name,
+        guests.last_name,
+        guests.emergency_number,
+        guests.emergency_name,
+        phone,
+        email
       FROM reservations
       JOIN guests
       ON reservations.guest_id = guests.id
@@ -41,11 +52,23 @@ export default function (dbconn) {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
-  // receive POST req to create a new reso
+  router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const { is_confirmed } = req.body;
 
-  // check the shelter to see if guest is already there
-  // make query to database where shelterid is the one given
-  // check if shelter has a current guest with the same first name last name
+    const query = `
+      UPDATE reservations
+      SET is_confirmed = $1
+      WHERE id = $2
+      RETURNING *
+    `;
+    const values = [is_confirmed, id];
+
+    dbconn
+      .query(query, values)
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.status(500).json({ error: e.message }));
+  });
 
   router.post('/', (req, res) => {
     const {
