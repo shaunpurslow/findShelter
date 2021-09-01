@@ -7,7 +7,6 @@ import Register from './components/admin/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import NewDashboard from './components/newDashboard/NewDashboard';
 import useShelters from './hooks/useShelters';
-
 import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
 import Login from './components/admin/Login';
@@ -15,17 +14,14 @@ import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
 
 function App() {
-  const [appState, setAppState] = useState({
-    user: {},
-    shelter: {},
-  });
 
   const [shelters, setShelters] = useShelters();
   const [search, setSearch] = useSearch();
 
-  const shelter = shelters.map(shelter =>
+  const shelter = shelters.map((shelter) => (
     <Shelter
       key={shelter.id}
+      id={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
       city={shelter.city}
@@ -43,7 +39,7 @@ function App() {
       family={shelter.family}
       pets={shelter.pets}
     />
-  )
+  ));
 
   return (
     <Router>
@@ -51,27 +47,28 @@ function App() {
         <Switch>
           {/* Main Page */}
           <Route exact path='/'>
-            {search.length < 3 ?
+            {search.length < 3 ? (
               <>
                 <Header />
                 <Search setSearch={setSearch} />
                 <Footer />
-              </> :
+              </>
+            ) : (
               <>
                 <Header />
                 <Search setSearch={setSearch} />
                 {shelter}
                 <Footer />
               </>
-            }
+            )}
           </Route>
           {/* Register */}
           <Route path='/register'>
-            <Register setAppState={setAppState} />
+            <Register setAppState={'setAppState'} />
           </Route>
           {/* Dashborad */}
           <Route path='/dashboard'>
-            <Dashboard setAppState={setAppState} />
+            <Dashboard setAppState={'setAppState'} />
           </Route>
           {/* Temporary Dashborad */}
           <Route path='/new-dashboard'>

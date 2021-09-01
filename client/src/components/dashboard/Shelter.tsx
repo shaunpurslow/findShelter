@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import '../../styles/dashboard/Main.scss';
+import { Redirect } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 
 interface Props {
   key: number;
+  id?: number;
   name: string;
   street_address: string;
   city: string;
@@ -21,9 +24,24 @@ interface Props {
   pets: boolean;
 }
 
-const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
-
 const Shelter = (props: Props) => {
+  const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
+  const history = useHistory();
+  // const handleOnClick = useCallback(
+  //   () =>
+  //     history.push('/reservations', {
+  //       shelterId: props.id,
+  //     }),
+  //   [history]
+  // );
+
+  // https://newbedev.com/how-to-send-params-in-usehistory-of-react-router-dom
+  const handleOnClick = () => {
+    history.push('/reservation', {
+      shelterId: props.id,
+    });
+  };
+
   return (
     <div className='individual-shelter'>
       <div>
@@ -100,7 +118,7 @@ const Shelter = (props: Props) => {
       </span>
       <div className='bottom__buttons'>
         <button>Directions</button>
-        <button>Reserve Now</button>
+        <button onClick={handleOnClick}>Reserve Now</button>
       </div>
     </div>
   );

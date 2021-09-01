@@ -1,17 +1,36 @@
 import '../../styles/user/Reservation.scss';
-import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
 
 const Reservation = () => {
+  const [selectedDate, handleDateChange] = useState<Date | null>(new Date());
   const [value, setValue] = useState({
     first_name: '',
     last_name: '',
     phone: '',
     email: '',
-    emergency_contact: '',
-    emergency_phone: ''
+    emergency_name: '',
+    emergency_number: '',
+    shelter_id: null,
+    reservation_date: '',
   });
+
+  // shelter id passed via redirection from shelter component
+  const location: any = useLocation();
+  const shelterId = location.state.shelterId || null;
+  useEffect(() => {
+    setValue((prev) => ({ ...prev, shelter_id: shelterId }));
+  }, []);
+
+  console.log(shelterId);
 
   const [reserved, setReserved] = useState(false);
 
@@ -19,9 +38,10 @@ const Reservation = () => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/reservations/', value)
+      .post('http://localhost:8080/reservations', value)
       .then((res) => {
         setReserved(true);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -36,6 +56,10 @@ const Reservation = () => {
     const { name, value }: IDic = e.target;
 
     setValue((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleReservationChange = (e) => {
+    setValue((prev) => ({ ...prev, reservation_date: e.target.value }));
   };
 
   if (reserved) {
@@ -89,35 +113,41 @@ const Reservation = () => {
           type='email'
           placeholder='not required'
         />
-        <label htmlFor='emergency_contact'>Emergency Contact Name</label>
+        <label htmlFor='emergency_name'>Emergency Contact Name</label>
         <input
-          name='emergency_contact'
-          id='emergency-contact-name'
-          value={value.emergency_contact}
+          name='emergency_name'
+          id='emergency-name'
+          value={value.emergency_name}
           onChange={handleChange}
           type='text'
           placeholder='required'
         />
-        <label htmlFor='emergency_phone'>Emergency Contact #</label>
+        <label htmlFor='emergency_number'>Emergency Contact #</label>
         <input
-          name='emergency_phone'
-          id='emergency-contact-num'
-          value={value.emergency_phone}
+          name='emergency_number'
+          id='emergency-number'
+          value={value.emergency_number}
           onChange={handleChange}
-          type='email'
+          type='text'
           placeholder='required'
         />
         <div>
-
+          <input
+            type='date'
+            name='reservationDate'
+            id='reservation_date'
+            value={value.reservation_date}
+            onChange={handleReservationChange}
+          />
         </div>
         <div className='reservation__buttons'>
-          <button className='reservation__submit__button' type='submit'
+          <button
+            className='reservation__submit__button'
+            type='submit'
             onClick={handleSubmit}>
-            Login
+            Reserve
           </button>
-          <button className='reservation__submit__button'>
-            Cancel
-          </button>
+          <button className='reservation__submit__button'>Cancel</button>
         </div>
       </form>
     </main>
