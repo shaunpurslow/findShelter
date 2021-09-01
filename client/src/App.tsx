@@ -72,7 +72,7 @@ function App() {
           </Route>
           {/* Temporary Dashborad */}
           <Route path='/new-dashboard'>
-            <NewDashboard setAppState={setAppState} />
+            <NewDashboard setAppState={'setAppState'} />
           </Route>
           <Route path='/user'>
             <Header />
