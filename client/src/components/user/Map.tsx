@@ -16,6 +16,9 @@ const Map = () => {
   });
 
 
+  //Directions API
+
+
   const handleChange = (e) => {
     setLocation((prev) => e.target.value)
   }
@@ -54,8 +57,8 @@ const Map = () => {
       >
         <Marker
           key={1}
-          latitude={latitude}
-          longitude={longitude}
+          latitude={51.1642753}
+          longitude={-114.09020389999999}
           offsetLeft={-20}
           offsetTop={-10}
         >

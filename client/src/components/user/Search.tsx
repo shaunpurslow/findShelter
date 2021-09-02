@@ -24,6 +24,12 @@ const Search = (props: Props) => {
     pets: false,
   });
 
+  // user geo location
+  const [userCoordinates, setUserCoordinates] = useState({
+    longitude: 0,
+    latitude: 0,
+  })
+
   const handleChange = (e) => {
     setSearchQuery((prev) => e.target.value);
   };
@@ -76,6 +82,12 @@ const Search = (props: Props) => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('Latitude is :', position.coords.latitude);
       console.log('Longitude is :', position.coords.longitude);
+      setUserCoordinates((prev) => {
+        return {
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude 
+        }
+      })
     });
   };
 
