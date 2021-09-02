@@ -13,7 +13,7 @@ export const Overview = (props: Props) => {
       </Card>
       <Card>
         <header>QUEUE</header>
-        <strong>3</strong>
+        <strong>??</strong>
       </Card>
       <Card>
         <header>BEDS FILLED</header>

@@ -4,6 +4,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import classNames from 'classnames';
+import { io } from 'socket.io-client';
 
 import ShelterItems from './ShelterItems';
 
@@ -11,6 +12,14 @@ interface Props {
   setSearch: any;
 }
 const Search = (props: Props) => {
+  console.log('making a socket connection');
+  const socket = io('http://localhost:8080', {
+    path: '/socket/',
+  });
+  // socket.emit('connection', 'ready to recieve');
+  socket.on('updateBedAvailability', (data) => {
+    console.log(data);
+  });
   // saved data from search query
   const [shelters, setShelters] = useState([]);
 

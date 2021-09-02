@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { GlobalStyle } from '../../styles/global'
+import { GlobalStyle } from '../../styles/global';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { Main } from './Main';
 import { Container, MainContainer } from './styles';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
 
 interface IDashboardState {
   user: any;
@@ -23,7 +22,7 @@ function NewDashboard(props: any) {
     user: loggedIn,
     shelters: [],
     reservations: [],
-    guests: []
+    guests: [],
   });
 
   // REFACTOR: change backend route for all of a shelters reservations to this -> "/shelters/:id/reservations"
@@ -34,18 +33,32 @@ function NewDashboard(props: any) {
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8080/shelters`),
-      axios.get(`http://localhost:8080/reservations/search?shelter_id=${dashboardState?.user?.shelter_id || null}`)
+      axios.get(
+        `http://localhost:8080/reservations/search?shelter_id=${
+          dashboardState?.user?.shelter_id || null
+        }`
+      ),
     ])
-      .then(res => {
+      .then((res) => {
         const [shelters, reservations] = res;
-        setDashboardState(prev => ({ ...prev, shelters: shelters.data, reservations: reservations.data }))
+        setDashboardState((prev) => ({
+          ...prev,
+          shelters: shelters.data,
+          reservations: reservations.data,
+        }));
       })
-      .catch((err) => console.log(err))
-  }, [])
+      .catch((err) => console.log(err));
+  }, []);
 
   const [menu, setMenu] = useState({
     currentMenu: 'Overview',
-    menuItems: ['Overview', 'Reservations', 'Find Shelters', 'Guests', 'My Shelter']
+    menuItems: [
+      'Overview',
+      'Reservations',
+      'Find Shelters',
+      'Guests',
+      'My Shelter',
+    ],
   });
 
   const setMenuItem = (item: string): void =>
@@ -53,13 +66,17 @@ function NewDashboard(props: any) {
 
   if (!loggedIn) {
     return <Redirect to='/login' />;
-  };
+  }
 
   return (
     <>
       <GlobalStyle />
       <Container>
-        <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
+        <Sidebar
+          currentMenu={menu.currentMenu}
+          menuItems={menu.menuItems}
+          setMenuItem={setMenuItem}
+        />
         <MainContainer>
           <Header
             currentMenu={menu.currentMenu}
@@ -75,8 +92,7 @@ function NewDashboard(props: any) {
         </MainContainer>
       </Container>
     </>
-  )
+  );
 }
 
 export default NewDashboard;
-

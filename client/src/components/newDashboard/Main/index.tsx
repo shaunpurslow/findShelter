@@ -1,6 +1,6 @@
 import useShelters from '../../../hooks/useShelters';
 import { Overview } from '../Overview';
-import { Shelter } from '../Shelter';
+import Shelter from '../Shelter';
 import { Reservation } from '../Reservation';
 import { Guests } from '../Guests';
 import { MyShelter } from '../MyShelter';
@@ -12,8 +12,9 @@ interface Props {
 }
 
 export const Main = (props: Props) => {
-  const shelter = props.dashboardState.shelters.map(shelter =>
+  const shelter = props.dashboardState.shelters.map((shelter) => (
     <Shelter
+      id={shelter.id}
       key={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
@@ -31,8 +32,9 @@ export const Main = (props: Props) => {
       male_only={shelter.male_only}
       family={shelter.family}
       pets={shelter.pets}
+      confirmedReservations={shelter.confirmed_reservations}
     />
-  )
+  ));
 
   switch (props.currentMenu) {
     case 'Overview':
@@ -43,11 +45,7 @@ export const Main = (props: Props) => {
         </>
       );
     case 'Find Shelters':
-      return (
-        <>
-          {shelter}
-        </>
-      );
+      return <>{shelter}</>;
     case 'Guests':
       return (
         <>
@@ -73,5 +71,5 @@ export const Main = (props: Props) => {
           {shelter}
         </>
       );
-  };
+  }
 };
