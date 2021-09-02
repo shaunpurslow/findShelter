@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import axios from 'axios';
+import RoomIcon from '@material-ui/icons/Room';
 
 const Map = () => {
   const [viewport, setViewport] = useState({
@@ -9,6 +11,17 @@ const Map = () => {
     width: '100vw',
     height: '100vh',
   });
+  
+  
+  // const getLocation = () => {
+  //   axios
+  //     .get('https://data.calgary.ca/resource/fd9t-tdn2.json')
+  //     .then((response) => {
+  //       console.log(response.data[0]);
+      
+  //     });
+  // };
+
   return (
     <div>
       <ReactMapGL
@@ -17,7 +30,15 @@ const Map = () => {
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
-        HERE IS OUR MAP
+        <Marker
+        key={1}
+        latitude={50.887836920058064}
+        longitude={-113.97597027648685}
+        offsetLeft={-20}
+        offsetTop={-10}
+        >
+          <RoomIcon />
+        </Marker>
       </ReactMapGL>
     </div>
   );
