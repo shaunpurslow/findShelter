@@ -1,4 +1,4 @@
-import Shelter from '../dashboard/Shelter';
+import Shelter from '../newDashboard/Shelter';
 
 const ShelterItems = ({ shelters }) => {
   const sheltersArray = shelters.map((shelter) => (
@@ -21,6 +21,7 @@ const ShelterItems = ({ shelters }) => {
       male_only={shelter.male_only}
       family={shelter.family}
       pets={shelter.pets}
+      confirmedReservations={shelter.confirmed_reservations}
     />
   ));
   return (

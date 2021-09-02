@@ -38,7 +38,6 @@ const ReservationCard = (props: Props) => {
         );
       })
       .then((res) => {
-        console.log(res.data);
         localStorage.removeItem('reservationsData');
         localStorage.setItem('reservationsData', JSON.stringify(res.data));
         props.setHistory((prev) => [...prev, 'updated']);

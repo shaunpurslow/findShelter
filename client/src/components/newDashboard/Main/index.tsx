@@ -1,6 +1,5 @@
-import useShelters from '../../../hooks/useShelters';
 import { Overview } from '../Overview';
-import { Shelter } from '../Shelter';
+import Shelter from '../Shelter';
 import { Reservation } from '../Reservation';
 import { Guests } from '../Guests';
 import { MyShelter } from '../MyShelter';
@@ -9,12 +8,14 @@ interface Props {
   currentMenu: string;
   capacity: string;
   dashboardState: any;
+  updateDashboardReservations: any;
   setDashboardState: any;
 }
 
 export const Main = (props: Props) => {
-  const shelter = props.dashboardState.shelters.map(shelter =>
+  const shelter = props.dashboardState.shelters.map((shelter) => (
     <Shelter
+      id={shelter.id}
       key={shelter.id}
       name={shelter.name}
       street_address={shelter.street_address}
@@ -32,23 +33,25 @@ export const Main = (props: Props) => {
       male_only={shelter.male_only}
       family={shelter.family}
       pets={shelter.pets}
+      confirmedReservations={shelter.confirmed_reservations}
     />
-  )
+  ));
 
   switch (props.currentMenu) {
     case 'Overview':
       return (
         <>
-          <Overview capacity={props.capacity} />
+          <Overview
+            capacity={props.dashboardState?.myShelter[0]?.capacity}
+            confirmedReservations={
+              props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+          />
           {shelter}
         </>
       );
     case 'Find Shelters':
-      return (
-        <>
-          {shelter}
-        </>
-      );
+      return <>{shelter}</>;
     case 'Guests':
       return (
         <>
@@ -60,6 +63,7 @@ export const Main = (props: Props) => {
         <>
           <Reservation
             dashboardState={props.dashboardState}
+            updateDashboardReservations={props.updateDashboardReservations}
             setDashboardState={props.setDashboardState}
           />
         </>
@@ -73,9 +77,14 @@ export const Main = (props: Props) => {
     default:
       return (
         <>
-          <Overview capacity={props.capacity} />
+          <Overview
+            capacity={props.capacity}
+            confirmedReservations={
+              props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+          />
           {shelter}
         </>
       );
-  };
+  }
 };

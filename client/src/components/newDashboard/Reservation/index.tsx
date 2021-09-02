@@ -2,12 +2,9 @@ import { useState } from 'react';
 import { ReservationCard } from '../ReservationCard';
 import { Container, Confirmed, Unconfirmed, Text, H2 } from './styles';
 
-const getStatusByGuestId = (id: number): string => {
-  return 'Active'
-};
-
 interface Props {
   dashboardState: any;
+  updateDashboardReservations: any;
   setDashboardState: any;
 }
 
@@ -16,7 +13,28 @@ export const Reservation = (props: Props) => {
   const confirmed = props.dashboardState.reservations.filter(reservation => reservation.is_confirmed);
   const unconfirmed = props.dashboardState.reservations.filter(reservation => !reservation.is_confirmed);
 
-  const confirmedReservations = confirmed.map(reservation =>
+        // feature/real-time-socket
+//   const reservations = props.dashboardState.reservations.map((reservation) => (
+//      <ReservationCard
+//       key={reservation.id}
+//       id={reservation.id}
+//       first_name={reservation.first_name}
+//       last_name={reservation.last_name}
+//       emergency_contact={reservation.emergency_contact}
+//       phone={reservation.phone}
+//       email={reservation.email}
+//       emergency_name={reservation.emergency_name}
+//       is_confirmed={reservation.is_confirmed}
+//       status={reservation.status}
+//       reservation_date={reservation.reservation_date}
+//        setHistory={setHistory}
+//       updateDashboardReservations={props.updateDashboardReservations}
+//     />
+//   ));
+//   return <Container>{reservations}</Container>;
+// };
+
+  const confirmedReservations = confirmed.map(reservation => (
     <ReservationCard
       key={reservation.id}
       id={reservation.id}

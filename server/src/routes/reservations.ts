@@ -5,11 +5,10 @@
 import express from 'express';
 const router = express.Router();
 
-// use this query to the REFACTOR route: /shelters/:id/reservations 
+// use this query to the REFACTOR route: /shelters/:id/reservations
 export default function (dbconn) {
   router.get('/search', (req, res) => {
     const { shelter_id } = req.query;
-    console.log(shelter_id);
     if (!shelter_id) {
       res.status(400).json({ error: 'missing shelter id' });
       return;
@@ -67,7 +66,11 @@ export default function (dbconn) {
 
     dbconn
       .query(query, values)
-      .then((data) => res.send(data.rows))
+      .then((data) => {
+        // emit updated reservation to all sockets
+        req['io'].emit('updateBedAvailability', data.rows);
+        res.send(data.rows);
+      })
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 

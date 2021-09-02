@@ -72,7 +72,6 @@ const Search = (props: Props) => {
 
   // https://www.pluralsight.com/guides/how-to-use-geolocation-call-in-reactjs
   const handleLocationClick = (e) => {
-    console.log('clicked location button');
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('Latitude is :', position.coords.latitude);
       console.log('Longitude is :', position.coords.longitude);

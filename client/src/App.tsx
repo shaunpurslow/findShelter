@@ -9,6 +9,7 @@ import NewDashboard from './components/newDashboard/NewDashboard';
 import useShelters from './hooks/useShelters';
 import { useState } from 'react';
 import Shelter from './components/dashboard/Shelter';
+// import Shelter from './components/newDashboard/Shelter';
 import Login from './components/admin/Login';
 import Reservation from './components/user/Reservation';
 import useSearch from './hooks/useSearch';
@@ -106,7 +107,10 @@ function App() {
             <Reservation />
           </Route>
           <Route path='/login'>
-            <Login setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
+            <Login
+              setLoggedInUser={setLoggedInUser}
+              loggedInUser={loggedInUser}
+            />
           </Route>
           <Route path='/map'>
             <Map />

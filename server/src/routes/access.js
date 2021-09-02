@@ -40,8 +40,6 @@ module.exports = function (dbconn) {
           return;
         }
 
-        console.log('user ', user)
-
         return res.send({ ...user });
       })
       .catch((e) => res.status(500).json({ error: e }));

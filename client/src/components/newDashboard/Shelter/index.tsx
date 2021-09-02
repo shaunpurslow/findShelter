@@ -1,7 +1,21 @@
-import { Container, Image, Info, Actions, Filters, Numbers, Details, Card, Wrapper } from './styles';
+import { io } from 'socket.io-client';
+import { useState, useEffect } from 'react';
+
+import {
+  Container,
+  Image,
+  Info,
+  Actions,
+  Filters,
+  Numbers,
+  Details,
+  Card,
+  Wrapper,
+} from './styles';
 import { Button } from '../StyledComponents/buttons';
 
 interface Props {
+  id: number;
   key: number;
   name: string;
   street_address: string;
@@ -19,11 +33,38 @@ interface Props {
   male_only: boolean;
   family: boolean;
   pets: boolean;
+  confirmedReservations: number;
 }
 
 const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
 
-export const Shelter = (props: Props) => {
+const Shelter = (props: Props) => {
+  const [liveBedAvailability, setLiveBedAvailability] = useState(
+    Number(props.capacity) - Number(props.confirmedReservations)
+  );
+
+  // https://www.valentinog.com/blog/socket-react/
+  // on initial render, set a socket event listener listening for live bed availability events
+  useEffect(() => {
+    const socket = io('http://localhost:8080', {
+      reconnectionAttempts: 10,
+      path: '/socket/',
+    });
+
+    // each shelter card listens for "updateBedAvailability" socket event emitted from backend
+    socket.on('updateBedAvailability', (data) => {
+      if (data[0].shelter_id === props.id) {
+        setLiveBedAvailability((prev) => (prev -= 1));
+      }
+      // if shelter_id = current shelter_id, decrement bed availability
+    });
+
+    // Close socket connection on component unmount
+    return (): void => {
+      socket.disconnect();
+    };
+  }, []);
+
   return (
     <Container>
       <Image>
@@ -83,11 +124,11 @@ export const Shelter = (props: Props) => {
         <Numbers>
           <Card>
             <header>QUEUE</header>
-            <strong>3</strong>
+            <strong>??</strong>
           </Card>
           <Card>
             <header>CONFIRMED</header>
-            <strong>3</strong>
+            <strong>{props.confirmedReservations}</strong>
           </Card>
           <Card>
             <header>CAPACITY</header>
@@ -95,7 +136,7 @@ export const Shelter = (props: Props) => {
           </Card>
           <Card>
             <header>BEDS LEFT</header>
-            <strong>44</strong>
+            <strong>{liveBedAvailability}</strong>
           </Card>
         </Numbers>
 
@@ -107,3 +148,5 @@ export const Shelter = (props: Props) => {
     </Container>
   );
 };
+
+export default Shelter;

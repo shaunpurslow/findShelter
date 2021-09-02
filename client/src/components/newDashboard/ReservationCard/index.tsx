@@ -16,7 +16,14 @@ interface Props {
   status: string;
   reservation_date: string;
   setDashboardState: any;
+  updateDashboardReservations: any;
 }
+
+export const ReservationCard = (props: Props) => {
+  const handleConfirmClick = (e) => {
+    // make put request
+    const data = { is_confirmed: props.is_confirmed ? false : true };
+  }
 
 export const ReservationCard = (props: Props) => {
   const [confirmStatus, setConfirmStatus] = useState({
@@ -53,18 +60,20 @@ export const ReservationCard = (props: Props) => {
   // REFACTOR: get this to not run on initial render
   useEffect(() => {
     axios
-      .put(`http://localhost:8080/reservations/${props.id}`, confirmStatus)
+      .put(`http://localhost:8080/reservations/${props.id}`, data)
       .then((res) => {
         return axios.get(
           `http://localhost:8080/reservations/search?shelter_id=${res.data[0].shelter_id}`
         );
       })
       .then((res) => {
+        // update dashboard state
+        props.updateDashboardReservations(res.data);
         const reservationsData = res.data
         props.setDashboardState(prev => ({ ...prev, reservations: reservationsData }))
       })
       .catch((e) => console.log(e.message));
-  }, [confirmStatus]);
+  };
 
   return (
     <Container>
@@ -74,16 +83,18 @@ export const ReservationCard = (props: Props) => {
           <em>{props.status}</em>
         </span>
         <span>
-          <img src='/img/phone.svg' alt="phone" />
+          <img src='/img/phone.svg' alt='phone' />
           <p>{props.phone || 'no information'}</p>
         </span>
         <span>
-          <img src='/img/email.svg' alt="email" />
+          <img src='/img/email.svg' alt='email' />
           <p>{props.phone || 'no information'}</p>
         </span>
         <span>
-          <img src='/img/emergency.svg' alt="emergency contact" />
-          <p><strong>{props.emergency_name}</strong> {props.emergency_contact}</p>
+          <img src='/img/emergency.svg' alt='emergency contact' />
+          <p>
+            <strong>{props.emergency_name}</strong> {props.emergency_contact}
+          </p>
         </span>
       </div>
       <div>
