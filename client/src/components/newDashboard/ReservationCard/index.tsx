@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Container } from './styles';
-import { Button } from '../StyledComponents/buttons';
+import { Container, Actions } from './styles';
+import { Button, CancelButton } from '../StyledComponents/buttons';
 import axios from 'axios';
 
 interface Props {
@@ -23,10 +23,31 @@ export const ReservationCard = (props: Props) => {
     is_confirmed: props.is_confirmed,
   });
 
-  const handleConfirmClick = (e) => {
+  const onConfirm = (e) => {
     setConfirmStatus((prev) => ({
-      is_confirmed: prev.is_confirmed ? false : true,
+      is_confirmed: prev.is_confirmed ? false : true
     }));
+  };
+
+  const onCancel = (e) => {
+    setConfirmStatus((prev) => ({
+      is_confirmed: prev.is_confirmed ? false : true
+    }));
+  };
+
+  const onDelete = () => {
+    axios
+      .delete(`http://localhost:8080/reservations/${props.id}`)
+      .then((res) => {
+        return axios.get(
+          `http://localhost:8080/reservations/search?shelter_id=${res.data[0].shelter_id}`
+        );
+      })
+      .then((res) => {
+        const reservationsData = res.data
+        props.setDashboardState(prev => ({ ...prev, reservations: reservationsData }))
+      })
+      .catch((e) => console.log(e.message));
   };
 
   // REFACTOR: get this to not run on initial render
@@ -72,8 +93,24 @@ export const ReservationCard = (props: Props) => {
         </div>
         <div>
           {props.is_confirmed ?
-            <strong>CONFIRMED</strong>
-            : <Button onClick={handleConfirmClick}>CONFIRM</Button>}
+            <Actions>
+              <strong>CONFIRMED</strong>
+              <CancelButton
+                onClick={onCancel}>
+                CANCEL
+              </CancelButton>
+            </Actions>
+            :
+            <Actions>
+              <Button
+                onClick={onConfirm}>
+                CONFIRM
+              </Button>
+              <CancelButton
+                onClick={onDelete}>
+                <img src="/img/delete.svg" alt="delete" />
+              </CancelButton>
+            </Actions>}
         </div>
       </div>
     </Container>

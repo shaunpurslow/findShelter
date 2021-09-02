@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ReservationCard } from '../ReservationCard';
-import { Container, Confirmed, Unconfirmed } from './styles';
+import { Container, Confirmed, Unconfirmed, Text, H2 } from './styles';
 
 const getStatusByGuestId = (id: number): string => {
   return 'Active'
@@ -49,15 +49,15 @@ export const Reservation = (props: Props) => {
     />)
   return (
     <Container>
-      {unconfirmedReservations ?
-        <h2>Latest Reservations</h2> :
-        <h3>No reservation placed to be confirmed yet</h3>}
+      {unconfirmedReservations.length > 0 ?
+        <H2>Latest Reservations</H2> :
+        <Text>No reservation placed to be confirmed yet</Text>}
       <Unconfirmed>
         {unconfirmedReservations}
       </Unconfirmed>
-      {confirmedReservations ?
-        <h2>Confirmed Reservations</h2> :
-        <h3>No reservation confirmed yet for today</h3>}
+      {confirmedReservations.length > 0 ?
+        <H2>Confirmed Reservations</H2> :
+        <Text>No reservation confirmed yet for today</Text>}
 
       <Confirmed>
         {confirmedReservations}
