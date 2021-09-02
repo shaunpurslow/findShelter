@@ -2,9 +2,11 @@ import { Wrapper, Card } from './styles';
 
 interface Props {
   capacity: string;
+  confirmedReservations: string;
 }
-
 export const Overview = (props: Props) => {
+  const numBedsLeft =
+    Number(props.capacity) - Number(props.confirmedReservations);
   return (
     <Wrapper>
       <Card>
@@ -17,11 +19,11 @@ export const Overview = (props: Props) => {
       </Card>
       <Card>
         <header>BEDS FILLED</header>
-        <strong>53</strong>
+        <strong>{props.confirmedReservations}</strong>
       </Card>
       <Card>
         <header>BEDS LEFT</header>
-        <strong>44</strong>
+        <strong>{numBedsLeft}</strong>
       </Card>
     </Wrapper>
   );

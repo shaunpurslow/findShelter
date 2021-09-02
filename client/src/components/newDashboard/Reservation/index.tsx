@@ -2,19 +2,16 @@ import { useState } from 'react';
 import { ReservationCard } from '../ReservationCard';
 import { Container } from './styles';
 
-const getStatusByGuestId = (id: number): string => {
-  return 'Active'
-};
-
 interface Props {
   dashboardState: any;
+  updateDashboardReservations: any;
 }
 
 export const Reservation = (props: Props) => {
   // state hook to make the reservation component refresh
   const [history, setHistory] = useState<string[]>([]);
 
-  const reservations = props.dashboardState.reservations.map(reservation =>
+  const reservations = props.dashboardState.reservations.map((reservation) => (
     <ReservationCard
       key={reservation.id}
       id={reservation.id}
@@ -28,10 +25,8 @@ export const Reservation = (props: Props) => {
       status={reservation.status}
       reservation_date={reservation.reservation_date}
       setHistory={setHistory}
-    />)
-  return (
-    <Container>
-      {reservations}
-    </Container>
-  );
+      updateDashboardReservations={props.updateDashboardReservations}
+    />
+  ));
+  return <Container>{reservations}</Container>;
 };

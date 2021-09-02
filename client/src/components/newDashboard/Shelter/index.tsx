@@ -46,20 +46,23 @@ const Shelter = (props: Props) => {
   // https://www.valentinog.com/blog/socket-react/
   // on initial render, set a socket event listener listening for live bed availability events
   useEffect(() => {
-    console.log('making a socket connection');
     const socket = io('http://localhost:8080', {
+      reconnectionAttempts: 10,
       path: '/socket/',
     });
 
     // each shelter card listens for "updateBedAvailability" socket event emitted from backend
     socket.on('updateBedAvailability', (data) => {
-      console.log(data);
       if (data[0].shelter_id === props.id) {
-        console.log('SOCKET UPDATE');
         setLiveBedAvailability((prev) => (prev -= 1));
       }
       // if shelter_id = current shelter_id, decrement bed availability
     });
+
+    // Close socket connection on component unmount
+    return (): void => {
+      socket.disconnect();
+    };
   }, []);
 
   return (

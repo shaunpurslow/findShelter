@@ -27,13 +27,6 @@ interface Props {
 const Shelter = (props: Props) => {
   const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
   const history = useHistory();
-  // const handleOnClick = useCallback(
-  //   () =>
-  //     history.push('/reservations', {
-  //       shelterId: props.id,
-  //     }),
-  //   [history]
-  // );
 
   // https://newbedev.com/how-to-send-params-in-usehistory-of-react-router-dom
   const handleOnClick = () => {

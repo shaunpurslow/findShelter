@@ -23,7 +23,7 @@ VALUES
 
 INSERT INTO reservations (shelter_id, guest_id, reservation_date)
 VALUES
-(1, 1, '2021-05-20'),
+(1, 1, '2021-05-19'),
 (1, 1, '2021-05-21'),
 (1, 2, '2021-05-20'),
 (1, 2, '2021-05-21'),
@@ -41,6 +41,11 @@ VALUES
 (3, 2, '2021-05-21'),
 (3, 3, '2021-05-20'),
 (3, 3, '2021-05-21');
+
+-- inserting a confirmed reservation for testing
+INSERT INTO reservations (shelter_id, guest_id, reservation_date, is_confirmed)
+VALUES
+(1, 1, '2021-05-20', true);
 
 INSERT INTO notes (shelter_id, staff_id, guest_id, note)
 VALUES

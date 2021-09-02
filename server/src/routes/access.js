@@ -15,7 +15,6 @@ module.exports = function (dbconn) {
   router.post('/', (req, res) => {
     const { email, password: suppliedPassword } = req.body;
 
-
     const query = `
     SELECT 
     staff.id AS staff_id, 
@@ -40,8 +39,6 @@ module.exports = function (dbconn) {
           res.status(401).json({ error: 'unauthorized access' });
           return;
         }
-
-        console.log('user ', user)
 
         return res.send({ ...user });
       })

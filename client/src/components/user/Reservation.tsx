@@ -2,13 +2,6 @@ import '../../styles/user/Reservation.scss';
 import { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  DatePicker,
-  TimePicker,
-  DateTimePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
 
 const Reservation = () => {
   const [selectedDate, handleDateChange] = useState<Date | null>(new Date());
@@ -30,8 +23,6 @@ const Reservation = () => {
     setValue((prev) => ({ ...prev, shelter_id: shelterId }));
   }, []);
 
-  console.log(shelterId);
-
   const [reserved, setReserved] = useState(false);
 
   const handleSubmit = (e) => {
@@ -41,7 +32,6 @@ const Reservation = () => {
       .post('http://localhost:8080/reservations', value)
       .then((res) => {
         setReserved(true);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,3 @@
-import useShelters from '../../../hooks/useShelters';
 import { Overview } from '../Overview';
 import Shelter from '../Shelter';
 import { Reservation } from '../Reservation';
@@ -9,6 +8,7 @@ interface Props {
   currentMenu: string;
   capacity: string;
   dashboardState: any;
+  updateDashboardReservations: any;
 }
 
 export const Main = (props: Props) => {
@@ -40,7 +40,12 @@ export const Main = (props: Props) => {
     case 'Overview':
       return (
         <>
-          <Overview capacity={props.capacity} />
+          <Overview
+            capacity={props.dashboardState?.myShelter[0]?.capacity}
+            confirmedReservations={
+              props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+          />
           {shelter}
         </>
       );
@@ -55,7 +60,10 @@ export const Main = (props: Props) => {
     case 'Reservations':
       return (
         <>
-          <Reservation dashboardState={props.dashboardState} />
+          <Reservation
+            dashboardState={props.dashboardState}
+            updateDashboardReservations={props.updateDashboardReservations}
+          />
         </>
       );
     case 'My Shelter':
@@ -67,7 +75,12 @@ export const Main = (props: Props) => {
     default:
       return (
         <>
-          <Overview capacity={props.capacity} />
+          <Overview
+            capacity={props.capacity}
+            confirmedReservations={
+              props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+          />
           {shelter}
         </>
       );

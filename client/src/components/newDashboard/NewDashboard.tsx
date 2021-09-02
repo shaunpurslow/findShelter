@@ -12,6 +12,7 @@ interface IDashboardState {
   shelters: any[];
   reservations: any[];
   guests: any[];
+  myShelter: any[];
 }
 
 function NewDashboard(props: any) {
@@ -23,6 +24,7 @@ function NewDashboard(props: any) {
     shelters: [],
     reservations: [],
     guests: [],
+    myShelter: [],
   });
 
   // REFACTOR: change backend route for all of a shelters reservations to this -> "/shelters/:id/reservations"
@@ -38,13 +40,17 @@ function NewDashboard(props: any) {
           dashboardState?.user?.shelter_id || null
         }`
       ),
+      axios.get(
+        `http://localhost:8080/shelters/${dashboardState?.user?.shelter_id}`
+      ),
     ])
       .then((res) => {
-        const [shelters, reservations] = res;
+        const [shelters, reservations, myShelter] = res;
         setDashboardState((prev) => ({
           ...prev,
           shelters: shelters.data,
           reservations: reservations.data,
+          myShelter: myShelter.data,
         }));
       })
       .catch((err) => console.log(err));
@@ -68,6 +74,10 @@ function NewDashboard(props: any) {
     return <Redirect to='/login' />;
   }
 
+  const updateDashboardReservations = (newReservations: any[]): void => {
+    setDashboardState((prev) => ({ ...prev, reservations: newReservations }));
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -88,6 +98,7 @@ function NewDashboard(props: any) {
             currentMenu={menu.currentMenu}
             capacity={dashboardState.user.capacity}
             dashboardState={dashboardState}
+            updateDashboardReservations={updateDashboardReservations}
           />
         </MainContainer>
       </Container>

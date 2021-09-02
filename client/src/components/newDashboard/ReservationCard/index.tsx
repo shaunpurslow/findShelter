@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { Button } from '../StyledComponents/buttons';
 import axios from 'axios';
@@ -16,36 +15,28 @@ interface Props {
   status: string;
   reservation_date: string;
   setHistory: any;
+  updateDashboardReservations: any;
 }
 
 export const ReservationCard = (props: Props) => {
-  const [confirmStatus, setConfirmStatus] = useState({
-    is_confirmed: props.is_confirmed,
-  });
-
   const handleConfirmClick = (e) => {
-    setConfirmStatus((prev) => ({
-      is_confirmed: prev.is_confirmed ? false : true,
-    }));
-  };
-
-  // REFACTOR: get this to not run on initial render
-  useEffect(() => {
+    // make put request
+    const data = { is_confirmed: props.is_confirmed ? false : true };
     axios
-      .put(`http://localhost:8080/reservations/${props.id}`, confirmStatus)
+      .put(`http://localhost:8080/reservations/${props.id}`, data)
       .then((res) => {
         return axios.get(
           `http://localhost:8080/reservations/search?shelter_id=${res.data[0].shelter_id}`
         );
       })
       .then((res) => {
-        console.log(res.data);
         localStorage.removeItem('reservationsData');
         localStorage.setItem('reservationsData', JSON.stringify(res.data));
-        // props.setHistory((prev) => [...prev, 'updated']);
+        // update dashboard state
+        props.updateDashboardReservations(res.data);
       })
       .catch((e) => console.log(e.message));
-  }, [confirmStatus]);
+  };
 
   return (
     <Container>
@@ -55,16 +46,18 @@ export const ReservationCard = (props: Props) => {
           <em>{props.status}</em>
         </span>
         <span>
-          <img src='/img/phone.svg' alt="phone" />
+          <img src='/img/phone.svg' alt='phone' />
           <p>{props.phone || 'no information'}</p>
         </span>
         <span>
-          <img src='/img/email.svg' alt="email" />
+          <img src='/img/email.svg' alt='email' />
           <p>{props.phone || 'no information'}</p>
         </span>
         <span>
-          <img src='/img/emergency.svg' alt="emergency contact" />
-          <p><strong>{props.emergency_name}</strong> {props.emergency_contact}</p>
+          <img src='/img/emergency.svg' alt='emergency contact' />
+          <p>
+            <strong>{props.emergency_name}</strong> {props.emergency_contact}
+          </p>
         </span>
       </div>
       <div>
@@ -73,9 +66,11 @@ export const ReservationCard = (props: Props) => {
           <p>{props.reservation_date}</p>
         </div>
         <div>
-          {props.is_confirmed ?
+          {props.is_confirmed ? (
             <strong>CONFIRMED</strong>
-            : <Button onClick={handleConfirmClick}>CONFIRM</Button>}
+          ) : (
+            <Button onClick={handleConfirmClick}>CONFIRM</Button>
+          )}
         </div>
       </div>
     </Container>
