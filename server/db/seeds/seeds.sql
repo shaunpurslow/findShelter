@@ -53,12 +53,3 @@ VALUES
 (1, 2, 2, 'This is a short note about guest #2 from shelter #2 and staff #1'),
 (2, 1, 1, 'This is a short note about guest #2 from shelter #1 and staff #1'),
 (3, 2, 2, 'This is a short note about guest #2 from shelter #3 and staff #2');
-
-INSERT INTO status (shelter_id, guest_id)
-VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 1),
-(2, 2),
-(2, 3);

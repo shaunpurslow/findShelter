@@ -67,7 +67,7 @@ export const ReservationCard = (props: Props) => {
       })
       .then((res) => {
         // update dashboard state
-        // props.updateDashboardReservations(res.data);
+        props.updateDashboardReservations(res.data);
         const reservationsData = res.data
         props.setDashboardState(prev => ({ ...prev, reservations: reservationsData }))
       })

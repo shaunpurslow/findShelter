@@ -29,9 +29,9 @@ CREATE TABLE guests (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  emergency_number VARCHAR(10) NOT NULL,
+  emergency_number VARCHAR(255) NOT NULL,
   emergency_name VARCHAR(255) NOT NULL,
-  phone VARCHAR(10),
+  phone VARCHAR(255),
   email VARCHAR(255)
 );
 
