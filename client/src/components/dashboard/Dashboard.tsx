@@ -3,8 +3,7 @@ import Sidebar from './Sidebar';
 import Main from './Main';
 import '../../styles/dashboard/Dashboard.scss';
 import { useState, useEffect } from 'react';
-import useShelterInfo from '../../hooks/useShelterInfo';
-import { GlobalStyle } from '../../styles/global'
+import { GlobalStyle } from '../../styles/global';
 
 interface Props {
   setAppState: {};
@@ -36,8 +35,6 @@ function Dashboard(props: Props) {
     setUser((prev) => ({ ...prev, ...userData }));
   }, []);
 
-  const shelterInfo = useShelterInfo(props.setAppState);
-
   const setMenuItem = (item: string): void =>
     setMenu({ ...menu, currentMenu: item });
 
@@ -45,7 +42,11 @@ function Dashboard(props: Props) {
     <>
       <div className='dashboard-view'>
         <GlobalStyle />
-        <Sidebar currentMenu={menu.currentMenu} menuItems={menu.menuItems} setMenuItem={setMenuItem} />
+        <Sidebar
+          currentMenu={menu.currentMenu}
+          menuItems={menu.menuItems}
+          setMenuItem={setMenuItem}
+        />
         <Sidebar
           currentMenu={menu.currentMenu}
           menuItems={menu.menuItems}
