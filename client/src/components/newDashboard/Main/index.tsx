@@ -9,6 +9,7 @@ interface Props {
   capacity: string;
   dashboardState: any;
   updateDashboardReservations: any;
+  setDashboardState: any;
 }
 
 export const Main = (props: Props) => {
@@ -63,6 +64,7 @@ export const Main = (props: Props) => {
           <Reservation
             dashboardState={props.dashboardState}
             updateDashboardReservations={props.updateDashboardReservations}
+            setDashboardState={props.setDashboardState}
           />
         </>
       );

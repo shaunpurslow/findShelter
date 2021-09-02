@@ -99,6 +99,7 @@ function NewDashboard(props: any) {
             capacity={dashboardState.user.capacity}
             dashboardState={dashboardState}
             updateDashboardReservations={updateDashboardReservations}
+            setDashboardState={setDashboardState}
           />
         </MainContainer>
       </Container>
