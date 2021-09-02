@@ -27,6 +27,7 @@ export const H2 = styled.h2`
   text-align: left;
   margin: 1rem 1rem 0 2rem;
 `
+
 export const Text = styled.span`
   font-weight: 600;
   font-size: 1.2rem;

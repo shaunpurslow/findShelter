@@ -11,9 +11,9 @@ interface Props {
 export const Reservation = (props: Props) => {
   const currentDate = format(new Date(), 'MMMM do, yyyy');
 
-  const todayReservations = props.dashboardState.reservations.filter(reservation => new Date() === new Date(reservation.reservation_date));
+  const todayReservations = props.dashboardState.reservations.filter(reservation => currentDate === format(new Date(reservation.reservation_date), 'MMMM do, yyyy'));
 
-  const pastReservations = props.dashboardState.reservations.filter(reservation => new Date() !== new Date(reservation.reservation_date));
+  const pastReservations = props.dashboardState.reservations.filter(reservation => currentDate !== format(new Date(reservation.reservation_date), 'MMMM do, yyyy'));
 
   const confirmed = todayReservations.filter(reservation => reservation.is_confirmed);
   const unconfirmed = todayReservations.filter(reservation => !reservation.is_confirmed);
