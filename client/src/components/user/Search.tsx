@@ -20,7 +20,7 @@ const Search = (props: Props) => {
     maleOnly: false,
     femaleOnly: false,
     couples: false,
-    families: false,
+    family: false,
     pets: false,
   });
 
@@ -56,7 +56,8 @@ const Search = (props: Props) => {
       if (filters.couples && !shelter['couples']) {
         return false;
       }
-      if (filters.families && !shelter['families']) {
+      // BUGS: families filter does not seem to work
+      if (filters.family && !shelter['family']) {
         return false;
       }
       return true;
@@ -131,12 +132,12 @@ const Search = (props: Props) => {
           <div className='search-filters__checkbox'>
             <input
               type='checkbox'
-              id='families'
-              name='families'
+              id='family'
+              name='family'
               value='family'
               onChange={handleCheckboxChange}
             />
-            <label htmlFor='families'>Families</label>
+            <label htmlFor='family'>Families</label>
           </div>
 
           <div className='search-filters__checkbox'>
