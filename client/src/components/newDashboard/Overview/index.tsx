@@ -2,7 +2,7 @@ import { Wrapper, Card } from './styles';
 
 interface Props {
   capacity: string;
-  confirmedReservations: string;
+  confirmedReservations: any;
 }
 export const Overview = (props: Props) => {
   const numBedsLeft =

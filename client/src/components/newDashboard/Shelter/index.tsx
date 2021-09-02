@@ -1,6 +1,9 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
+// Modal test from Material UI
+import SimpleModal from '../Modal';
+
 import {
   Container,
   Image,
@@ -142,7 +145,9 @@ const Shelter = (props: Props) => {
 
         <Actions>
           <Button>Directions</Button>
-          <Button>Reserve</Button>
+          {<SimpleModal
+            shelterId={props.id}
+            buttonText='Reserve' />}
         </Actions>
       </Wrapper>
     </Container>

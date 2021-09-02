@@ -38,3 +38,18 @@ export const Text = styled.span`
       margin-bottom: 2rem;
     }
 `
+
+export const Past = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    button {
+      display: none;
+    }
+
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+`
