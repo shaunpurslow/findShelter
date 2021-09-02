@@ -25,7 +25,6 @@ export const ReservationCard = (props: Props) => {
     const data = { is_confirmed: props.is_confirmed ? false : true };
   }
 
-export const ReservationCard = (props: Props) => {
   const [confirmStatus, setConfirmStatus] = useState({
     is_confirmed: props.is_confirmed,
   });
@@ -60,7 +59,7 @@ export const ReservationCard = (props: Props) => {
   // REFACTOR: get this to not run on initial render
   useEffect(() => {
     axios
-      .put(`http://localhost:8080/reservations/${props.id}`, data)
+      .put(`http://localhost:8080/reservations/${props.id}`, confirmStatus)
       .then((res) => {
         return axios.get(
           `http://localhost:8080/reservations/search?shelter_id=${res.data[0].shelter_id}`
@@ -68,12 +67,12 @@ export const ReservationCard = (props: Props) => {
       })
       .then((res) => {
         // update dashboard state
-        props.updateDashboardReservations(res.data);
+        // props.updateDashboardReservations(res.data);
         const reservationsData = res.data
         props.setDashboardState(prev => ({ ...prev, reservations: reservationsData }))
       })
       .catch((e) => console.log(e.message));
-  };
+  }, [confirmStatus]);
 
   return (
     <Container>
