@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
 import { Search } from '../Search';
-import { Wrapper, Card, H2, BookReservationBtn } from './styles';
+import { Wrapper, Card, H2, BookReservationBtn, Container } from './styles';
 import SimpleModal from '../Modal';
 
 interface Props {
@@ -84,7 +84,7 @@ export const Overview = (props: Props) => {
           />
         }
       </BookReservationBtn>
-            <Container>
+      <Container>
         <H2>Other Shelters Near By</H2>
         <Search
           setDashboardState={props.setDashboardState}
