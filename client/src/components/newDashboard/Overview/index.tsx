@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
-import { Wrapper, Card } from './styles';
+import { Wrapper, Card, H2 } from './styles';
 
 interface Props {
   capacity: any;
@@ -50,25 +50,28 @@ export const Overview = (props: Props) => {
   }, []);
 
   return (
-    <Wrapper>
-      <Card>
-        <header>CAPACITY</header>
-        <strong>{props.capacity}</strong>
-      </Card>
-      <Card>
-        <header>QUEUE</header>
-        <strong>??</strong>
-      </Card>
-      <Card>
-        <header>BEDS FILLED</header>
-        <strong>
-          {props.capacity && props.capacity - liveBedAvailability}
-        </strong>
-      </Card>
-      <Card>
-        <header>BEDS LEFT</header>
-        <strong>{!isNaN(liveBedAvailability) && liveBedAvailability}</strong>
-      </Card>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Card>
+          <header>CAPACITY</header>
+          <strong>{props.capacity}</strong>
+        </Card>
+        <Card>
+          <header>QUEUE</header>
+          <strong>??</strong>
+        </Card>
+        <Card>
+          <header>BEDS FILLED</header>
+          <strong>
+            {props.capacity && props.capacity - liveBedAvailability}
+          </strong>
+        </Card>
+        <Card>
+          <header>BEDS LEFT</header>
+          <strong>{!isNaN(liveBedAvailability) && liveBedAvailability}</strong>
+        </Card>
+      </Wrapper>
+      <H2>Other Shelters Near By</H2>
+    </>
   );
 };
