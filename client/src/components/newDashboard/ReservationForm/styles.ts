@@ -4,7 +4,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1rem;
 
   img {
     width: 100px;
