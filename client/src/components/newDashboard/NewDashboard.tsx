@@ -56,6 +56,17 @@ function NewDashboard(props: any) {
       .catch((err) => console.log(err));
   }, []);
 
+  // whenever reservations state is changed (by reservation card PUT request) also update the myShelter state information
+  // myShelter state information will then get passed to Overview component
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/shelters/${dashboardState?.user?.shelter_id}`)
+      .then((res) => {
+        setDashboardState((prev) => ({ ...prev, myShelter: res.data }));
+      })
+      .catch((err) => console.log(err));
+  }, [dashboardState.reservations]);
+
   const [menu, setMenu] = useState({
     currentMenu: 'Overview',
     menuItems: [
