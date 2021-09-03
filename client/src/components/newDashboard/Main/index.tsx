@@ -42,16 +42,20 @@ export const Main = (props: Props) => {
         <>
           <Overview
             capacity={props.dashboardState.myShelter[0]?.capacity}
-            confirmedReservations={
-              props.dashboardState?.myShelter[0]?.confirmed_reservations
-            }
+            confirmedReservations={props.dashboardState?.myShelter[0]?.confirmed_reservations}
+            dashboardState={props.dashboardState}
+            setDashboardState={props.setDashboardState}
             id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
         </>
       );
     case 'Find Shelters':
-      return <>{shelter}</>;
+      return <>
+        sheltersLoaded={props.dashboardState.shelters}
+        setDashboardState={props.setDashboardState}
+        {shelter}
+      </>;
     case 'Guests':
       return (
         <>
@@ -82,6 +86,8 @@ export const Main = (props: Props) => {
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
             }
+            dashboardState={props.dashboardState}
+            setDashboardState={props.setDashboardState}
             id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}

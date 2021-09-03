@@ -68,10 +68,18 @@ export const Card = styled.div`
 `;
 
 export const H2 = styled.h2`
+
+`
+
+export const Container = styled.span`
+  width: 100%;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: var(--dark);
-  text-align: left;
-  margin: 1rem 1rem 0 2rem;
-`;
+  padding: 0 2rem;
+`
 
 export const BookReservationBtn = styled.div`
   padding: 1em;
