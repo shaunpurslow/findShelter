@@ -85,7 +85,7 @@ const Search = (props: Props) => {
       setUserCoordinates((prev) => {
         return {
           longitude: position.coords.longitude,
-          latitude: position.coords.latitude 
+          latitude: position.coords.latitude
         }
       })
     });
@@ -99,7 +99,7 @@ const Search = (props: Props) => {
           <input
             className='search__bar--input'
             type='text'
-            placeholder='Enter your location'
+            placeholder='Start typing'
             value={searchQuery}
             onChange={handleChange}
           />

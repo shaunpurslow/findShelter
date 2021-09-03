@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { Header } from './components/navagation/Header';
 import Search from './components/user/Search';
-import { Footer } from './components/navagation/Footer';
 
 import Register from './components/admin/Register';
 import NewDashboard from './components/newDashboard/NewDashboard';
@@ -35,7 +34,6 @@ function App() {
           <Route exact path='/'>
             <Header />
             <Search setSearch={setSearch} />
-            <Footer />
           </Route>
           {/* Register */}
           <Route path='/register'>
