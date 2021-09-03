@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
-import { ReservationForm } from '../ReservationForm'
-import { Container } from './styles'
-import { Button } from '../StyledComponents/buttons';
+import { ReservationForm } from '../ReservationForm';
+import { Container, Button } from './styles';
+// import { Button } from '../StyledComponents/buttons';
 
 interface Props {
   shelterId: number;
@@ -22,24 +22,18 @@ export default function SimpleModal(props: Props) {
 
   const body = (
     <Container>
-      <ReservationForm
-        shelterId={props.shelterId}
-        handleClose={handleClose}
-      />
+      <ReservationForm shelterId={props.shelterId} handleClose={handleClose} />
     </Container>
   );
 
   return (
     <>
-      <Button type="button" onClick={handleOpen}>
+      <Button type='button' onClick={handleOpen}>
         {props.buttonText}
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-      >
+      <Modal open={open} onClose={handleClose}>
         {body}
       </Modal>
     </>
   );
-};
+}

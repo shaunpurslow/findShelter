@@ -2,14 +2,17 @@ import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
 import { Search } from '../Search';
-import { Wrapper, Card, H2, Container } from './styles';
+import { Wrapper, Card, H2, BookReservationBtn } from './styles';
+import SimpleModal from '../Modal';
 
 interface Props {
   capacity: any;
   confirmedReservations: any;
   setDashboardState: any;
   dashboardState: any;
+  id: any;
 }
+
 export const Overview = (props: Props) => {
   const [liveBedAvailability, setLiveBedAvailability] = useState(
     Number(props.capacity) - Number(props.confirmedReservations)
@@ -73,8 +76,15 @@ export const Overview = (props: Props) => {
           <strong>{!isNaN(liveBedAvailability) && liveBedAvailability}</strong>
         </Card>
       </Wrapper>
-
-      <Container>
+      <BookReservationBtn>
+        {
+          <SimpleModal
+            shelterId={props.id}
+            buttonText='BOOK IN A GUEST RESERVATION'
+          />
+        }
+      </BookReservationBtn>
+            <Container>
         <H2>Other Shelters Near By</H2>
         <Search
           setDashboardState={props.setDashboardState}

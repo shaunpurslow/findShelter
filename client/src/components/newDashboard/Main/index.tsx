@@ -36,17 +36,16 @@ export const Main = (props: Props) => {
       confirmedReservations={shelter.confirmed_reservations}
     />
   ));
-
   switch (props.currentMenu) {
     case 'Overview':
       return (
         <>
           <Overview
             capacity={props.dashboardState.myShelter[0]?.capacity}
-            confirmedReservations={
-              props.dashboardState?.myShelter[0]?.confirmed_reservations}
+            confirmedReservations={props.dashboardState?.myShelter[0]?.confirmed_reservations}
             dashboardState={props.dashboardState}
             setDashboardState={props.setDashboardState}
+            id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
         </>
@@ -89,6 +88,7 @@ export const Main = (props: Props) => {
             }
             dashboardState={props.dashboardState}
             setDashboardState={props.setDashboardState}
+            id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
         </>
