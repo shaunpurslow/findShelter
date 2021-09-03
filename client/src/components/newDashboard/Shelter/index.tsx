@@ -58,7 +58,6 @@ const Shelter = (props: Props) => {
     socket.on('updateBedAvailability', (data) => {
       const updatedReservation = data[0];
       if (updatedReservation.shelter_id === props.id) {
-        console.log(data[0]);
         if (updatedReservation.is_confirmed === true) {
           setLiveBedAvailability((prev) => (prev -= 1));
         } else {

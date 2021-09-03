@@ -42,7 +42,7 @@ export const Main = (props: Props) => {
       return (
         <>
           <Overview
-            capacity={props.dashboardState?.myShelter[0]?.capacity}
+            capacity={props.dashboardState.myShelter[0]?.capacity}
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
             }
