@@ -1,11 +1,13 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
-import { Wrapper, Card, H2 } from './styles';
+import { Wrapper, Card, H2, BookReservationBtn } from './styles';
+import SimpleModal from '../Modal';
 
 interface Props {
   capacity: any;
   confirmedReservations: any;
+  id: any;
 }
 export const Overview = (props: Props) => {
   const [liveBedAvailability, setLiveBedAvailability] = useState(
@@ -70,6 +72,16 @@ export const Overview = (props: Props) => {
           <strong>{!isNaN(liveBedAvailability) && liveBedAvailability}</strong>
         </Card>
       </Wrapper>
+
+      <BookReservationBtn>
+        {
+          <SimpleModal
+            shelterId={props.id}
+            buttonText='BOOK IN A GUEST RESERVATION'
+          />
+        }
+      </BookReservationBtn>
+
       <H2>Other Shelters Near By</H2>
     </>
   );
