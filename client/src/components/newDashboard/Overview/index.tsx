@@ -22,7 +22,7 @@ export const Overview = (props: Props) => {
     setLiveBedAvailability(
       (prev) => Number(props.capacity) - Number(props.confirmedReservations)
     );
-  }, [props.capacity]);
+  }, [props.confirmedReservations]);
 
   useEffect(() => {
     const socket = io('http://localhost:8080', {
@@ -33,7 +33,6 @@ export const Overview = (props: Props) => {
     // overview listens for "updateBedAvailability" socket event emitted from backend
     socket.on('updateBedAvailability', (data) => {
       const updatedReservation = data[0];
-
       if (updatedReservation.shelter_id === loggedInShelterID) {
         if (updatedReservation.is_confirmed === true) {
           setLiveBedAvailability((prev) => (prev -= 1));

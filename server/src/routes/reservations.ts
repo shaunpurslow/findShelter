@@ -177,5 +177,20 @@ export default function (dbconn) {
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
+  router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    const deleteReservationQuery = `
+      DELETE FROM reservations
+      WHERE id = $1
+      RETURNING *
+    `;
+    const values = [id];
+
+    dbconn
+      .query(deleteReservationQuery, values)
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.status(500).json({ error: e.message }));
+  });
+
   return router;
 }
