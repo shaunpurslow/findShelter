@@ -67,7 +67,7 @@ export default function (dbconn) {
     dbconn
       .query(query, values)
       .then((data) => {
-        // emit updated reservation to all sockets
+        // emit updated reservations to all sockets
         req['io'].emit('updateBedAvailability', data.rows);
         res.send(data.rows);
       })

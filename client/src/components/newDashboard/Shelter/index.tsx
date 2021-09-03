@@ -56,10 +56,14 @@ const Shelter = (props: Props) => {
 
     // each shelter card listens for "updateBedAvailability" socket event emitted from backend
     socket.on('updateBedAvailability', (data) => {
-      if (data[0].shelter_id === props.id) {
-        setLiveBedAvailability((prev) => (prev -= 1));
+      const updatedReservation = data[0];
+      if (updatedReservation.shelter_id === props.id) {
+        if (updatedReservation.is_confirmed === true) {
+          setLiveBedAvailability((prev) => (prev -= 1));
+        } else {
+          setLiveBedAvailability((prev) => (prev += 1));
+        }
       }
-      // if shelter_id = current shelter_id, decrement bed availability
     });
 
     // Close socket connection on component unmount
@@ -145,9 +149,7 @@ const Shelter = (props: Props) => {
 
         <Actions>
           <Button>Directions</Button>
-          {<SimpleModal
-            shelterId={props.id}
-            buttonText='Reserve' />}
+          {<SimpleModal shelterId={props.id} buttonText='Reserve' />}
         </Actions>
       </Wrapper>
     </Container>

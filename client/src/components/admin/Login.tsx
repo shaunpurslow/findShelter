@@ -14,9 +14,9 @@ const Login = (props: any) => {
     axios
       .post('http://localhost:8080/login/', value)
       .then((res) => {
-        const userData = res.data
+        const userData = res.data;
         localStorage.setItem('user', JSON.stringify(userData));
-        props.setLoggedInUser((prev) => ({ ...userData }))
+        props.setLoggedInUser((prev) => ({ ...userData }));
       })
       .catch((err) => {
         console.log(err);
