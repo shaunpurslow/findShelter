@@ -116,7 +116,7 @@ const Search = (props: Props) => {
               value='female_only'
               onChange={handleCheckboxChange}
             />
-            <label htmlFor='femaleOnly'>Female Only</label>
+            <label htmlFor='femaleOnly'>Women</label>
           </div>
 
           <div className='search-filters__checkbox'>
@@ -127,7 +127,7 @@ const Search = (props: Props) => {
               value='male_only'
               onChange={handleCheckboxChange}
             />
-            <label htmlFor='maleOnly'>Male Only</label>
+            <label htmlFor='maleOnly'>Men</label>
           </div>
 
           <div className='search-filters__checkbox'>
