@@ -34,6 +34,7 @@ export const Main = (props: Props) => {
       family={shelter.family}
       pets={shelter.pets}
       confirmedReservations={shelter.confirmed_reservations}
+      unconfirmedReservations={shelter.not_confirmed_reservations}
     />
   ));
   switch (props.currentMenu) {
@@ -44,6 +45,9 @@ export const Main = (props: Props) => {
             capacity={props.dashboardState.myShelter[0]?.capacity}
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+            unconfirmedReservations={
+              props.dashboardState?.myShelter[0]?.not_confirmed_reservations
             }
             id={props.dashboardState?.myShelter[0]?.id}
           />
@@ -81,6 +85,9 @@ export const Main = (props: Props) => {
             capacity={props.capacity}
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
+            }
+            unconfirmedReservations={
+              props.dashboardState?.myShelter[0]?.not_confirmed_reservations
             }
             id={props.dashboardState?.myShelter[0]?.id}
           />

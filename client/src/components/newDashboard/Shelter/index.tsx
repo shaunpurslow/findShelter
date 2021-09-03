@@ -37,6 +37,7 @@ interface Props {
   family: boolean;
   pets: boolean;
   confirmedReservations: number;
+  unconfirmedReservations: number;
 }
 
 const filters = (boolean) => (boolean ? '/img/yes.svg' : '/img/no.svg');
@@ -45,6 +46,26 @@ const Shelter = (props: Props) => {
   const [liveBedAvailability, setLiveBedAvailability] = useState(
     Number(props.capacity) - Number(props.confirmedReservations)
   );
+  const [liveQueue, setLiveQueue] = useState(
+    Number(props.unconfirmedReservations)
+  );
+
+  if (props.id === 1) {
+    console.log(
+      'SHELTERCARD UNCONFIRMED RESO PROP: ',
+      props.unconfirmedReservations
+    );
+  }
+
+  useEffect(() => {
+    setLiveBedAvailability(
+      (prev) => Number(props.capacity) - Number(props.confirmedReservations)
+    );
+  }, [props.confirmedReservations]);
+
+  useEffect(() => {
+    setLiveQueue((prev) => Number(props.unconfirmedReservations));
+  }, [props.unconfirmedReservations]);
 
   // https://www.valentinog.com/blog/socket-react/
   // on initial render, set a socket event listener listening for live bed availability events
@@ -60,8 +81,10 @@ const Shelter = (props: Props) => {
       if (updatedReservation.shelter_id === props.id) {
         if (updatedReservation.is_confirmed === true) {
           setLiveBedAvailability((prev) => (prev -= 1));
+          setLiveQueue((prev) => (prev -= 1));
         } else {
           setLiveBedAvailability((prev) => (prev += 1));
+          setLiveQueue((prev) => (prev += 1));
         }
       }
     });
@@ -131,7 +154,7 @@ const Shelter = (props: Props) => {
         <Numbers>
           <Card>
             <header>QUEUE</header>
-            <strong>??</strong>
+            <strong>{liveQueue}</strong>
           </Card>
           <Card>
             <header>CONFIRMED</header>

@@ -13,7 +13,8 @@ export default function (dbconn) {
     const query = `
       SELECT 
         shelters.*,
-        COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations
+        COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations,
+        COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = false AND reservations.reservation_date >= CURRENT_DATE) AS not_confirmed_reservations
      FROM shelters
      JOIN reservations
       ON reservations.shelter_id = shelters.id
@@ -36,7 +37,8 @@ export default function (dbconn) {
     let query: string = `
      SELECT 
        shelters.*,
-       COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations
+       COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations,
+      COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = false AND reservations.reservation_date >= CURRENT_DATE) AS not_confirmed_reservations
      FROM shelters
      JOIN reservations
       ON reservations.shelter_id = shelters.id
@@ -59,9 +61,10 @@ export default function (dbconn) {
     dbconn
       .query(
         `
-        SELECT 
+      SELECT 
        shelters.*,
-       COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations
+       COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = true AND reservations.reservation_date >= CURRENT_DATE) AS confirmed_reservations,
+      COUNT(reservations.is_confirmed) FILTER (WHERE reservations.is_confirmed = false AND reservations.reservation_date >= CURRENT_DATE) AS not_confirmed_reservations
      FROM shelters
      JOIN reservations
       ON reservations.shelter_id = shelters.id

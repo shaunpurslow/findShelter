@@ -7,11 +7,15 @@ import SimpleModal from '../Modal';
 interface Props {
   capacity: any;
   confirmedReservations: any;
+  unconfirmedReservations: any;
   id: any;
 }
 export const Overview = (props: Props) => {
   const [liveBedAvailability, setLiveBedAvailability] = useState(
     Number(props.capacity) - Number(props.confirmedReservations)
+  );
+  const [liveQueue, setLiveQueue] = useState(
+    Number(props.unconfirmedReservations)
   );
   const loggedInUser: any = localStorage.getItem('user');
   const parsedLoggedInUser = JSON.parse(loggedInUser);
@@ -27,6 +31,15 @@ export const Overview = (props: Props) => {
   }, [props.confirmedReservations]);
 
   useEffect(() => {
+    setLiveQueue((prev) => props.unconfirmedReservations);
+  }, [props.unconfirmedReservations]);
+
+  console.log(
+    'OVERVIEW UNCONFIRMED RESO PROP: ',
+    props.unconfirmedReservations
+  );
+
+  useEffect(() => {
     const socket = io('http://localhost:8080', {
       reconnectionAttempts: 10,
       path: '/socket/',
@@ -38,8 +51,10 @@ export const Overview = (props: Props) => {
       if (updatedReservation.shelter_id === loggedInShelterID) {
         if (updatedReservation.is_confirmed === true) {
           setLiveBedAvailability((prev) => (prev -= 1));
+          setLiveQueue((prev) => (prev -= 1));
         } else {
           setLiveBedAvailability((prev) => (prev += 1));
+          setLiveQueue((prev) => (prev += 1));
         }
       }
     });
@@ -59,7 +74,7 @@ export const Overview = (props: Props) => {
         </Card>
         <Card>
           <header>QUEUE</header>
-          <strong>??</strong>
+          <strong>{liveQueue}</strong>
         </Card>
         <Card>
           <header>BEDS FILLED</header>

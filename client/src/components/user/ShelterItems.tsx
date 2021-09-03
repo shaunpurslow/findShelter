@@ -22,6 +22,7 @@ const ShelterItems = ({ shelters }) => {
       family={shelter.family}
       pets={shelter.pets}
       confirmedReservations={shelter.confirmed_reservations}
+      unconfirmedReservations={shelter.not_confirmed_reservations}
     />
   ));
   return (
