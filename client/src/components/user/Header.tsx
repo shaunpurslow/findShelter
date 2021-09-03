@@ -13,9 +13,11 @@ const Header = () => {
 
       {/* Right */}
       <div className='nav__right'>
-        <p className='sign__in'>Sign In</p>
+        <Link to='/login'>
+          <button className='sign__up'>Sign in</button>
+        </Link>
         <Link to='/register'>
-          <button className='sign__up'>Sign Up</button>
+          <button className='sign__up'>Join now</button>
         </Link>
       </div>
     </header>
