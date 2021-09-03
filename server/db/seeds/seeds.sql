@@ -45,7 +45,10 @@ VALUES
 -- inserting a confirmed reservation for testing
 INSERT INTO reservations (shelter_id, guest_id, reservation_date, is_confirmed)
 VALUES
-(1, 1, '2021-09-03', true);
+(1, 1, '2021-09-01', true),
+(1, 1, '2021-09-03', true),
+(1, 1, '2021-09-04', true);
+
 
 INSERT INTO notes (shelter_id, staff_id, guest_id, note)
 VALUES
