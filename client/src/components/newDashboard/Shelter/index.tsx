@@ -83,23 +83,23 @@ const Shelter = (props: Props) => {
 
         <Filters>
           <span>
-            <h4>female</h4>
+            <h4>Women</h4>
             <img src={filters(props.female_only)} alt='female only' />
           </span>
           <span>
-            <h4>male</h4>
+            <h4>Men</h4>
             <img src={filters(props.male_only)} alt='male only' />
           </span>
           <span>
-            <h4>couples</h4>
+            <h4>Couples</h4>
             <img src={filters(props.couples)} alt='couples' />
           </span>
           <span>
-            <h4>families</h4>
+            <h4>Families</h4>
             <img src={filters(props.family)} alt='family' />
           </span>
           <span>
-            <h4>pets</h4>
+            <h4>Pets</h4>
             <img src={filters(props.pets)} alt='pets' />
           </span>
         </Filters>

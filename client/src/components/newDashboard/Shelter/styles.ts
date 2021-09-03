@@ -11,6 +11,7 @@ export const Container = styled.div`
     background-color: white;
     border-radius: 1rem;
     color: var(--dark);
+    min-width: 767px
   }
 
   &:hover {
@@ -73,13 +74,13 @@ img {
 
 export const Info = styled.div`
 @media only screen and (min-width: 767px) {
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   flex-grow: 1;
 
   img {
     height: 1.2rem;
     width: 1.2rem;
-    margin: 0 0.5rem;
+    margin: 0 0.3rem;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -98,6 +99,7 @@ export const Info = styled.div`
 `
 
 export const Filters = styled.span`
+flex-wrap: wrap;
   margin: 0.5rem 0;
 
   img {
@@ -170,10 +172,9 @@ margin-bottom: 1rem;
 
 export const Numbers = styled.div`
 @media only screen and (min-width: 767px) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
   margin: 1rem 0;
 }
 

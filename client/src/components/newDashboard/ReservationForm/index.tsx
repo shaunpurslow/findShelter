@@ -61,7 +61,7 @@ export const ReservationForm = (props: Props) => {
   return (
     <>
       <Header>
-        <img src='/img/find-shelter.svg' alt='logo' />
+        <img src='/img/find-shelter-mini.svg' alt='logo' />
         <h2>Reservation</h2>
       </Header>
 
@@ -121,15 +121,14 @@ export const ReservationForm = (props: Props) => {
           type='text'
           placeholder='required'
         />
-        <div>
-          <input
-            type='date'
-            name='reservationDate'
-            id='reservation_date'
-            value={value.reservation_date}
-            onChange={handleReservationChange}
-          />
-        </div>
+        <label htmlFor='reservation_date'>Reservation Date: </label>
+        <input
+          type='date'
+          name='reservationDate'
+          id='reservation_date'
+          value={value.reservation_date}
+          onChange={handleReservationChange}
+        />
         <Actions>
           <button onClick={props.handleClose} className='reservation__submit__button'>Cancel</button>
           <button

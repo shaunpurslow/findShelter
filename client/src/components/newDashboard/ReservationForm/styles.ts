@@ -4,15 +4,15 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1em 2em;
+  margin: 1rem 1rem;
 
   img {
-    width: 170px;
+    width: 100px;
   }
 
   h2 {
     font-size: 1em;
-    color: $col-medium-dark;
+    color: var(--medium-dark);
     margin-top: 1em;
   }
 
@@ -32,24 +32,25 @@ export const Form = styled.form`
 display: flex;
   flex-direction: column;
   margin: 0 1.5em;
+  font-size: 0.9rem;
 
   h3 {
-    color: $col-medium-dark;
+    color: var(--medium-dark);
     margin-top: 1em;
     margin-bottom: 1em;
   }
 
   label {
     margin: 0.3rem 0;
-    color: $col-dark;
+    color: var(--dark);
   }
 
   input {
     height: 2rem;
-    background-color: $col-light;
+    background-color: white;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     margin-bottom: 1em;
     padding-left: 1em;
   }
