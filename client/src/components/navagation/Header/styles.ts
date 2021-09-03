@@ -7,7 +7,8 @@ export const Head = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 0.3rem ridge rgb(166, 177, 225, .8);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 6px rgba(166, 177, 225, 0.1);
 
   span {
     display: flex;
