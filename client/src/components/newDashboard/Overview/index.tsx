@@ -17,6 +17,7 @@ export const Overview = (props: Props) => {
 
   // props.capacity will initially be null on the first app render
   // to fix the local state not ever being updated, useEffect hook will watch for changes to the props.capacity
+  // this pattern is equivalent to the former componentWillReceiveProps that would allow local state to be updated when props have changed due to an async update (network call) in parent component
   useEffect(() => {
     setLiveBedAvailability(
       (prev) => Number(props.capacity) - Number(props.confirmedReservations)
