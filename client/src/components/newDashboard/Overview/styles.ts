@@ -68,8 +68,14 @@ export const Card = styled.div`
 `
 
 export const H2 = styled.h2`
-  color: var(--dark);
-  text-align: left;
-  margin: 1rem 1rem 0 2rem;
 `
 
+export const Container = styled.span`
+  width: 100%;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark);
+  padding: 0 2rem;
+`
