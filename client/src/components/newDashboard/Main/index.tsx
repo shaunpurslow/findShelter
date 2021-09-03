@@ -36,7 +36,6 @@ export const Main = (props: Props) => {
       confirmedReservations={shelter.confirmed_reservations}
     />
   ));
-
   switch (props.currentMenu) {
     case 'Overview':
       return (
@@ -46,6 +45,7 @@ export const Main = (props: Props) => {
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
             }
+            id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
         </>
@@ -82,6 +82,7 @@ export const Main = (props: Props) => {
             confirmedReservations={
               props.dashboardState?.myShelter[0]?.confirmed_reservations
             }
+            id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
         </>
