@@ -56,13 +56,24 @@ function NewDashboard(props: any) {
       .catch((err) => console.log(err));
   }, []);
 
-  // whenever reservations state is changed (by reservation card PUT request) also update the myShelter state information
-  // myShelter state information will then get passed to Overview component
+  // whenever reservations state is changed (by reservation card PUT request)
+  // also update the myShelter, and shelters state information
+  // myShelter state information will then get passed to Overview component triggering a useEffect re-render
+  // same thing will happen to Shelters component in the dashboard
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/shelters/${dashboardState?.user?.shelter_id}`)
+    const getMyShelterUpdate = axios.get(
+      `http://localhost:8080/shelters/${dashboardState?.user?.shelter_id}`
+    );
+    const getSheltersUpdate = axios.get(`http://localhost:8080/shelters`);
+
+    Promise.all([getMyShelterUpdate, getSheltersUpdate])
       .then((res) => {
-        setDashboardState((prev) => ({ ...prev, myShelter: res.data }));
+        const [updatedMyShelter, updatedShelters] = res;
+        setDashboardState((prev) => ({
+          ...prev,
+          myShelter: updatedMyShelter.data,
+          shelters: updatedShelters.data,
+        }));
       })
       .catch((err) => console.log(err));
   }, [dashboardState.reservations]);
