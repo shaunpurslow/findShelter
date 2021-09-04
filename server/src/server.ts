@@ -71,7 +71,7 @@ app.use('/guests', guestRoutes(db));
 // Socket.IO
 // https://www.valentinog.com/blog/socket-react/
 io.on('connection', (socket) => {
-  console.log('Connected to Find Shelter API Web Socket');
+  // console.log('Connected to Find Shelter API Web Socket');
 });
 
 // Start server
