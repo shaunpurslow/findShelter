@@ -33,7 +33,8 @@ CREATE TABLE guests (
   emergency_name VARCHAR(255) NOT NULL,
   phone VARCHAR(255),
   email VARCHAR(255),
-  status VARCHAR(255)
+  status VARCHAR(255),
+  shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE
 );
 
 CREATE TABLE status (

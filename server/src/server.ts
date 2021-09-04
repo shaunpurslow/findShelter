@@ -59,12 +59,14 @@ import accessRoutes from './routes/access';
 import registerRoutes from './routes/register';
 import shelterRoutes from './routes/shelter';
 import reservationRoutes from './routes/reservations';
+import guestRoutes from './routes/guests';
 
 // Mount routes
 app.use('/login', accessRoutes(db));
 app.use('/register', registerRoutes(db));
 app.use('/shelters', shelterRoutes(db));
 app.use('/reservations', reservationRoutes(db));
+app.use('/guests', guestRoutes(db));
 
 // Socket.IO
 // https://www.valentinog.com/blog/socket-react/
