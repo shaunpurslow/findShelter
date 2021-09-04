@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
-import { Header } from './components/navagation/Header';
+import { Header } from './components/navigation/Header';
 import Search from './components/user/Search';
 
 import Register from './components/admin/Register';
@@ -9,13 +9,12 @@ import NewDashboard from './components/newDashboard/NewDashboard';
 import Login from './components/admin/Login';
 import useSearch from './hooks/useSearch';
 import Confirmation from './components/user/Confirmation';
-import Map from './components/user/Map';
+import MapSearch from './components/mapSearch';
 
 import { GlobalStyle } from './styles/global';
 import './styles/App.scss';
 
 function App() {
-  const [search, setSearch] = useSearch();
   const [loggedInUser, setLoggedInUser] = useState<any>({
     id: '',
     first_name: '',
@@ -33,7 +32,7 @@ function App() {
           {/* Main Page */}
           <Route exact path='/'>
             <Header />
-            <Search setSearch={setSearch} />
+            <Search />
           </Route>
           {/* Register */}
           <Route path='/register'>
@@ -54,8 +53,8 @@ function App() {
               loggedInUser={loggedInUser}
             />
           </Route>
-          <Route path='/map'>
-            <Map />
+          <Route path='/mapsearch'>
+            <MapSearch />
           </Route>
         </Switch>
       </div>

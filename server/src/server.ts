@@ -60,6 +60,7 @@ import registerRoutes from './routes/register';
 import shelterRoutes from './routes/shelter';
 import reservationRoutes from './routes/reservations';
 import guestRoutes from './routes/guests';
+import citiesRoute from './routes/cities';
 
 // Mount routes
 app.use('/login', accessRoutes(db));
@@ -67,6 +68,7 @@ app.use('/register', registerRoutes(db));
 app.use('/shelters', shelterRoutes(db));
 app.use('/reservations', reservationRoutes(db));
 app.use('/guests', guestRoutes(db));
+app.use('/cities', citiesRoute(db));
 
 // Socket.IO
 // https://www.valentinog.com/blog/socket-react/
