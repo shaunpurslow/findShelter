@@ -13,7 +13,7 @@ CREATE TABLE shelters (
   province VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
   country VARCHAR(255) NOT NULL,
-  phone VARCHAR(10),
+  phone VARCHAR(255),
   email VARCHAR(255),
   thumbnail_url VARCHAR(255),
   website_url VARCHAR(255),
@@ -32,7 +32,8 @@ CREATE TABLE guests (
   emergency_number VARCHAR(255) NOT NULL,
   emergency_name VARCHAR(255) NOT NULL,
   phone VARCHAR(255),
-  email VARCHAR(255)
+  email VARCHAR(255),
+  status VARCHAR(255)
 );
 
 CREATE TABLE status (
@@ -47,7 +48,7 @@ CREATE TABLE staff (
   shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  phone VARCHAR(10),
+  phone VARCHAR(255),
   email VARCHAR(255),
   password VARCHAR(255) NOT NULL,
   is_manager BOOLEAN NOT NULL DEFAULT false
