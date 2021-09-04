@@ -7,9 +7,9 @@ VALUES
 
 INSERT INTO guests (first_name, last_name, emergency_number, emergency_name)
 VALUES
-('John', 'Fulano', 4032008000, 'Shaun'),
-('Jane', 'Ciclano', 4038002222, 'Ricardo'),
-('John', 'Smith', 4032008000, 'Emmanuel');
+('John', 'Fulano', '(403)200-8000', 'Shaun'),
+('Jane', 'Ciclano', '(403)800-2222', 'Ricardo'),
+('John', 'Smith', '(403)200-8000', 'Emmanuel');
 
 INSERT INTO staff
 (shelter_id, first_name, last_name, phone, email, password, is_manager)
@@ -20,27 +20,6 @@ VALUES
 (2, 'Pam', 'Beesly', '4032003000', 'pam@office.com', 'password', true),
 (3, 'Angela', 'Martin', '4032003000', 'angela@office.com', 'password', false),
 (3, 'Melora', 'Hardin', '4032003000', 'melora@office.com', 'password', true);
-
-INSERT INTO reservations (shelter_id, guest_id, reservation_date)
-VALUES
-(1, 1, '2021-05-19'),
-(1, 1, '2021-05-21'),
-(1, 2, CURRENT_DATE),
-(1, 2, '2021-05-21'),
-(1, 2, CURRENT_DATE),
-(1, 2, CURRENT_DATE),
-(2, 1, CURRENT_DATE),
-(2, 1, '2021-05-21'),
-(2, 2, CURRENT_DATE),
-(2, 2, '2021-05-21'),
-(2, 3, CURRENT_DATE),
-(2, 3, '2021-05-21'),
-(3, 1, CURRENT_DATE),
-(3, 1, '2021-05-21'),
-(3, 2, CURRENT_DATE),
-(3, 2, '2021-05-21'),
-(3, 3, CURRENT_DATE),
-(3, 3, '2021-05-21');
 
 -- inserting a confirmed reservation for testing
 INSERT INTO reservations (shelter_id, guest_id, reservation_date, is_confirmed)
