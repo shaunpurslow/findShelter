@@ -38,11 +38,6 @@ export const Overview = (props: Props) => {
     setLiveQueue((prev) => props.unconfirmedReservations);
   }, [props.unconfirmedReservations]);
 
-  console.log(
-    'OVERVIEW UNCONFIRMED RESO PROP: ',
-    props.unconfirmedReservations
-  );
-
   useEffect(() => {
     const socket = io('http://localhost:8080', {
       reconnectionAttempts: 10,

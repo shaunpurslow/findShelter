@@ -23,14 +23,14 @@ export const Guests = (props: Props) => {
   useEffect(() => {
     axios
       .get(`http://localhost:8080/guests/${props.shelter_id}`)
-      .then(res => {
-        const updatedGuests = res.data
-        setGuests(prev => [...prev, ...updatedGuests])
+      .then((res) => {
+        const updatedGuests = res.data;
+        setGuests((prev) => [...prev, ...updatedGuests]);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
-  const myGuests = guests.map((guest) => {
+  const myGuests = guests.map((guest) => (
     <GuestItem
       fullName={guest.first_name + ' ' + guest.last_name}
       email={guest.email}
@@ -38,8 +38,8 @@ export const Guests = (props: Props) => {
       emergency_contact={guest.emergency_name}
       emergency_phone={guest.emergency_number}
       status={guest.status}
-    />;
-  });
+    />
+  ));
 
   return (
     <Container>

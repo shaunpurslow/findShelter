@@ -4,7 +4,7 @@ import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
 
 const Map = () => {
-  const [location, setLocation] = useState()
+  const [location, setLocation] = useState();
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [viewport, setViewport] = useState({
@@ -15,35 +15,32 @@ const Map = () => {
     height: '100vh',
   });
 
-
   //Directions API
 
-
   const handleChange = (e) => {
-    setLocation((prev) => e.target.value)
-  }
+    setLocation((prev) => e.target.value);
+  };
 
   const handleClick = (e) => {
-    console.log('LOCATION FROM STATE: ', location)
     axios
       .get(
         `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITION_KEY}&query=${location}`
       )
       .then((response) => {
         setLatitude(response.data.data[0].latitude);
-        setLongitude(response.data.data[0].longitude)
+        setLongitude(response.data.data[0].longitude);
         setViewport((prev) => ({
           ...prev,
-          latitude: response.data.data[0].latitude, 
-          longitude: response.data.data[0].longitude, 
-          transitionInterpolator: new FlyToInterpolator({speed: 1.9}),
+          latitude: response.data.data[0].latitude,
+          longitude: response.data.data[0].longitude,
+          transitionInterpolator: new FlyToInterpolator({ speed: 1.9 }),
           transitionDuration: 'auto',
           zoom: 17,
           scrollSpeed: 50,
-        }))
+        }));
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   return (
     <div>
@@ -53,18 +50,16 @@ const Map = () => {
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         transitionDuration={1000}
-        transitionInterpolator={new FlyToInterpolator()}
-      >
+        transitionInterpolator={new FlyToInterpolator()}>
         <Marker
           key={1}
           latitude={51.1642753}
           longitude={-114.09020389999999}
           offsetLeft={-20}
-          offsetTop={-10}
-        >
+          offsetTop={-10}>
           <RoomIcon />
         </Marker>
-        <input type="text" value={location} onChange={handleChange}></input>
+        <input type='text' value={location} onChange={handleChange}></input>
         <button onClick={handleClick}>Enter</button>
       </ReactMapGL>
     </div>
