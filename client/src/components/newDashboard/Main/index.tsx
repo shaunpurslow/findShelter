@@ -43,18 +43,12 @@ export const Main = (props: Props) => {
         <>
           <Overview
             capacity={props.dashboardState.myShelter[0]?.capacity}
-
             confirmedReservations={
-              props.dashboardState?.myShelter[0]?.confirmed_reservations
-            }
+              props.dashboardState?.myShelter[0]?.confirmed_reservations}
             unconfirmedReservations={
-              props.dashboardState?.myShelter[0]?.not_confirmed_reservations
-            }
-
-            confirmedReservations={props.dashboardState?.myShelter[0]?.confirmed_reservations}
+              props.dashboardState?.myShelter[0]?.not_confirmed_reservations}
             dashboardState={props.dashboardState}
             setDashboardState={props.setDashboardState}
-
             id={props.dashboardState?.myShelter[0]?.id}
           />
           {shelter}
