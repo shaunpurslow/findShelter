@@ -63,7 +63,9 @@ export const Main = (props: Props) => {
     case 'Guests':
       return (
         <>
-          <Guests />
+          <Guests 
+          shelter_id={props.dashboardState.user.shelter_id}
+          />
         </>
       );
     case 'Reservations':
