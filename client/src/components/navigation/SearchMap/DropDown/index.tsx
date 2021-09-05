@@ -12,18 +12,12 @@ interface Props {
   cities: ICity[];
   setCity: any;
   startQuery: boolean;
-}
-
-const mockCities = [
-  { city: 'Maringa', province: 'PR' },
-  { city: 'Calgary', province: 'AB' },
-  { city: 'Vancouver', province: 'BC' },
-]
+};
 
 export const DropDown = (props: Props) => {
-  // const dropDownItems = props.cities.map((city) => (
-  const dropDownItems = mockCities.map((city) => (
+  const dropDownItems = props.cities.map((city) => (
     <DropDownItem
+      key={city.city}
       city={city.city}
       province={city.province}
       setCity={props.setCity}

@@ -9,7 +9,9 @@ export const GlobalStyle = createGlobalStyle`
   --more-dark: #333759;
   --green: #87bf63;
   --red: #BF5A5F;
-  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow: rgba(149, 157, 165, 0.25) 0px 8px 24px;
+  --light-grey: rgba(68, 68, 68, 0.1);
+  --dark-grey: rgb(68, 68, 68);
 }
 
 

@@ -21,9 +21,11 @@ export const SearchMap = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:8080/cities/search/?value=${searchTerm}`)
-      .then((res) => setCities((prev) => [...prev, ...res.data]))
+      .then((res) => setCities([...res.data]))
       .catch((err) => console.log(err));
   }, [searchTerm]);
+
+  console.log('This is city in SeachMap comp', city);
 
   return (
     <div>
