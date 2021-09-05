@@ -1,0 +1,72 @@
+// * {
+//   border: solid 1px red;
+// }
+.shelter-marker {
+  color: green;
+
+  &--full {
+    color: red;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.shelter-card {
+  // > * {
+  //   border: 1px solid red;
+  // }
+  width: 90%;
+  max-width: 600px;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: white;
+
+  padding: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+  }
+  &__info {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #4a6ef9;
+    border-radius: 3px;
+    padding: 2px;
+    width: 150px;
+    font-weight: bold;
+  }
+
+  &__directions-btn {
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    border: transparent;
+    padding: 0.4em;
+    width: 80%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: lighten(black, 20%);
+    }
+  }
+}

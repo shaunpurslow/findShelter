@@ -7,10 +7,14 @@ import classNames from 'classnames';
 
 import ShelterItems from './ShelterItems';
 
-interface Props {
-  setSearch: any;
-}
-const Search = (props: Props) => {
+const MODES = {
+  LIST: 'LIST',
+  MAP: 'MAP',
+};
+
+const Search = (props) => {
+  const [mode, setMode] = useState(MODES.LIST);
+
   // saved data from search query
   const [shelters, setShelters] = useState([]);
 
@@ -28,7 +32,7 @@ const Search = (props: Props) => {
   const [userCoordinates, setUserCoordinates] = useState({
     longitude: 0,
     latitude: 0,
-  })
+  });
 
   const handleChange = (e) => {
     setSearchQuery((prev) => e.target.value);
@@ -85,9 +89,9 @@ const Search = (props: Props) => {
       setUserCoordinates((prev) => {
         return {
           longitude: position.coords.longitude,
-          latitude: position.coords.latitude
-        }
-      })
+          latitude: position.coords.latitude,
+        };
+      });
     });
   };
 
