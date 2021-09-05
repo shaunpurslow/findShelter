@@ -26,17 +26,16 @@ export default function (dbconn) {
   router.get('/search/', (req, res) => {
     const { value } = req.query;
     const getShelterCities = `
-      SELECT 
-        DINSTINCT city, province
-      FROM shelters
-      WHERE LOWER(shelters.city) LIKE LOWER($1)
-      ORDER BY city;
+    SELECT DISTINCT city, province
+    FROM shelters
+    WHERE LOWER(shelters.city) LIKE LOWER($1)
+    ORDER BY city
+    LIMIT 10;
     `;
     const values = [`%${value}%`];
-
     dbconn
       .query(getShelterCities, values)
-      .then()
+      .then((data) => res.send(data.rows))
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 

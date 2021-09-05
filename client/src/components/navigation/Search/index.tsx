@@ -1,20 +1,11 @@
-import '../../styles/user/Search.scss';
 import SearchIcon from '@material-ui/icons/Search';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import classNames from 'classnames';
+import { SearchBar, Filter, Checkbox, Wrapper, Results, Main } from './styles';
 
-import SheltersItems from './SheltersItems';
-
-const MODES = {
-  LIST: 'LIST',
-  MAP: 'MAP',
-};
+import SheltersItems from '../../user/SheltersItems';
 
 const Search = (props) => {
-  const [mode, setMode] = useState(MODES.LIST);
-
   // saved data from search query
   const [shelters, setShelters] = useState([]);
 
@@ -26,12 +17,6 @@ const Search = (props) => {
     couples: false,
     family: false,
     pets: false,
-  });
-
-  // user geo location
-  const [userCoordinates, setUserCoordinates] = useState({
-    longitude: 0,
-    latitude: 0,
   });
 
   const handleChange = (e) => {
@@ -76,43 +61,22 @@ const Search = (props) => {
     return results;
   };
 
-  // custom class names with conditional visiblity for search results
-  const searchResultStyles = classNames('container--search-results', {
-    hidden: !searchQuery.length,
-  });
-
-  // https://www.pluralsight.com/guides/how-to-use-geolocation-call-in-reactjs
-  const handleLocationClick = (e) => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log('Latitude is :', position.coords.latitude);
-      console.log('Longitude is :', position.coords.longitude);
-      setUserCoordinates((prev) => {
-        return {
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude,
-        };
-      });
-    });
-  };
-
   return (
-    <main className='container--main-page'>
-      <div className='container--search-bar'>
-        <div className='search__bar'>
-          <SearchIcon className='search__icon' />
+    <>
+      <Wrapper>
+        <SearchBar>
           <input
-            className='search__bar--input'
             type='text'
             placeholder='Start typing'
             value={searchQuery}
             onChange={handleChange}
           />
-          <LocationOnIcon className='icon' onClick={handleLocationClick} />
-        </div>
+          <SearchIcon className='icon' />
+        </SearchBar>
 
         {/* FILTERS */}
-        <span className='search-filters'>
-          <div className='search-filters__checkbox'>
+        <Filter>
+          <Checkbox>
             <input
               type='checkbox'
               id='femaleOnly'
@@ -121,9 +85,9 @@ const Search = (props) => {
               onChange={handleCheckboxChange}
             />
             <label htmlFor='femaleOnly'>Women</label>
-          </div>
+          </Checkbox>
 
-          <div className='search-filters__checkbox'>
+          <Checkbox>
             <input
               type='checkbox'
               id='maleOnly'
@@ -132,9 +96,9 @@ const Search = (props) => {
               onChange={handleCheckboxChange}
             />
             <label htmlFor='maleOnly'>Men</label>
-          </div>
+          </Checkbox>
 
-          <div className='search-filters__checkbox'>
+          <Checkbox>
             <input
               type='checkbox'
               id='couples'
@@ -143,9 +107,9 @@ const Search = (props) => {
               onChange={handleCheckboxChange}
             />
             <label htmlFor='couples'>Couples</label>
-          </div>
+          </Checkbox>
 
-          <div className='search-filters__checkbox'>
+          <Checkbox>
             <input
               type='checkbox'
               id='family'
@@ -154,9 +118,9 @@ const Search = (props) => {
               onChange={handleCheckboxChange}
             />
             <label htmlFor='family'>Families</label>
-          </div>
+          </Checkbox>
 
-          <div className='search-filters__checkbox'>
+          <Checkbox>
             <input
               type='checkbox'
               id='pets'
@@ -165,17 +129,15 @@ const Search = (props) => {
               onChange={handleCheckboxChange}
             />
             <label htmlFor='pets'>Pets</label>
-          </div>
-        </span>
-      </div>
+          </Checkbox>
+        </Filter>
+      </Wrapper>
 
       {/* results container */}
-      <div className={searchResultStyles}>
-        {searchQuery.length ? (
-          <SheltersItems shelters={filterResults(shelters)} />
-        ) : null}
-      </div>
-    </main>
+      <Results startQuery={searchQuery.length > 2}>
+        <SheltersItems shelters={filterResults(shelters)} />
+      </Results>
+    </>
   );
 };
 

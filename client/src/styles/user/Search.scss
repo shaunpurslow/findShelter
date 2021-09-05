@@ -5,38 +5,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  width: 100%;
 
   .container--search-bar {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 1em 1em;
-    width: 70%;
-    max-width: 800px;
-
-    /* removed submit btn */
-
-    // &__submit-btn {
-    //   width: 200px;
-    //   padding: 1em 0.5em;
-    //   background-color: $col-medium-dark;
-    //   color: $col-dark;
-    //   font-weight: bold;
-    //   border-radius: 5px;
-    //   border: none;
-    //   cursor: pointer;
-    // }
-
-    // &__submit-btn:hover {
-    //   background-color: $col-dark;
-    //   color: $col-light;
-    //   transition: 0.3s;
-    // }
+    width: 100%;
 
     .search__bar {
       background-color: white;
-      border: 1px solid $col-dark;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       display: flex;
       align-items: center;
       padding: 0.5em;

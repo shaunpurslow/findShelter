@@ -1,7 +1,7 @@
-// import { SearchBar } from './styles';
-// import { Li } from './styles';
+import { Item } from './styles';
 
 interface Props {
+  key: string;
   city: string;
   province: string;
   setCity: any;
@@ -9,12 +9,12 @@ interface Props {
 
 export const DropDownItem = (props: Props) => {
   const clickHandle = () => {
-    console.log('Clicked!!');
-    // set the choose city to pass as props to the map
+    props.setCity(props.city);
   };
 
   return (
-    // <li onClick={clickHandle}>{props.city + '/' + props.province}</li>
-    <li onClick={clickHandle}>Calgary/AB</li>
+    <>
+      <Item onClick={clickHandle}>{props.city + '/' + props.province}</Item>
+    </>
   );
 };

@@ -7,8 +7,8 @@ export const Head = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
-    0 0 0 6px rgba(166, 177, 225, 0.1);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 3rem;
 
   span {
     display: flex;
@@ -25,8 +25,9 @@ export const Logo = styled.img`
 `
 
 export const Button = styled.button`
-  color: var(--dark);
-  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--dark-grey);
+  padding: 0.5rem;
   border: none;
   background: none;
 
@@ -36,6 +37,6 @@ export const Button = styled.button`
     font-weight: bold;
     padding: 0.5rem;
     transition: 0.4s;
-    border-radius: 1rem;
+    border-radius: 2rem;
   }
 `

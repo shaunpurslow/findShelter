@@ -21,13 +21,15 @@ export const SearchMap = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:8080/cities/search/?value=${searchTerm}`)
-      .then((res) => setCities((prev) => [...prev, ...res.data]))
+      .then((res) => setCities([...res.data]))
       .catch((err) => console.log(err));
   }, [searchTerm]);
 
+  console.log('This is city in SeachMap comp', city);
+
   return (
     <div>
-      <SearchBar>
+      <SearchBar startQuery={searchTerm.length > 2}>
         <input
           type='text'
           placeholder='start typing a city'
@@ -36,7 +38,10 @@ export const SearchMap = () => {
         />
         <SearchIcon className='icon' />
       </SearchBar>
-      <DropDown cities={cities} setCity={setCity} />
+      <DropDown
+        cities={cities}
+        setCity={setCity}
+        startQuery={searchTerm.length > 2} />
     </div>
   );
 };

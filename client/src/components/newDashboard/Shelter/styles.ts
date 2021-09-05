@@ -5,17 +5,17 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    align-self: center;
     padding: 0;
     box-sizing: border-box;
     margin: 2rem;
     background-color: white;
     border-radius: 1rem;
     color: var(--dark);
-    min-width: 767px
   }
 
   &:hover {
-    box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
+    box-shadow: var(--box-shadow);
   }
 
   @media only screen and (max-width: 768px) {

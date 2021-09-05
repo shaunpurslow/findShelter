@@ -1,6 +1,7 @@
-import Shelter from '../newDashboard/Shelter';
+import Shelter from '../../newDashboard/Shelter';
+import { List } from './styles';
 
-const ShelterItems = ({ shelters }) => {
+const SheltersItems = ({ shelters }) => {
   const sheltersArray = shelters.map((shelter) => (
     <Shelter
       id={shelter.id}
@@ -26,10 +27,10 @@ const ShelterItems = ({ shelters }) => {
     />
   ));
   return (
-    <>
-      <ul>{sheltersArray}</ul>
-    </>
+    <List>
+      {sheltersArray}
+    </List>
   );
 };
 
-export default ShelterItems;
+export default SheltersItems;
