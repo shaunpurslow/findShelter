@@ -27,7 +27,7 @@ export const SearchMap = () => {
 
   return (
     <div>
-      <SearchBar>
+      <SearchBar startQuery={searchTerm.length > 2}>
         <input
           type='text'
           placeholder='start typing a city'
@@ -36,7 +36,10 @@ export const SearchMap = () => {
         />
         <SearchIcon className='icon' />
       </SearchBar>
-      <DropDown cities={cities} setCity={setCity} />
+      <DropDown
+        cities={cities}
+        setCity={setCity}
+        startQuery={searchTerm.length > 2} />
     </div>
   );
 };

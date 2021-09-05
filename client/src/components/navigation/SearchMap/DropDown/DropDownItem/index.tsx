@@ -1,5 +1,4 @@
-// import { SearchBar } from './styles';
-// import { Li } from './styles';
+import { Item } from './styles';
 
 interface Props {
   city: string;
@@ -14,7 +13,8 @@ export const DropDownItem = (props: Props) => {
   };
 
   return (
-    // <li onClick={clickHandle}>{props.city + '/' + props.province}</li>
-    <li onClick={clickHandle}>Calgary/AB</li>
+    <>
+      <Item onClick={clickHandle}>{props.city + '/' + props.province}</Item>
+    </>
   );
 };

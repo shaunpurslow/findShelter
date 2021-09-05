@@ -2,13 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-  --light: #F4EEFF;
+  --light: white;
   --medium: #DCD6F7;
   --medium-dark: #A6B1E1;
   --dark: #424874;
   --more-dark: #333759;
   --green: #87bf63;
   --red: #BF5A5F;
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 

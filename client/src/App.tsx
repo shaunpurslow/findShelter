@@ -2,12 +2,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
 import { Header } from './components/navigation/Header';
-import Search from './components/user/Search';
+import { MenuMode } from './components/navigation/MenuMode';
 
 import Register from './components/admin/Register';
 import NewDashboard from './components/newDashboard/NewDashboard';
 import Login from './components/admin/Login';
-import useSearch from './hooks/useSearch';
 import Confirmation from './components/user/Confirmation';
 import MapSearch from './components/mapSearch';
 
@@ -32,7 +31,7 @@ function App() {
           {/* Main Page */}
           <Route exact path='/'>
             <Header />
-            <Search />
+            <MenuMode />
           </Route>
           {/* Register */}
           <Route path='/register'>

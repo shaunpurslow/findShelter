@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
-export const SearchBar = styled.span`
+interface IProp {
+  startQuery: boolean;
+}
+
+export const SearchBar = styled.span<IProp>`
       background-color: white;
-      border: 1px solid var(--dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-direction: row;
       padding: 0.5em;
       border-radius: 50px;
-      width: 250px;
+      width: 65vw;
       max-height: 2rem;
+      box-shadow: ${prop => prop.startQuery ? 'rgba(149, 157, 165, 0.2) 0px -8px 10px 0px' : 'var(--box-shadow)'};
+
+      position: relative;
     }
 
     .icon {
