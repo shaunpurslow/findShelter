@@ -74,7 +74,10 @@ const Search = (props: Props) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper
+        startQuery={searchQuery.length > 2}
+        activeSearch={props.activeSearch}
+      >
         <SearchBar>
           <input
             type='text'

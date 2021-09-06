@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+interface IProp {
+  startQuery: boolean;
+  activeSearch: boolean;
+}
+
+export const Wrapper = styled.div<IProp>`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    position: ${prop => prop.startQuery && !prop.activeSearch ? 'absolute' : 'sticky'};
 `
 
 export const SearchBar = styled.span`
@@ -56,7 +63,7 @@ export const Filter = styled.span`
 
   @media only screen and (max-width: 420px) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 0.5rem;
     align-self: center;
     padding: 1rem 0;
@@ -86,13 +93,15 @@ export const Checkbox = styled.span`
     align-items: center;
     flex-direction: row;
     padding: 0;
-
+    grid-column: span 2;
+    
     &:nth-child(4) {
-      grid-column: span 1;
+      grid-column: span 3;
+      padding: 0;
     }
 
     &:nth-child(5) {
-      grid-column: span 2;
+      grid-column: span 3;
     }
   }
 `
@@ -102,12 +111,13 @@ interface IResults {
 }
 
 export const Results = styled.div<IResults>`
-    margin-top: 1rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  max-height: 60vh;
   display: ${prop => prop.startQuery ? 'flex' : 'none'};
   overflow: scroll;
-  /* transform: translateY(0); */
+  transform: translateY(0);
 `
 
 export const Main = styled.div`

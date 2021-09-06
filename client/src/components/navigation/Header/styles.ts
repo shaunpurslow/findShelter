@@ -15,6 +15,7 @@ export const Head = styled.header`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-direction: row;
   }
 `
 
@@ -23,6 +24,10 @@ export const Logo = styled.img`
   align-items: space-between;
   justify-content: space-between;
   max-height: 50px;
+
+  @media only screen and (max-width: 768px) {
+    max-height: 35px;
+  }
 `
 
 export const Button = styled.button`

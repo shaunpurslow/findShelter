@@ -13,6 +13,7 @@ export const Aside = styled.aside`
   width: 250px;
   background-color: var(--dark);
   color: var(--light);
+  box-shadow: var(--box-shadow);
 }
 
   @media only screen and (max-width: 768px) {
@@ -23,6 +24,7 @@ export const Aside = styled.aside`
     width: 100%;
     background-color: var(--dark);
     height: 75px;
+    box-shadow: var(--box-shadow);
 }
 `
 export const Image = styled.img`

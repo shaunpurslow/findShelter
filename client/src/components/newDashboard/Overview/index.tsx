@@ -68,21 +68,33 @@ export const Overview = (props: Props) => {
     <>
       <Wrapper>
         <Card>
-          <header>CAPACITY</header>
+          <header>
+            <h5>CAPACITY</h5>
+            <img src="/img/bed.svg" alt="capacity" />
+          </header>
           <strong>{props.capacity}</strong>
         </Card>
         <Card>
-          <header>QUEUE</header>
+          <header>
+            <h5>QUEUE</h5>
+            <img src="/img/queue.svg" alt="queue" />
+          </header>
           <strong>{liveQueue}</strong>
         </Card>
         <Card>
-          <header>BEDS FILLED</header>
+          <header>
+            <h5>BEDS FILLED</h5>
+            <img src="/img/reserved.svg" alt="reserved" />
+          </header>
           <strong>
             {props.capacity && props.capacity - liveBedAvailability}
           </strong>
         </Card>
         <Card>
-          <header>BEDS LEFT</header>
+          <header>
+            <h5>BEDS LEFT</h5>
+            <img src="/img/available.svg" alt="available" />
+          </header>
           <strong>{!isNaN(liveBedAvailability) && liveBedAvailability}</strong>
         </Card>
       </Wrapper>
