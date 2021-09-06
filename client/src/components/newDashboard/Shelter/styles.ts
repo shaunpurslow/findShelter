@@ -166,62 +166,28 @@ export const Details = styled.div`
 export const Wrapper = styled.div`
 display: flex;
 justify-content: space-between;
-align-items: center;
-flex-direction: column;
+align-items: flex-end;
+margin: 1rem 1rem 0 0;
 
 @media only screen and (max-width: 768px) {
-margin-bottom: 1rem;
-}
-`
-
-export const Numbers = styled.div`
-@media only screen and (min-width: 767px) {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  margin: 1rem 0;
-}
-
-@media only screen and (max-width: 768px) {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  justify-content: space-around;
+  margin-bottom: 1rem;
 }
 `
 
 export const Card = styled.div`
+background-color: var(--red);
+color: var(--light);
+border-radius: 0.5rem;
 display: flex;
-justify-content: space-between;
+justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 10rem;
-margin-bottom: 1rem;
+padding: 1rem 1rem 0 1rem;
 
 strong {
+  font-size: 4rem;
   font-weight: 700;
-}
-
-&:last-child {
-  color: var(--red);
-}
-
-@media only screen and (max-width: 768px) {
-margin: 0;
-}
-`
-
-export const Actions = styled.div`
-  margin: 1rem 0;
-display: flex;
-justify-content: space-between;
-align-items: center;
-
-button {
-  margin: 0.5rem 1rem;
-}
-
-@media only screen and (max-width: 768px) {
-  margin: 0;
 }
 `
 

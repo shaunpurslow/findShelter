@@ -42,20 +42,7 @@ export const Guests = (props: Props) => {
   ));
 
   return (
-    <Container>
-      <table>
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Emergency Contact</th>
-            <th>Emergency Phone</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>{myGuests}</tbody>
-      </table>
-    </Container>
+    <>
+    </>
   );
 };
