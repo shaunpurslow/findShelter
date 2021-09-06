@@ -20,17 +20,18 @@ export const Card = styled.div`
   background: white;
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
-  color: var(--dark);
-
-  &:hover {
-    box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
-  }
+  color: var(--dark-grey);
+  box-shadow: var(--box-shadow);
 
   header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     decoration: none;
+
+    img {
+      height: 1.5rem;
+    }
   }
 
   strong {
@@ -68,7 +69,6 @@ export const Card = styled.div`
 `;
 
 export const H2 = styled.h2`
-
 `
 
 export const Container = styled.span`
@@ -79,6 +79,7 @@ export const Container = styled.span`
   align-items: center;
   color: var(--dark);
   padding: 0 2rem;
+  margin-bottom: 2rem;
 `
 
 export const BookReservationBtn = styled.div`
@@ -88,6 +89,7 @@ export const BookReservationBtn = styled.div`
   margin: 0 auto;
   color: white;
   padding: 0 2rem;
+  margin: 2rem 0;
 
   & > button {
     height: 100%;

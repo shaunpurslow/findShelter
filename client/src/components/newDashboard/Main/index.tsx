@@ -55,16 +55,16 @@ export const Main = (props: Props) => {
         </>
       );
     case 'Find Shelters':
-      return <>
-        sheltersLoaded={props.dashboardState.shelters}
-        setDashboardState={props.setDashboardState}
-        {shelter}
-      </>;
+      return (
+        <>
+          {shelter}
+        </>
+      );
     case 'Guests':
       return (
         <>
-          <Guests 
-          shelter_id={props.dashboardState.user.shelter_id}
+          <Guests
+            shelter_id={props.dashboardState.user.shelter_id}
           />
         </>
       );

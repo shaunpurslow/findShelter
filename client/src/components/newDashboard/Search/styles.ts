@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const SearchBar = styled.span`
       background-color: white;
-      border: 1px solid var(--dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -11,6 +10,7 @@ export const SearchBar = styled.span`
       border-radius: 50px;
       width: 250px;
       max-height: 2rem;
+      box-shadow: var(--box-shadow);
     }
 
     .icon {
