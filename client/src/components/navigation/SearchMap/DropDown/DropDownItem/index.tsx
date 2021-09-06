@@ -5,12 +5,12 @@ interface Props {
   city: string;
   province: string;
   setCity: any;
-  setActiveSearch: ((boolean) => void);
+  setActiveSearch: (boolean) => void;
 }
 
 export const DropDownItem = (props: Props) => {
   const clickHandle = () => {
-    props.setCity(props.city);
+    props.setCity((prev) => ({ city: props.city, province: props.province }));
     props.setActiveSearch(true);
   };
 

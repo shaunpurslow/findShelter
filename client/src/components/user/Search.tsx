@@ -28,12 +28,6 @@ const Search = (props) => {
     pets: false,
   });
 
-  // user geo location
-  const [userCoordinates, setUserCoordinates] = useState({
-    longitude: 0,
-    latitude: 0,
-  });
-
   const handleChange = (e) => {
     setSearchQuery((prev) => e.target.value);
   };
@@ -81,20 +75,6 @@ const Search = (props) => {
     hidden: !searchQuery.length,
   });
 
-  // https://www.pluralsight.com/guides/how-to-use-geolocation-call-in-reactjs
-  const handleLocationClick = (e) => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log('Latitude is :', position.coords.latitude);
-      console.log('Longitude is :', position.coords.longitude);
-      setUserCoordinates((prev) => {
-        return {
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude,
-        };
-      });
-    });
-  };
-
   return (
     <main className='container--main-page'>
       <div className='container--search-bar'>
@@ -107,7 +87,6 @@ const Search = (props) => {
             value={searchQuery}
             onChange={handleChange}
           />
-          <LocationOnIcon className='icon' onClick={handleLocationClick} />
         </div>
 
         {/* FILTERS */}

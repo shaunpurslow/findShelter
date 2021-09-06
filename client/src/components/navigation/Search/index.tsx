@@ -6,7 +6,7 @@ import { SearchBar, Filter, Checkbox, Wrapper, Results } from './styles';
 import SheltersItems from '../../user/SheltersItems';
 
 interface Props {
-  setActiveSearch: ((boolean) => void);
+  setActiveSearch: (boolean) => void;
   activeSearch: boolean;
 }
 
@@ -29,7 +29,6 @@ const Search = (props: Props) => {
 
     if (searchQuery.length > 2) {
       props.setActiveSearch(true);
-
     } else {
       props.setActiveSearch(false);
     }
@@ -63,7 +62,7 @@ const Search = (props: Props) => {
       if (filters.couples && !shelter['couples']) {
         return false;
       }
-      // BUGS: families filter does not seem to work
+
       if (filters.family && !shelter['family']) {
         return false;
       }
