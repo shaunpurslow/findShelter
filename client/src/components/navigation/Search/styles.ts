@@ -54,7 +54,7 @@ export const Filter = styled.span`
   font-weight: bold;
   flex-wrap: wrap;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 420px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
@@ -80,7 +80,7 @@ export const Checkbox = styled.span`
     margin-right: 0.35rem;
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 420px) {
     display: flex;
     justify-content: center;
     align-items: center;
