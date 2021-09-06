@@ -1,19 +1,14 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
-// Modal test from Material UI
-import SimpleModal from '../Modal';
-
 import {
   Container,
   Image,
   Info,
-  Actions,
   Filters,
-  Numbers,
-  Details,
-  Card,
   Wrapper,
+  Details,
+  Card
 } from './styles';
 import { Button } from '../StyledComponents/buttons';
 
@@ -140,34 +135,18 @@ const Shelter = (props: Props) => {
             <img src='/img/website.svg' alt='website' />
             <p>{props.website_url}</p>
           </span>
-          <strong>3 km away from here!</strong>
         </Details>
-      </Info>
-      <Wrapper>
-        <Numbers>
+        <Wrapper>
           <Card>
-            <header>QUEUE</header>
-            <strong>{liveQueue}</strong>
-          </Card>
-          <Card>
-            <header>CONFIRMED</header>
-            <strong>{props.confirmedReservations}</strong>
-          </Card>
-          <Card>
-            <header>CAPACITY</header>
-            <strong>{props.capacity}</strong>
-          </Card>
-          <Card>
-            <header>BEDS LEFT</header>
+            <header>
+              <h5>BEDS LEFT</h5>
+              <img src="/img/available.svg" alt="available" />
+            </header>
             <strong>{liveBedAvailability}</strong>
           </Card>
-        </Numbers>
-
-        <Actions>
           <Button>Directions</Button>
-          {<SimpleModal shelterId={props.id} buttonText='Reserve' />}
-        </Actions>
-      </Wrapper>
+        </Wrapper>
+      </Info>
     </Container>
   );
 };
