@@ -5,7 +5,8 @@ import axios from 'axios';
 
 import { SearchBar } from './styles';
 import { DropDown } from './DropDown';
-import Map from '../../user/Map'
+import Map from '../../user/Map';
+import MapSearch from '../../mapSearch';
 
 interface ICity {
   city: string;
@@ -13,14 +14,16 @@ interface ICity {
 }
 
 interface Props {
-  setActiveSearch: ((boolean) => void);
+  setActiveSearch: (boolean) => void;
   activeSearch: boolean;
 }
 
 export const SearchMap = (props: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [cities, setCities] = useState<ICity[]>([]);
-  const [city, setCity] = useState<string>('');
+
+  // set by dropdown item on click
+  const [city, setCity] = useState<ICity>({ city: '', province: '' });
 
   const handleChange = (e): void => {
     setSearchTerm((prev) => e.target.value);
@@ -29,9 +32,9 @@ export const SearchMap = (props: Props) => {
 
   useEffect(() => {
     if (props.activeSearch) {
-      setSearchTerm((prev) => city);
-    };
-  }, [props.activeSearch])
+      setSearchTerm((prev) => city.city);
+    }
+  }, [props.activeSearch]);
 
   useEffect(() => {
     axios
@@ -47,8 +50,7 @@ export const SearchMap = (props: Props) => {
       <div>
         <SearchBar
           startQuery={searchTerm.length > 2}
-          activeSearch={props.activeSearch}
-        >
+          activeSearch={props.activeSearch}>
           <input
             type='text'
             placeholder={'start typing a city'}
@@ -62,8 +64,11 @@ export const SearchMap = (props: Props) => {
           setCity={setCity}
           startQuery={searchTerm.length > 2}
           setActiveSearch={props.setActiveSearch}
-          activeSearch={props.activeSearch} />
+          activeSearch={props.activeSearch}
+        />
       </div>
+      {/* if props.activeSearch is true, render the map on the page */}
+      {props.activeSearch && <MapSearch />}
       {/* {city ? <Map /> : null} */}
     </>
   );

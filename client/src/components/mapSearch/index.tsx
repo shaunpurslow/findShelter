@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import classNames from 'classnames';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
 import './styles.scss';
 
-// import {} from './styles';
 const getViewportLocation = (query) => {
   return axios.get(
     `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITION_KEY}&query=${query}`
   );
 };
-// PROPS
-// 1 - an array of shelters with addresses to render
-//    will need to convert addresses to coordinates
-// 2 - a city and province e.g "city: Vancouver, province: BC"
-//    will need to convert to coordinates for the initial viewport render
-
-// need to map through the shelters to build the Markers on the map
 
 const mockInitialLocation = { city: 'vancouver', province: 'BC' };
 const mockShelters = [
@@ -65,7 +56,9 @@ const mockShelters = [
   },
 ];
 
-const MapSearch = () => {
+const MapSearch = (props) => {
+  console.log('PROPS PASSED TO MAP SEARCH: ', props);
+
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
@@ -90,6 +83,9 @@ const MapSearch = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const shelterDataWithCoordsRef = useRef<any[]>([]);
+  const [sheltersWithCoords, setSheltersWithCoords] = useState<any[]>([]);
 
   // loop through shelters data and and store information with coordinates in localstorage
   // https://stackoverflow.com/questions/56532652/axios-get-then-in-a-for-loop
@@ -116,20 +112,14 @@ const MapSearch = () => {
     // can save in alternate place than localstorage
     Promise.all(getShelterCoordsPromises)
       .then(() => {
-        localStorage.setItem(
-          'sheltersWithCoords',
-          JSON.stringify(dataFromShelterCoordsRequest)
-        );
+        setSheltersWithCoords(dataFromShelterCoordsRequest);
+        console.log('DATA STORED IN REF: ', shelterDataWithCoordsRef);
       })
       .catch((err) => console.log(err));
   }, []);
 
   // add all the pins to the map
-  const shelterDataWithCoords =
-    localStorage.getItem('sheltersWithCoords') || '';
-  const parsedShelterDataWithCoords = JSON.parse(shelterDataWithCoords);
-
-  const shelterMapMarkers = parsedShelterDataWithCoords.map((shelter) => {
+  const shelterMapMarkers = sheltersWithCoords.map((shelter) => {
     const checkIfShelterIsFull =
       (shelter.capacity - shelter.confirmedReservations) / shelter.capacity;
 
