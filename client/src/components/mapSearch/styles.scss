@@ -1,6 +1,14 @@
-// * {
-//   border: solid 1px red;
-// }
+.main__map__container {
+  display: flex;
+  justify-content: center;
+  
+ .map {
+   position: fixed;
+   bottom: 0;
+   max-width: 100%;
+ }
+}
+
 .shelter-marker {
   color: green;
 
@@ -70,3 +78,4 @@
     }
   }
 }
+
