@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IContainer {
   startQuery: boolean;
+  activeSearch: boolean;
 }
 
 export const Container = styled.div<IContainer>`
@@ -10,7 +11,7 @@ export const Container = styled.div<IContainer>`
   box-shadow: var(--box-shadow);
   align-items: flex-start;
   flex-direction: column;
-  display: ${prop => prop.startQuery ? 'flex' : 'none'};
+  display: ${prop => prop.startQuery && !prop.activeSearch ? 'flex' : 'none'};
   padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 0 0 0.5rem 0.5rem;

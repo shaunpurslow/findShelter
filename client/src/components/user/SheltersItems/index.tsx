@@ -1,5 +1,4 @@
 import Shelter from '../../newDashboard/Shelter';
-import { List } from './styles';
 
 const SheltersItems = ({ shelters }) => {
   const sheltersArray = shelters.map((shelter) => (
@@ -27,9 +26,9 @@ const SheltersItems = ({ shelters }) => {
     />
   ));
   return (
-    <List>
+    <>
       {sheltersArray}
-    </List>
+    </>
   );
 };
 

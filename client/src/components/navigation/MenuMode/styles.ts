@@ -1,12 +1,29 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+interface IProp {
+  activeSearch: boolean;
+}
+
+export const Wrapper = styled.main<IProp>`
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
 width: 100%;
-height: 100%;
+
+position: absolute; 
+top: ${prop => prop.activeSearch ? '20vh' : '50%'}; 
+left: 50%;
+transform: translate(-50%, -50%);
+
+& > div {
+  align-items: center;
+
+  &:last-child {
+    align-items: center;
+    max-height: 60vh;
+  }
+}
 `
 export const Menu = styled.span`
 width: 40vw;
@@ -14,6 +31,11 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 box-shadow: var(--box-shadow);
+
+@media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+  }
 `
 interface IStyles {
   mode: boolean;
@@ -41,9 +63,3 @@ export const DivMode = styled.div<IStyles>`
     font-weight: 700;
   }
 `
-
-export const SearchBar = styled.div`
-  
-
-  
-`;

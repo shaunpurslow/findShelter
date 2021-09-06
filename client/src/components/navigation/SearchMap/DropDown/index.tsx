@@ -12,6 +12,8 @@ interface Props {
   cities: ICity[];
   setCity: any;
   startQuery: boolean;
+  setActiveSearch: ((boolean) => void);
+  activeSearch: boolean;
 };
 
 export const DropDown = (props: Props) => {
@@ -21,11 +23,14 @@ export const DropDown = (props: Props) => {
       city={city.city}
       province={city.province}
       setCity={props.setCity}
+      setActiveSearch={props.setActiveSearch}
     />
   ));
 
   return (
-    <Container startQuery={props.startQuery}>
+    <Container
+      startQuery={props.startQuery}
+      activeSearch={props.activeSearch}>
       <ul>{dropDownItems}</ul>
     </Container>
   );

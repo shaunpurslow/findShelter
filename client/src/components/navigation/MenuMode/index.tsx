@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SearchMap } from '../SearchMap';
 import Search from '../Search';
-import { Menu, Wrapper, DivMode, SearchBar } from './styles';
+import { Menu, Wrapper, DivMode } from './styles';
 
 const MODES = {
   LIST: 'LIST',
@@ -10,17 +10,20 @@ const MODES = {
 
 export const MenuMode = () => {
   const [mode, setMode] = useState(MODES.LIST);
+  const [activeSearch, setActiveSearch] = useState(false);
 
   const switchToListSearchMode = () => {
     setMode(MODES.LIST);
-  }
+  };
 
   const switchToMapSearchMode = () => {
     setMode(MODES.MAP);
-  }
+  };
 
   return (
-    <Wrapper>
+    <Wrapper
+      activeSearch={activeSearch}
+    >
       <Menu>
         <DivMode
           mode={mode === MODES.LIST}
@@ -33,13 +36,18 @@ export const MenuMode = () => {
           map
         </DivMode>
       </Menu>
-      <SearchBar>
-        {
-          mode === MODES.LIST ?
-            <Search /> :
-            <SearchMap />
-        }
-      </SearchBar>
+      {
+        mode === MODES.LIST ?
+          <Search
+            activeSearch={activeSearch}
+            setActiveSearch={setActiveSearch}
+          />
+          :
+          <SearchMap
+            activeSearch={activeSearch}
+            setActiveSearch={setActiveSearch}
+          />
+      }
     </Wrapper>
   )
 };
