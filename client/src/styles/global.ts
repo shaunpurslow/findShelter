@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   --box-shadow: rgba(149, 157, 165, 0.25) 0px 8px 24px;
   --light-grey: rgba(68, 68, 68, 0.1);
   --dark-grey: rgb(68, 68, 68);
+  --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 

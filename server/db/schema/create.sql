@@ -1,8 +1,8 @@
+DROP TABLE IF EXISTS shelters CASCADE;
+DROP TABLE IF EXISTS staff CASCADE;
 DROP TABLE IF EXISTS guests CASCADE;
 DROP TABLE IF EXISTS notes CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
-DROP TABLE IF EXISTS shelters CASCADE;
-DROP TABLE IF EXISTS staff CASCADE;
 DROP TABLE IF EXISTS status CASCADE;
 
 CREATE TABLE shelters (
@@ -37,13 +37,6 @@ CREATE TABLE guests (
   shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE
 );
 
-CREATE TABLE status (
-  id SERIAL PRIMARY KEY NOT NULL,
-  shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
-  guest_id INT REFERENCES guests(id) ON DELETE CASCADE,
-  status VARCHAR(255)
-);
-
 CREATE TABLE staff (
   id SERIAL PRIMARY KEY NOT NULL,
   shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
@@ -61,14 +54,4 @@ CREATE TABLE reservations (
   guest_id INT REFERENCES guests(id) ON DELETE CASCADE,
   reservation_date date NOT NULL,
   is_confirmed BOOLEAN NOT NULL DEFAULT false
-);
-
-CREATE TABLE notes (
-  id SERIAL PRIMARY KEY NOT NULL,
-  shelter_id INT REFERENCES shelters(id) ON DELETE CASCADE,
-  staff_id INT REFERENCES staff(id) ON DELETE CASCADE,
-  guest_id INT REFERENCES guests(id) ON DELETE CASCADE,
-  created_at timestamp DEFAULT CURRENT_TIMESTAMP,
-  updated_at timestamp,
-  note TEXT
 );
