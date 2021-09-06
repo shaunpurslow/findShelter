@@ -40,6 +40,9 @@ function App() {
           <Route path='/new-dashboard'>
             <NewDashboard loggedInUser={loggedInUser} />
           </Route>
+          <Route path='/dashboard'>
+            <NewDashboard loggedInUser={loggedInUser} />
+          </Route>
           <Route path='/user'>
             <Header />
           </Route>

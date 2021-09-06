@@ -52,7 +52,7 @@ export const ReservationForm = (props: Props) => {
   };
 
   if (reserved) {
-    return <Redirect to='/' />;
+    return <Redirect to='/dashboard' />;
   }
 
   return (

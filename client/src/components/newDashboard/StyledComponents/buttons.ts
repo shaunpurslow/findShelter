@@ -14,6 +14,7 @@ export const Button = styled.button`
   &:hover {
     filter: brightness(0.9);
     background-color: #87bf63;
+    transform: scale(1.1);
   }
 `;
 
@@ -31,5 +32,6 @@ export const CancelButton = styled.button`
   &:hover {
     background-color: var(--red);
     filter: contrast(150%);
+    transform: scale(1.1);
   }
 `;

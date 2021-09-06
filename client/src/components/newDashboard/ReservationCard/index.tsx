@@ -82,6 +82,11 @@ export const ReservationCard = (props: Props) => {
   return (
     <Container>
       <div>
+        <strong>Reservation #{props.id}</strong>
+        <p>{props.reservation_date}</p>
+      </div>
+
+      <div>
         <span>
           <h2>{props.first_name + ' ' + props.last_name}</h2>
           <em>{props.status}</em>
@@ -92,7 +97,7 @@ export const ReservationCard = (props: Props) => {
         </span>
         <span>
           <img src='/img/email.svg' alt='email' />
-          <p>{props.phone || 'no information'}</p>
+          <p>{props.email || 'no information'}</p>
         </span>
         <span>
           <img src='/img/emergency.svg' alt='emergency contact' />
@@ -101,27 +106,20 @@ export const ReservationCard = (props: Props) => {
           </p>
         </span>
       </div>
-      <div>
-        <div>
-          <strong>Reservation #{props.id}</strong>
-          <p>{props.reservation_date}</p>
-        </div>
-        <div>
-          {props.is_confirmed ? (
-            <Actions>
-              <strong>CONFIRMED</strong>
-              <CancelButton onClick={handleCancelClick}>CANCEL</CancelButton>
-            </Actions>
-          ) : (
-            <Actions>
-              <Button onClick={handleConfirmClick}>CONFIRM</Button>
-              <CancelButton onClick={handleDeleteClick}>
-                <img src='/img/delete.svg' alt='delete' />
-              </CancelButton>
-            </Actions>
-          )}
-        </div>
-      </div>
+
+      {props.is_confirmed ? (
+        <Actions>
+          <strong>CONFIRMED</strong>
+          <CancelButton onClick={handleCancelClick}>CANCEL</CancelButton>
+        </Actions>
+      ) : (
+        <Actions>
+          <Button onClick={handleConfirmClick}>CONFIRM</Button>
+          <CancelButton onClick={handleDeleteClick}>
+            <img src='/img/delete.svg' alt='delete' />
+          </CancelButton>
+        </Actions>
+      )}
     </Container>
   );
 };
