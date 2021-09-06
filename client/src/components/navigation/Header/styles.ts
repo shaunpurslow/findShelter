@@ -8,6 +8,7 @@ export const Head = styled.header`
   justify-content: space-between;
   padding: 1rem;
   box-shadow: var(--box-shadow);
+  background-color: var(--light);
   margin-bottom: 3rem;
 
   span {

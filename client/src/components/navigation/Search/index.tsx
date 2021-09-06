@@ -1,11 +1,16 @@
 import SearchIcon from '@material-ui/icons/Search';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SearchBar, Filter, Checkbox, Wrapper, Results, Main } from './styles';
+import { SearchBar, Filter, Checkbox, Wrapper, Results } from './styles';
 
 import SheltersItems from '../../user/SheltersItems';
 
-const Search = (props) => {
+interface Props {
+  setActiveSearch: ((boolean) => void);
+  activeSearch: boolean;
+}
+
+const Search = (props: Props) => {
   // saved data from search query
   const [shelters, setShelters] = useState([]);
 
@@ -21,6 +26,13 @@ const Search = (props) => {
 
   const handleChange = (e) => {
     setSearchQuery((prev) => e.target.value);
+
+    if (searchQuery.length > 2) {
+      props.setActiveSearch(true);
+
+    } else {
+      props.setActiveSearch(false);
+    }
   };
 
   // use effect: get search queries from database when values state changes

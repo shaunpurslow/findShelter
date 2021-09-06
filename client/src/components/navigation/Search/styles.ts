@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 `
@@ -35,9 +36,9 @@ export const SearchBar = styled.span`
       border: none;
       flex-grow: 1;
       color: var(--dark);
-      margin-left: 0.5em;
       font-size: .8em;
       font-weight: bold;
+      padding-left: 1rem;
 
       &:focus {
         outline: none;
@@ -52,6 +53,16 @@ export const Filter = styled.span`
   align-items: center;
   font-weight: bold;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 420px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    align-self: center;
+    padding: 1rem 0;
+    // Last two filters need to be position better
+    /* grid-column: span 2; */
+  }
 `
 
 export const Checkbox = styled.span`
@@ -68,6 +79,22 @@ export const Checkbox = styled.span`
   input {
     margin-right: 0.35rem;
   }
+
+  @media only screen and (max-width: 420px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+
+    &:nth-child(4) {
+      grid-column: span 1;
+    }
+
+    &:nth-child(5) {
+      grid-column: span 2;
+    }
+  }
 `
 
 interface IResults {
@@ -75,14 +102,12 @@ interface IResults {
 }
 
 export const Results = styled.div<IResults>`
+    margin-top: 1rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
   display: ${prop => prop.startQuery ? 'flex' : 'none'};
-  /* overflow: scroll;
-  transform: translateY(0);
-  transition: transform 5s ease-in-out;  // not working */
-  /* transform: translateY(2000px); */
+  overflow: scroll;
+  /* transform: translateY(0); */
 `
 
 export const Main = styled.div`

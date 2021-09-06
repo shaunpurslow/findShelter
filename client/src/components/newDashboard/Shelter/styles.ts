@@ -12,10 +12,12 @@ export const Container = styled.div`
     background-color: white;
     border-radius: 1rem;
     color: var(--dark);
-  }
-
-  &:hover {
     box-shadow: var(--box-shadow);
+
+    &:hover {
+      transition: 2s linear;
+      border: var(--light-grey) 1px solid;
+    }
   }
 
   @media only screen and (max-width: 768px) {
@@ -32,10 +34,12 @@ export const Container = styled.div`
     width: 90%;
     margin-bottom: 2rem;
     max-height: 90vh;
-  
+    box-shadow: var(--box-shadow);
+
     &:hover {
-    box-shadow: 0 2px 5px 5px rgba(77, 79, 115, 0.1);
-  }
+      transition: 2s linear;
+      border: var(--light-grey) 1px solid;
+    }
 }
 `
 

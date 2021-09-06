@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IProp {
   startQuery: boolean;
+  activeSearch: boolean;
 }
 
 export const SearchBar = styled.span<IProp>`
@@ -13,8 +14,8 @@ export const SearchBar = styled.span<IProp>`
       padding: 0.5em;
       width: 65vw;
       max-height: 2rem;
-      box-shadow: ${prop => prop.startQuery ? 'rgba(149, 157, 165, 0.2) 0px -10px 20px 0px' : 'var(--box-shadow)'};
-      border-radius: ${prop => prop.startQuery ? '1rem 1rem 0 0' : '5rem'};
+      box-shadow: ${prop => prop.startQuery && !prop.activeSearch ? 'rgba(149, 157, 165, 0.2) 0px -10px 20px 0px' : 'var(--box-shadow)'};
+      border-radius: ${prop => prop.startQuery && !prop.activeSearch ? '1rem 1rem 0 0' : '5rem'};
 
       position: relative;
     }
