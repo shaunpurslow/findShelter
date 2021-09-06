@@ -63,8 +63,8 @@ const MapSearch = (props) => {
     latitude: 0,
     longitude: 0,
     zoom: 10,
-    width: '100vw',
-    height: '100vh',
+    width: '75vw',
+    height: '60vh',
   });
 
   // turn location to coordinates on initial load for the map viewport
@@ -155,10 +155,10 @@ const MapSearch = (props) => {
   };
 
   return (
-    <div>
+    <main className='main__map__container'>
+      <div className='map'>
       <ReactMapGL
         {...viewport}
-        // mapStyle='mapbox://styles/shaunp/ckt1yp4sc1kul17s1v99jevj9'
         mapStyle='mapbox://styles/mapbox/dark-v9'
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -166,7 +166,6 @@ const MapSearch = (props) => {
         onClick={handleMapClick}
         getCursor={(e) => 'grab'}>
         {shelterMapMarkers}
-
         {showCard && (
           <div className='shelter-card'>
             <div>
@@ -186,7 +185,8 @@ const MapSearch = (props) => {
           </div>
         )}
       </ReactMapGL>
-    </div>
+      </div>
+    </main>
   );
 };
 
