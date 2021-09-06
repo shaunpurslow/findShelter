@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
+
 import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
@@ -10,55 +12,7 @@ const getViewportLocation = (query) => {
   );
 };
 
-const mockInitialLocation = { city: 'vancouver', province: 'BC' };
-const mockShelters = [
-  {
-    id: 1,
-    address: '1445 14th Ave W Vancouver BC V6H 1R5',
-    capacity: 100,
-    confirmedReservations: 95,
-  },
-  {
-    id: 2,
-    address: '1990 Panorama Dr North Vancouver BC V7G 1V1',
-    capacity: 100,
-    confirmedReservations: 100,
-  },
-  {
-    id: 3,
-    address: '302 590 12th Ave W Vancouver BC V5Z 1M2',
-    capacity: 100,
-    confirmedReservations: 90,
-  },
-  {
-    id: 4,
-    address: '1772 W 15th Vancouver BC V6J 2K8',
-    capacity: 100,
-    confirmedReservations: 100,
-  },
-  {
-    id: 5,
-    address: '1633 MacKay Ave 416 North Vancouver BC V7P 0A2',
-    capacity: 100,
-    confirmedReservations: 50,
-  },
-  {
-    id: 6,
-    address: '4402 Oxford St Burnaby BC V5C 1E5',
-    capacity: 100,
-    confirmedReservations: 50,
-  },
-  {
-    id: 7,
-    address: '242 6th St E North Vancouver BC V7L 1P5',
-    capacity: 100,
-    confirmedReservations: 50,
-  },
-];
-
 const MapSearch = (props) => {
-  console.log('PROPS PASSED TO MAP SEARCH: ', props);
-
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
@@ -67,9 +21,9 @@ const MapSearch = (props) => {
     height: '100vh',
   });
 
-  // turn location to coordinates on initial load for the map viewport
+  // Turn viewport location prop to coordinates for the map viewport
   useEffect(() => {
-    const viewportLocationQuery = `${mockInitialLocation.city}, ${mockInitialLocation.province}`;
+    const viewportLocationQuery = `${props.viewPortLocation.city}, ${props.viewPortLocation.province}`;
     getViewportLocation(viewportLocationQuery)
       .then((res) => {
         const initialViewportLatitude = res.data.data[0].latitude;
@@ -84,7 +38,6 @@ const MapSearch = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const shelterDataWithCoordsRef = useRef<any[]>([]);
   const [sheltersWithCoords, setSheltersWithCoords] = useState<any[]>([]);
 
   // loop through shelters data and and store information with coordinates in localstorage
@@ -92,8 +45,8 @@ const MapSearch = (props) => {
   useEffect(() => {
     const dataFromShelterCoordsRequest: any[] = [];
     const getShelterCoordsPromises: any[] = [];
-    mockShelters.forEach((shelter) => {
-      const shelterLocationQuery = `${shelter.address}`;
+    props.shelters.forEach((shelter) => {
+      const shelterLocationQuery = `${shelter.street_address} ${shelter.city}, ${shelter.province}`;
       getShelterCoordsPromises.push(
         axios
           .get(
@@ -109,14 +62,12 @@ const MapSearch = (props) => {
       );
     });
 
-    // can save in alternate place than localstorage
     Promise.all(getShelterCoordsPromises)
       .then(() => {
         setSheltersWithCoords(dataFromShelterCoordsRequest);
-        console.log('DATA STORED IN REF: ', shelterDataWithCoordsRef);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.shelters]);
 
   // add all the pins to the map
   const shelterMapMarkers = sheltersWithCoords.map((shelter) => {

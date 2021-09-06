@@ -33,9 +33,7 @@ const Reservation = () => {
       .then((res) => {
         setReserved(true);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {

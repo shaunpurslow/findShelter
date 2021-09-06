@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
@@ -18,12 +19,16 @@ interface Props {
   activeSearch: boolean;
 }
 
+const MODE = {
+  SHOW_SEARCHBAR: 'SHOW_SEARCHBAR',
+  SHOW_MAP: 'MAP_VIEW',
+};
 export const SearchMap = (props: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [cities, setCities] = useState<ICity[]>([]);
-
-  // set by dropdown item on click
   const [city, setCity] = useState<ICity>({ city: '', province: '' });
+  const [shelters, setShelters] = useState([]);
+  const [mode, setMode] = useState(MODE.SHOW_SEARCHBAR);
 
   const handleChange = (e): void => {
     setSearchTerm((prev) => e.target.value);
@@ -33,6 +38,7 @@ export const SearchMap = (props: Props) => {
   useEffect(() => {
     if (props.activeSearch) {
       setSearchTerm((prev) => city.city);
+      setMode(MODE.SHOW_MAP);
     }
   }, [props.activeSearch]);
 
@@ -43,33 +49,48 @@ export const SearchMap = (props: Props) => {
       .catch((err) => console.log(err));
   }, [searchTerm]);
 
-  console.log('This is city in SeachMap comp', city);
+  useEffect(() => {
+    if (city.city) {
+      axios
+        .get(`http://localhost:8080/shelters/search?value=${city.city}`)
+        .then((res) => {
+          setShelters((prev) => res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [city.city]);
 
   return (
     <>
-      <div>
-        <SearchBar
-          startQuery={searchTerm.length > 2}
-          activeSearch={props.activeSearch}>
-          <input
-            type='text'
-            placeholder={'start typing a city'}
-            value={searchTerm}
-            onChange={handleChange}
+      {mode === MODE.SHOW_SEARCHBAR && (
+        <div>
+          <SearchBar
+            startQuery={searchTerm.length > 2}
+            activeSearch={props.activeSearch}>
+            <input
+              type='text'
+              placeholder={'start typing a city'}
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <SearchIcon className='icon' />
+          </SearchBar>
+          <DropDown
+            cities={cities}
+            setCity={setCity}
+            startQuery={searchTerm.length > 2}
+            setActiveSearch={props.setActiveSearch}
+            activeSearch={props.activeSearch}
           />
-          <SearchIcon className='icon' />
-        </SearchBar>
-        <DropDown
-          cities={cities}
-          setCity={setCity}
-          startQuery={searchTerm.length > 2}
-          setActiveSearch={props.setActiveSearch}
-          activeSearch={props.activeSearch}
+        </div>
+      )}
+      {mode === MODE.SHOW_MAP && (
+        <MapSearch
+          viewPortLocation={city}
+          shelters={shelters}
+          setSearchViewMode={setMode}
         />
-      </div>
-      {/* if props.activeSearch is true, render the map on the page */}
-      {props.activeSearch && <MapSearch />}
-      {/* {city ? <Map /> : null} */}
+      )}
     </>
   );
 };

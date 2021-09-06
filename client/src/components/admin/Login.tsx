@@ -18,9 +18,7 @@ const Login = (props: any) => {
         localStorage.setItem('user', JSON.stringify(userData));
         props.setLoggedInUser((prev) => ({ ...userData }));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
