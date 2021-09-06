@@ -1,6 +1,7 @@
 import SearchIcon from '@material-ui/icons/Search';
 import { useState, useEffect } from 'react';
 import { SearchBar } from './styles';
+import axios from 'axios';
 
 interface Props {
   setDashboardState: any;
@@ -12,8 +13,13 @@ export const Search = (props: Props) => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    setShelters(prev => [...prev, ...props.dashboardState.shelters])
-  }, [])
+    axios
+      .get(`http://localhost:8080/shelters/search/?value=${search}`)
+      .then((res) => {
+        setShelters((prev) => res.data);
+      })
+      .catch((err) => console.error(err));
+  }, [search]);
 
   const handleChange = (e) => {
     setSearch(prev => e.target.value);
