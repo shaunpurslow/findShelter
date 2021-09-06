@@ -1,4 +1,4 @@
-import { Actions, Form, Header } from './styles'
+import { Actions, Form, Header } from './styles';
 import { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -24,16 +24,13 @@ export const ReservationForm = (props: Props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('value', value)
 
     axios
       .post('http://localhost:8080/reservations', value)
       .then((res) => {
         setReserved(true);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
@@ -44,7 +41,7 @@ export const ReservationForm = (props: Props) => {
     const { name, value }: IDic = e.target;
 
     if (!value) {
-      console.log("Error")
+      console.log('Error');
     }
 
     setValue((prev) => ({ ...prev, [name]: value }));
@@ -130,7 +127,11 @@ export const ReservationForm = (props: Props) => {
           onChange={handleReservationChange}
         />
         <Actions>
-          <button onClick={props.handleClose} className='reservation__submit__button'>Cancel</button>
+          <button
+            onClick={props.handleClose}
+            className='reservation__submit__button'>
+            Cancel
+          </button>
           <button
             className='reservation__submit__button'
             type='submit'

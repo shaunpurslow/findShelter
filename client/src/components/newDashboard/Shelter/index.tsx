@@ -50,13 +50,6 @@ const Shelter = (props: Props) => {
     Number(props.unconfirmedReservations)
   );
 
-  if (props.id === 1) {
-    console.log(
-      'SHELTERCARD UNCONFIRMED RESO PROP: ',
-      props.unconfirmedReservations
-    );
-  }
-
   useEffect(() => {
     setLiveBedAvailability(
       (prev) => Number(props.capacity) - Number(props.confirmedReservations)
