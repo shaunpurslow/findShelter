@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import {
   Container,
@@ -8,7 +9,7 @@ import {
   Filters,
   Wrapper,
   Details,
-  Card
+  Card,
 } from './styles';
 import { Button } from '../StyledComponents/buttons';
 
@@ -83,6 +84,10 @@ const Shelter = (props: Props) => {
     };
   }, []);
 
+  const handleDirectionsClick = () => {
+    window.location.href = `http://maps.google.com/maps/dir//${props.street_address}, ${props.city}/${props.province}, ${props.postal_code}`;
+  };
+
   return (
     <Container>
       <Image>
@@ -140,11 +145,11 @@ const Shelter = (props: Props) => {
           <Card>
             <header>
               <h5>BEDS LEFT</h5>
-              <img src="/img/available.svg" alt="available" />
+              <img src='/img/available.svg' alt='available' />
             </header>
             <strong>{liveBedAvailability}</strong>
           </Card>
-          <Button>Directions</Button>
+          <Button onClick={handleDirectionsClick}>Directions</Button>
         </Wrapper>
       </Info>
     </Container>

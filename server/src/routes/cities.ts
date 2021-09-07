@@ -10,8 +10,9 @@ export default function (dbconn) {
   // load all the cities from the database on to the front end and filter from front end
   router.get('/', (req, res) => {
     const getShelterCities = `
-      SELECT 
-        DISTINCT city, province,
+      SELECT DISTINCT ON (city)
+        city, 
+        province,
         id
       FROM shelters
       ORDER BY city;
