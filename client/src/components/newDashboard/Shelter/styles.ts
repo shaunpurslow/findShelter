@@ -185,6 +185,13 @@ align-items: center;
 flex-direction: column;
 padding: 1rem 1rem 0 1rem;
 
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 strong {
   font-size: 4rem;
   font-weight: 700;
