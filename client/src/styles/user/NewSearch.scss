@@ -1,9 +1,5 @@
 @import '../variables';
 
-* {
-  // border: 1px solid black;
-}
-
 .search-container {
   height: 80vh;
   display: flex;
@@ -14,7 +10,7 @@
 
   &__description {
     width: 700px;
-    color: $col-dark-2;
+    color: $col-dark;
     font-weight: bold;
 
     h1 {
@@ -33,7 +29,7 @@
     background-color: white;
     border: none;
     border-radius: 3px;
-    box-shadow: 2px 30px 60px rgba(194, 194, 194, 0.5);
+    box-shadow: var(--box-shadow);
 
     .search-bar__mode-toggle {
       display: flex;
@@ -60,7 +56,7 @@
         border-top-right-radius: 3px;
 
         &.selected {
-          background-color: rgb(178, 178, 199);
+          background-color:#6D77BF;
           color: white;
         }
 
@@ -108,7 +104,78 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $col-light;
+      background-color: var(--light-grey);
     }
   }
+}
+
+.typewriter-text {
+  color: var(--dark-grey);
+  overflow: hidden;
+  position: relative;
+  width: 18em;
+  // border-right: 2px solid var(--dark-grey);
+  font-size: 1rem;
+  white-space: nowrap;
+
+  animation: typewriter 3s steps(44) 1s 1 normal both,
+  blinkTextCursor 400ms steps(44) infinite normal;
+}
+
+.typewriter-text-finished {
+  display: flex;
+  color: var(--dark-grey);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  font-size: 1rem;
+  white-space: nowrap;
+
+  animation: typewriter-fin 3s steps(44) 1s 1 normal both,
+  blinkTextCursor-fin 400ms steps(44) infinite normal;
+  animation-delay: 4s;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkTextCursor {
+
+  from {
+    border-right-color: var(--dark-grey);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+
+}
+
+@keyframes typewriter-fin {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkTextCursor-fin {
+
+  from {
+    border-right-color: var(--dark-grey);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+
 }

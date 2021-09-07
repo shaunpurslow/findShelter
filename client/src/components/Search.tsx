@@ -88,13 +88,20 @@ const Search = (props) => {
       );
     });
 
+  //typewriter effect to the second paragraph:
+  const typewriter = classNames('typewriter-hidden', {
+    selected: searchMode === SEARCH_MODE.MAP_SEARCH,
+  });
+
   return (
     <div className='search-container'>
       <div className='search-container__description'>
         <h1>Find real time bed availability for shelters in your city</h1>
-        <p>
-          Find shelter is a community focused application to help people of all
-          walks of life find a place to spend the night.
+        <p className="typewriter-text">
+          Find shelter is a community focused application to help people of all walks
+        </p>
+        <p className="typewriter-text-finished">
+          of life find a place to spend the night.
         </p>
       </div>
 
