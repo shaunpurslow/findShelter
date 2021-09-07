@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Shelter from '../newDashboard/Shelter';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactMapGL, { Marker } from 'react-map-gl';
@@ -128,7 +128,6 @@ const MapSearch = (props) => {
     <div>
       <ReactMapGL
         {...viewport}
-        // mapStyle='mapbox://styles/shaunp/ckt1yp4sc1kul17s1v99jevj9'
         mapStyle='mapbox://styles/mapbox/dark-v9'
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -143,21 +142,31 @@ const MapSearch = (props) => {
         {shelterMapMarkers}
 
         {showCard && (
-          <div className='shelter-card'>
-            <div>
-              <h1 className='shelter-card__title'>{selectedShelter['name']}</h1>
-              <p>Phone: 604-777-7777</p>
-              <p>Website: {selectedShelter['email']}</p>
-              <p>Address: {selectedShelter['street_address']}</p>
-              <button className='shelter-card__directions-btn'>
-                Get Directions
-              </button>
-            </div>
-            <div className='shelter-card__info'>
-              <h1>25</h1>
-              <p>Beds</p>
-              <p>Available</p>
-            </div>
+          <div className='shelter-card-container'>
+            <Shelter
+              key={selectedShelter['id']}
+              id={selectedShelter['id']}
+              capacity={selectedShelter['capacity']}
+              city={selectedShelter['city']}
+              confirmedReservations={selectedShelter['confirmed_reservations']}
+              country={selectedShelter['country']}
+              couples={selectedShelter['couples']}
+              email={selectedShelter['email']}
+              family={selectedShelter['family']}
+              female_only={selectedShelter['female_only']}
+              male_only={selectedShelter['male_only']}
+              name={selectedShelter['name']}
+              unconfirmedReservations={
+                selectedShelter['not_confirmed_reservations']
+              }
+              pets={selectedShelter['pets']}
+              phone={selectedShelter['phone']}
+              postal_code={selectedShelter['postal_code']}
+              province={selectedShelter['province']}
+              street_address={selectedShelter['street_address']}
+              thumbnail_url={selectedShelter['thumbnail_url']}
+              website_url={selectedShelter['website_url']}
+            />
           </div>
         )}
       </ReactMapGL>
