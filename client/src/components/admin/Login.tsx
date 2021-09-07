@@ -1,7 +1,7 @@
 import '../../styles/admin/Login.scss';
 import { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const Login = (props: any) => {
   // controlled input
@@ -36,6 +36,9 @@ const Login = (props: any) => {
   if (loggedIn) {
     return <Redirect to='/dashboard' />;
   }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  let history = useHistory();
 
   return (
     <main className='login__container'>
@@ -74,7 +77,9 @@ const Login = (props: any) => {
             onClick={handleSubmit}>
             Login
           </button>
-          <button className='login__submit__button' type='submit'>
+          <button
+            onClick={() => history.push('/')}
+            className='login__submit__button' type='submit'>
             Cancel
           </button>
         </div>

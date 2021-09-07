@@ -56,10 +56,9 @@
 
 .button__container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-self: space-between;
-  margin-top: 0.5em;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 2rem;
 }
 
 .login__submit__button {
