@@ -18,7 +18,7 @@ export default function (dbconn) {
       reservations.id as id,
       reservations.shelter_id,
       reservations.guest_id,
-      reservations.reservation_date,
+      reservations.reservation_date at time zone 'pst' as reservation_date,
       reservations.is_confirmed,
       guests.first_name,
       guests.last_name,
@@ -28,7 +28,8 @@ export default function (dbconn) {
       guests.email
       FROM reservations
       JOIN guests ON reservations.guest_id = guests.id
-      WHERE reservations.shelter_id = $1;
+      WHERE reservations.shelter_id = $1
+      ORDER BY reservations.id DESC;
     `;
     const values = [shelter_id];
     dbconn
@@ -116,7 +117,7 @@ export default function (dbconn) {
       email,
       emergency_number,
       emergency_name,
-      shelter_id
+      shelter_id,
     ];
 
     dbconn
