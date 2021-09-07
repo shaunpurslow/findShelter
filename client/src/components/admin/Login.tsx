@@ -34,7 +34,7 @@ const Login = (props: any) => {
   const localStorageUser: any = localStorage.getItem('user');
   const loggedIn = JSON.parse(localStorageUser);
   if (loggedIn) {
-    return <Redirect to='/new-dashboard' />;
+    return <Redirect to='/dashboard' />;
   }
 
   return (
