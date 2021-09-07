@@ -1,6 +1,5 @@
-// * {
-//   border: solid 1px red;
-// }
+@import '../../styles/variables';
+
 .shelter-marker {
   color: green;
 
@@ -68,5 +67,28 @@
     &:hover {
       background-color: lighten(black, 20%);
     }
+  }
+}
+
+.search-results--back-btn-map {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: white;
+  color: $col-dark-2;
+  margin-bottom: 20px;
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.marker-icon {
+  &:hover {
+    cursor: pointer;
+    color: lighten($color: red, $amount: 20%);
   }
 }

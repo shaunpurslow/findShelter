@@ -11,13 +11,14 @@ export default function (dbconn) {
   router.get('/', (req, res) => {
     const getShelterCities = `
       SELECT 
-        DISTINCT city, province
+        DISTINCT city, province,
+        id
       FROM shelters
       ORDER BY city;
     `;
     dbconn
       .query(getShelterCities)
-      .then()
+      .then((data) => res.send(data.rows))
       .catch((e) => res.status(500).json({ error: e.message }));
   });
 
@@ -26,7 +27,7 @@ export default function (dbconn) {
   router.get('/search/', (req, res) => {
     const { value } = req.query;
     const getShelterCities = `
-    SELECT DISTINCT city, province
+    SELECT DISTINCT city, province, id
     FROM shelters
     WHERE LOWER(shelters.city) LIKE LOWER($1)
     ORDER BY city

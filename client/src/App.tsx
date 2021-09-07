@@ -9,10 +9,17 @@ import NewDashboard from './components/newDashboard/NewDashboard';
 import Login from './components/admin/Login';
 import Confirmation from './components/user/Confirmation';
 import MapSearch from './components/mapSearch';
+import Search from './components/Search';
+import SearchResults from './components/SearchResults';
 
 import { GlobalStyle } from './styles/global';
 import './styles/App.scss';
 
+const USER_VIEW_MODE = {
+  SEARCH: 'SEARCH',
+  LIST_SEARCH_RESULTS: 'LIST_SEARCH_RESULTS',
+  MAP_SEARCH_RESULTS: 'MAP_SEARCH_RESULTS',
+};
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<any>({
     id: '',
@@ -23,6 +30,19 @@ function App() {
     thumbnail_url: '',
   });
 
+  const [userViewMode, setUserViewMode] = useState(USER_VIEW_MODE.SEARCH);
+  const [userSearchResults, setUserSearchResults] = useState([]);
+
+  const changeToSearchView = () => {
+    setUserViewMode(USER_VIEW_MODE.SEARCH);
+  };
+  const changeToMapResultsView = () => {
+    setUserViewMode(USER_VIEW_MODE.MAP_SEARCH_RESULTS);
+  };
+
+  const changeToListResultsView = () => {
+    setUserViewMode(USER_VIEW_MODE.LIST_SEARCH_RESULTS);
+  };
   return (
     <Router>
       <div className='App'>
@@ -30,9 +50,36 @@ function App() {
         <Switch>
           {/* Main Page */}
           <Route exact path='/'>
-            <Header />
-            <MenuMode />
+            {userViewMode === USER_VIEW_MODE.SEARCH && (
+              <>
+                <Header />
+                <Search
+                  setUserSearchResults={setUserSearchResults}
+                  changeToMapResultsView={changeToMapResultsView}
+                  changeToListResultsView={changeToListResultsView}
+                />
+              </>
+            )}
+            {userViewMode === USER_VIEW_MODE.LIST_SEARCH_RESULTS && (
+              <>
+                <Header />
+                <SearchResults
+                  searchResults={userSearchResults}
+                  changeToSearchView={changeToSearchView}
+                />
+              </>
+            )}
+            {userViewMode === USER_VIEW_MODE.MAP_SEARCH_RESULTS && (
+              <MapSearch
+                viewPortLocation={userSearchResults[0]}
+                searchResults={userSearchResults}
+                changeToSearchView={changeToSearchView}
+              />
+            )}
           </Route>
+
+          <Route path='/search-results'>{/* <SearchResults /> */}</Route>
+
           {/* Register */}
           <Route path='/register'>
             <Register setAppState={'setAppState'} />

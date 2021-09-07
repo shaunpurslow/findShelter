@@ -1,28 +1,31 @@
 // This are color variables
-  $col-light: #F4EEFF;
-  $col-medium: #DCD6F7;
-  $col-medium-dark: #A6B1E1;
-  $col-dark: #424874;
-  $col-dark-2: #333759;
-  $font-stack: 'Nunito', sans-serif;
+$col-light: #f4eeff;
+$col-medium: #dcd6f7;
+$col-medium-dark: #a6b1e1;
+$col-dark: #424874;
+$col-dark-2: #333759;
+$font-stack: 'Nunito', sans-serif;
 
 // This are functions to use
-  @mixin allFlexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @mixin displayFlex($justifyContent: space-between, $alignItems:flex-end, $direction:row) {
-    display: flex;
-    justify-content: $justifyContent;
-    align-items: $alignItems;
-    flex-direction: $direction;
-  }
+@mixin allFlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  @mixin mobile {
-    @media screen and (min-width: 350px) {
-      @content
-    }
+@mixin displayFlex(
+  $justifyContent: space-between,
+  $alignItems: flex-end,
+  $direction: row
+) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-direction: $direction;
+}
+
+@mixin mobile {
+  @media screen and (min-width: 350px) {
+    @content;
   }
-  
+}
