@@ -1,5 +1,6 @@
 import SearchIcon from '@material-ui/icons/Search';
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import debounce from 'lodash.debounce';
 import { SearchBar } from './styles';
 import axios from 'axios';
 
@@ -12,17 +13,18 @@ export const Search = (props: Props) => {
   const [shelters, setShelters]: any = useState([]);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
+  const updateShelters = () => {
     axios
       .get(`http://localhost:8080/shelters/search/?value=${search}`)
       .then((res) => {
         setShelters((prev) => res.data);
       })
       .catch((err) => console.error(err));
-  }, [search]);
+  };
 
   const handleChange = (e) => {
-    setSearch(prev => e.target.value);
+    debouncedRequest();
+    setSearch(e.target.value);
 
     const updatedShelters = shelters.filter(shelter => {
       if (search === '') return shelter;
@@ -32,6 +34,8 @@ export const Search = (props: Props) => {
 
     props.setDashboardState(prev => ({ ...prev, shelters: [...updatedShelters] }));
   };
+
+  const debouncedRequest = useCallback(debounce(updateShelters, 300), []);
 
   return (
     <SearchBar>
