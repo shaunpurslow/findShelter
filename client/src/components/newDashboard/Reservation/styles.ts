@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 @media only screen and (min-width: 767px) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -21,6 +26,13 @@ export const Confirmed = styled.div`
     &:last-child {
       margin-bottom: 2rem;
     }
+
+  @media only screen and (max-width: 768px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
 `
 
 export const Unconfirmed = styled.div`
@@ -28,13 +40,16 @@ export const Unconfirmed = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+
+    @media only screen and (max-width: 768px) {
+      justify-content: center;
+}
 `
 
 export const H2 = styled.h2`
   color: var(--dark-grey);
   font-size: 1.2rem;
   text-align: left;
-  margin: 1rem 1rem 0 2rem;
 `
 
 export const Text = styled.span`
