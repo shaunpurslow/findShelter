@@ -1,12 +1,11 @@
 @import './variables';
 
-
 .App-header {
   @include displayFlex(space-between, center, row);
   color: white;
 }
 
 body {
-  background-color: $col-light;
+  background-color: #f0f3f6;
   font-family: $font-stack;
 }

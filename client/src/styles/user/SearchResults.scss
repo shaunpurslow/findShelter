@@ -1,0 +1,21 @@
+@import '../variables';
+
+.search-results--back-btn {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: $col-dark-2;
+  color: white;
+  margin-bottom: 20px;
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.search-results__container {
+  width: 80%;
+  margin: 0 auto;
+}

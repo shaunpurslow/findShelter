@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const Head = styled.header`
   top: 0;
-  width: 100%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  box-shadow: var(--box-shadow);
-  background-color: var(--light);
-  margin-bottom: 3rem;
+  /* box-shadow: var(--box-shadow); */
 
   span {
     display: flex;
@@ -17,7 +18,7 @@ export const Head = styled.header`
     align-items: center;
     flex-direction: row;
   }
-`
+`;
 
 export const Logo = styled.img`
   display: flex;
@@ -28,7 +29,7 @@ export const Logo = styled.img`
   @media only screen and (max-width: 768px) {
     max-height: 35px;
   }
-`
+`;
 
 export const Button = styled.button`
   font-size: 0.8rem;
@@ -45,4 +46,4 @@ export const Button = styled.button`
     transition: 0.4s;
     border-radius: 2rem;
   }
-`
+`;

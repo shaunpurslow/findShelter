@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
-import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
 import './styles.scss';
@@ -45,7 +46,7 @@ const MapSearch = (props) => {
   useEffect(() => {
     const dataFromShelterCoordsRequest: any[] = [];
     const getShelterCoordsPromises: any[] = [];
-    props.shelters.forEach((shelter) => {
+    props.searchResults.forEach((shelter) => {
       const shelterLocationQuery = `${shelter.street_address} ${shelter.city}, ${shelter.province}`;
       getShelterCoordsPromises.push(
         axios
@@ -67,7 +68,10 @@ const MapSearch = (props) => {
         setSheltersWithCoords(dataFromShelterCoordsRequest);
       })
       .catch((err) => console.log(err));
-  }, [props.shelters]);
+  }, [props.searchResults]);
+
+  const [selectedShelter, setSelectedShelter] = useState({});
+  console.log(selectedShelter);
 
   // add all the pins to the map
   const shelterMapMarkers = sheltersWithCoords.map((shelter) => {
@@ -77,6 +81,18 @@ const MapSearch = (props) => {
     const markerStyle = checkIfShelterIsFull
       ? 'shelter-marker'
       : 'shelter-marker--full';
+
+    const shelterData = JSON.stringify({ ...shelter });
+
+    const handleMarkerIconClick = (e) => {
+      // https://www.designcise.com/web/tutorial/how-to-fix-property-does-not-exist-on-type-eventtarget-typescript-error
+      const target = e.target as Element;
+      const svgElement: any = target.closest('svg');
+      const shelterData: string =
+        svgElement.getAttribute('data-shelter') || '{}';
+      const parsedShelterData = JSON.parse(shelterData);
+      setSelectedShelter((prev) => parsedShelterData);
+    };
 
     return (
       <Marker
@@ -88,17 +104,20 @@ const MapSearch = (props) => {
         className={markerStyle}
         captureClick={false}
         capturePointerMove={false}>
-        <RoomIcon fontSize='large' />
+        <RoomIcon
+          className='marker-icon'
+          fontSize='large'
+          onClick={handleMarkerIconClick}
+          data-shelter={shelterData}
+        />
       </Marker>
     );
   });
 
-  const [selectedShelter, setSelectedShelter] = useState({});
-
   const [showCard, setShowCard] = useState(false);
   const handleMapClick = (e) => {
-    if (e.target.closest('path')) {
-      // make the card display
+    console.log(e.target);
+    if (e.target.closest('svg')) {
       setShowCard((prev) => true);
     } else {
       setShowCard((prev) => false);
@@ -113,18 +132,23 @@ const MapSearch = (props) => {
         mapStyle='mapbox://styles/mapbox/dark-v9'
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        transitionInterpolator={new FlyToInterpolator()}
         onClick={handleMapClick}
         getCursor={(e) => 'grab'}>
+        <div
+          className='search-results--back-btn-map'
+          onClick={props.changeToSearchView}>
+          GO BACK
+        </div>
+
         {shelterMapMarkers}
 
         {showCard && (
           <div className='shelter-card'>
             <div>
-              <h1 className='shelter-card__title'>Women and Family Shelter</h1>
+              <h1 className='shelter-card__title'>{selectedShelter['name']}</h1>
               <p>Phone: 604-777-7777</p>
-              <p>Website: www.shelter.ca</p>
-              <p>Address: 604 Calgary Street, Vancouver BC</p>
+              <p>Website: {selectedShelter['email']}</p>
+              <p>Address: {selectedShelter['street_address']}</p>
               <button className='shelter-card__directions-btn'>
                 Get Directions
               </button>

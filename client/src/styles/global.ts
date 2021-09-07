@@ -1,10 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 :root {
   --light: white;
   --medium: #DCD6F7;
   --medium-dark: #A6B1E1;
+  --primary-color: #EBEAEF;
   --dark: #424874;
   --more-dark: #333759;
   --green: #87bf63;
@@ -31,7 +32,7 @@ html  {
 }
 
 body {
-  background-color: var(--light);
+  background-color: var(--primary-color);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -53,4 +54,4 @@ button {
   opacity: 0.6;
   cursor: not-allowed;
 }
-`
+`;

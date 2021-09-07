@@ -1,0 +1,114 @@
+@import '../variables';
+
+* {
+  // border: 1px solid black;
+}
+
+.search-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 110px;
+
+  &__description {
+    width: 700px;
+    color: $col-dark-2;
+    font-weight: bold;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6em;
+    }
+  }
+
+  &__search-bar {
+    margin-top: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 2px 30px 60px rgba(194, 194, 194, 0.5);
+
+    .search-bar__mode-toggle {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: '';
+        height: 60%;
+        border-right: 2px solid rgba(194, 194, 194, 0.5);
+        right: 50%;
+        top: 15px;
+      }
+
+      // list / map toggle
+      div {
+        width: 100%;
+        text-align: center;
+        padding: 1.5em;
+        font-weight: bold;
+        color: $col-dark;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &.selected {
+          background-color: rgb(178, 178, 199);
+          color: white;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .search-bar__input {
+      display: flex;
+
+      input {
+        flex-grow: 1;
+        padding: 0.8em;
+        font-size: 1.6rem;
+        border: transparent;
+        border-top: 1px solid rgba(194, 194, 194, 0.5);
+        border-bottom-left-radius: 3px;
+      }
+
+      button {
+        padding: 0.4em;
+        width: 200px;
+        font-weight: bold;
+        background-color: $col-dark;
+        color: white;
+        font-size: 1.4rem;
+        border: none;
+        border-bottom-right-radius: 3px;
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  max-height: 300px;
+  overflow: scroll;
+  background-color: white;
+
+  &__item {
+    list-style: none;
+    padding: 1em;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $col-light;
+    }
+  }
+}
