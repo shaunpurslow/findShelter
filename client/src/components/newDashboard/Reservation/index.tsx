@@ -11,14 +11,26 @@ interface Props {
 export const Reservation = (props: Props) => {
   const currentDate = format(new Date(), 'MMMM do, yyyy');
 
-  const todayReservations = props.dashboardState.reservations.filter(reservation => currentDate === format(new Date(reservation.reservation_date), 'MMMM do, yyyy'));
+  const todayReservations = props.dashboardState.reservations.filter(
+    (reservation) =>
+      currentDate ===
+      format(new Date(reservation.reservation_date), 'MMMM do, yyyy')
+  );
 
-  const pastReservations = props.dashboardState.reservations.filter(reservation => currentDate !== format(new Date(reservation.reservation_date), 'MMMM do, yyyy'));
+  const pastReservations = props.dashboardState.reservations.filter(
+    (reservation) =>
+      currentDate !==
+      format(new Date(reservation.reservation_date), 'MMMM do, yyyy')
+  );
 
-  const confirmed = todayReservations.filter(reservation => reservation.is_confirmed);
-  const unconfirmed = todayReservations.filter(reservation => !reservation.is_confirmed);
+  const confirmed = todayReservations.filter(
+    (reservation) => reservation.is_confirmed
+  );
+  const unconfirmed = todayReservations.filter(
+    (reservation) => !reservation.is_confirmed
+  );
 
-  const confirmedReservations = confirmed.map(reservation =>
+  const confirmedReservations = confirmed.map((reservation) => (
     <ReservationCard
       key={reservation.id}
       id={reservation.id}
@@ -30,12 +42,16 @@ export const Reservation = (props: Props) => {
       emergency_name={reservation.emergency_name}
       is_confirmed={reservation.is_confirmed}
       status={reservation.status}
-      reservation_date={format(new Date(reservation.reservation_date), 'MMMM do, yyyy')}
+      reservation_date={format(
+        new Date(reservation.reservation_date),
+        'MMMM do, yyyy'
+      )}
       setDashboardState={props.setDashboardState}
       updateDashboardReservations={props.updateDashboardReservations}
-    />)
+    />
+  ));
 
-  const unconfirmedReservations = unconfirmed.map(reservation =>
+  const unconfirmedReservations = unconfirmed.map((reservation) => (
     <ReservationCard
       key={reservation.id}
       id={reservation.id}
@@ -47,12 +63,16 @@ export const Reservation = (props: Props) => {
       emergency_name={reservation.emergency_name}
       is_confirmed={reservation.is_confirmed}
       status={reservation.status}
-      reservation_date={format(new Date(reservation.reservation_date), 'MMMM do, yyyy')}
+      reservation_date={format(
+        new Date(reservation.reservation_date),
+        'MMMM do, yyyy'
+      )}
       setDashboardState={props.setDashboardState}
       updateDashboardReservations={props.updateDashboardReservations}
-    />)
+    />
+  ));
 
-  const oldReservations = pastReservations.map(reservation =>
+  const oldReservations = pastReservations.map((reservation) => (
     <ReservationCard
       key={reservation.id}
       id={reservation.id}
@@ -64,33 +84,35 @@ export const Reservation = (props: Props) => {
       emergency_name={reservation.emergency_name}
       is_confirmed={reservation.is_confirmed}
       status={reservation.status}
-      reservation_date={format(new Date(reservation.reservation_date), 'MMMM do, yyyy')}
+      reservation_date={format(
+        new Date(reservation.reservation_date),
+        'MMMM do, yyyy'
+      )}
       setDashboardState={props.setDashboardState}
       updateDashboardReservations={props.updateDashboardReservations}
-    />)
+    />
+  ));
 
   return (
     <Container>
-      {unconfirmedReservations.length > 0 ?
-        <H2>Latest Reservations {currentDate}</H2> :
-        <Text>No reservation placed in {currentDate} to be confirmed yet</Text>}
+      {unconfirmedReservations.length > 0 ? (
+        <H2>Latest Reservations {currentDate}</H2>
+      ) : (
+        <Text>No reservation placed in {currentDate} to be confirmed yet</Text>
+      )}
 
-      <Unconfirmed>
-        {unconfirmedReservations}
-      </Unconfirmed>
+      <Unconfirmed>{unconfirmedReservations}</Unconfirmed>
 
-      {confirmedReservations.length > 0 ?
-        <H2>Confirmed Reservations for {currentDate}</H2> :
-        <Text>No reservation confirmed for {currentDate} yet</Text>}
+      {confirmedReservations.length > 0 ? (
+        <H2>Confirmed Reservations for {currentDate}</H2>
+      ) : (
+        <Text>No reservation confirmed for {currentDate} yet</Text>
+      )}
 
-      <Confirmed>
-        {confirmedReservations}
-      </Confirmed>
+      <Confirmed>{confirmedReservations}</Confirmed>
 
       <H2>Past Reservations</H2>
-      <Past>
-        {oldReservations}
-      </Past>
+      <Past>{oldReservations}</Past>
     </Container>
   );
 };

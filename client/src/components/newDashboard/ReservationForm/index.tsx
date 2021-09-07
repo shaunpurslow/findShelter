@@ -10,7 +10,6 @@ interface Props {
 
 export const ReservationForm = (props: Props) => {
   const [reserved, setReserved] = useState(false);
-  // const [selectedDate, handleDateChange] = useState<Date | null>(new Date());
   const [value, setValue] = useState({
     first_name: '',
     last_name: '',
@@ -29,6 +28,7 @@ export const ReservationForm = (props: Props) => {
       .post('http://localhost:8080/reservations', value)
       .then((res) => {
         setReserved(true);
+        window.location.href = '/dashboard';
       })
       .catch((err) => console.log(err));
   };
