@@ -1,6 +1,6 @@
 # Find shelter
 
-Find Shelter allows anyone to search for shelters within thier shelters and see thier real time bed availability and get directions from thier current location. The bed availability data is pwoered by a shelter management software on the admin side, that allows shelters to manag thier day to day guest intake.
+A full stack React / Node + Express application for community members / the public to find real time bed availability for shelters in their city. Bed availability data is provided via a backend admin dashboard for shelters to manage their guest check in and check out. 
 
 ## Preview
 
