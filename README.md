@@ -1,16 +1,13 @@
 # Find shelter
 
-Find Shelter is a free open source software that allows homeless shelters to manager thier daily operations, while providing real time updates of thier bed availabity and location to all members of the public.
+Find Shelter is a free open source software that allows homeless shelters to manager thier daily operations, while providing real time updates of bed availabity and diretions to the public.
 
 ### Preview
 
-### Live Application
-
-### Contribute
-
 ### Tech Stack
 
+- Typescript
 - React
 - Node / Express
-- Typescript
 - Sass
+- Socket IO
