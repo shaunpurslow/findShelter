@@ -1,6 +1,6 @@
 # Find shelter
 
-Find Shelter is a free open source software that allows homeless shelters to manager thier daily operations, while providing real time updates of bed availabity and diretions to the public.
+Find Shelter allows anyone to search for shelters within thier shelters and see thier real time bed availability and get directions from thier current location. The bed availability data is pwoered by a shelter management software on the admin side, that allows shelters to manag thier day to day guest intake.
 
 ## Preview
 
