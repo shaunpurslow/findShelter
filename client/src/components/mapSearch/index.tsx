@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Shelter from '../newDashboard/Shelter';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import MapGL, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
 import './styles.scss';
@@ -18,8 +18,6 @@ const MapSearch = (props) => {
     latitude: 0,
     longitude: 0,
     zoom: 10,
-    width: '100vw',
-    height: '100vh',
   });
 
   // Turn viewport location prop to coordinates for the map viewport
@@ -71,17 +69,9 @@ const MapSearch = (props) => {
   }, [props.searchResults]);
 
   const [selectedShelter, setSelectedShelter] = useState({});
-  console.log(selectedShelter);
 
   // add all the pins to the map
   const shelterMapMarkers = sheltersWithCoords.map((shelter) => {
-    const checkIfShelterIsFull =
-      (shelter.capacity - shelter.confirmedReservations) / shelter.capacity;
-
-    const markerStyle = checkIfShelterIsFull
-      ? 'shelter-marker'
-      : 'shelter-marker--full';
-
     const shelterData = JSON.stringify({ ...shelter });
 
     const handleMarkerIconClick = (e) => {
@@ -101,7 +91,6 @@ const MapSearch = (props) => {
         longitude={shelter.longitude}
         offsetLeft={-20}
         offsetTop={-10}
-        className={markerStyle}
         captureClick={false}
         capturePointerMove={false}>
         <RoomIcon
@@ -116,7 +105,6 @@ const MapSearch = (props) => {
 
   const [showCard, setShowCard] = useState(false);
   const handleMapClick = (e) => {
-    console.log(e.target);
     if (e.target.closest('svg')) {
       setShowCard((prev) => true);
     } else {
@@ -126,10 +114,12 @@ const MapSearch = (props) => {
 
   return (
     <div>
-      <ReactMapGL
+      <MapGL
         {...viewport}
+        width='100vw'
+        height='100vh'
         mapStyle='mapbox://styles/mapbox/dark-v9'
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         onClick={handleMapClick}
         getCursor={(e) => 'grab'}>
@@ -169,7 +159,7 @@ const MapSearch = (props) => {
             />
           </div>
         )}
-      </ReactMapGL>
+      </MapGL>
     </div>
   );
 };
