@@ -19,6 +19,8 @@ const MapSearch = (props) => {
     longitude: 0,
     zoom: 10,
   });
+  const [selectedShelter, setSelectedShelter] = useState({});
+  const [showCard, setShowCard] = useState(false);
 
   // Turn viewport location prop to coordinates for the map viewport
   useEffect(() => {
@@ -37,41 +39,8 @@ const MapSearch = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const [sheltersWithCoords, setSheltersWithCoords] = useState<any[]>([]);
-
-  // loop through shelters data and and store information with coordinates in localstorage
-  // https://stackoverflow.com/questions/56532652/axios-get-then-in-a-for-loop
-  useEffect(() => {
-    const dataFromShelterCoordsRequest: any[] = [];
-    const getShelterCoordsPromises: any[] = [];
-    props.searchResults.forEach((shelter) => {
-      const shelterLocationQuery = `${shelter.street_address} ${shelter.city}, ${shelter.province}`;
-      getShelterCoordsPromises.push(
-        axios
-          .get(
-            `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITION_KEY}&query=${shelterLocationQuery}`
-          )
-          .then((res) => {
-            dataFromShelterCoordsRequest.push({
-              ...shelter,
-              latitude: res.data.data[0].latitude,
-              longitude: res.data.data[0].longitude,
-            });
-          })
-      );
-    });
-
-    Promise.all(getShelterCoordsPromises)
-      .then(() => {
-        setSheltersWithCoords(dataFromShelterCoordsRequest);
-      })
-      .catch((err) => console.log(err));
-  }, [props.searchResults]);
-
-  const [selectedShelter, setSelectedShelter] = useState({});
-
   // add all the pins to the map
-  const shelterMapMarkers = sheltersWithCoords.map((shelter) => {
+  const shelterMapMarkers = props.searchResults.map((shelter) => {
     const shelterData = JSON.stringify({ ...shelter });
 
     const handleMarkerIconClick = (e) => {
@@ -87,8 +56,8 @@ const MapSearch = (props) => {
     return (
       <Marker
         key={shelter.id}
-        latitude={shelter.latitude}
-        longitude={shelter.longitude}
+        latitude={Number(shelter.latitude)}
+        longitude={Number(shelter.longitude)}
         offsetLeft={-20}
         offsetTop={-10}
         captureClick={false}
@@ -103,7 +72,6 @@ const MapSearch = (props) => {
     );
   });
 
-  const [showCard, setShowCard] = useState(false);
   const handleMapClick = (e) => {
     if (e.target.closest('svg')) {
       setShowCard((prev) => true);
