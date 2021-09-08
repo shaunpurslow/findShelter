@@ -30,6 +30,11 @@ const MapSearch = (props) => {
         const initialViewportLatitude = res.data.data[0].latitude;
         const initialViewportLongitude = res.data.data[0].longitude;
 
+        // reload page if data comes back undefined from (semi-reliable) position stack API
+        if (!initialViewportLatitude || !initialViewportLongitude) {
+          window.location.href = '/';
+        }
+
         setViewport((prev) => ({
           ...prev,
           latitude: initialViewportLatitude,
