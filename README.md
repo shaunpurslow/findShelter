@@ -13,9 +13,9 @@ cd findShelter
 ```
 - Open up a new terminal tab with CMD + T (on mac )
 - In the new terminal window:
-- enter into the client folder
-- install all dependencies
-- and start the React application
+    - enter into the client folder
+    - install all dependencies
+    - and start the React application
 
 ``` bash
 cd client
@@ -24,9 +24,9 @@ npm start
 ```
 
 - In the previous terminal window:
-- enter into the server folder
-- install all dependendies
-- and start the development server
+    - enter into the server folder
+    - install all dependendies
+    - and start the development server
 
 ``` bash
 cd server 
