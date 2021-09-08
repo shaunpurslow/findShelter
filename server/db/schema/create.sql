@@ -22,7 +22,9 @@ CREATE TABLE shelters (
   female_only BOOLEAN NOT NULL DEFAULT true,
   male_only BOOLEAN NOT NULL DEFAULT true,
   family BOOLEAN NOT NULL DEFAULT true,
-  pets BOOLEAN NOT NULL DEFAULT true
+  pets BOOLEAN NOT NULL DEFAULT true,
+  latitude VARCHAR(255) NOT NULL,
+  longitude VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE guests (
