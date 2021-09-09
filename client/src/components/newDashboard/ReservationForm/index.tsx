@@ -30,7 +30,7 @@ export const ReservationForm = (props: Props) => {
       .then((res) => {
         setReserved(true);
         props.handleClose();
-        props.setDashboardState((prev) => ({ ...prev, reservations: [...prev.reservations, { ...value }] })
+        props.setDashboardState((prev) => ({ ...prev, reservations: [value, ...prev.reservations] })
         )
         // window.location.href = '/dashboard';
       })
