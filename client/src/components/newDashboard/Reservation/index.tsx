@@ -1,6 +1,8 @@
 import format from 'date-fns/format';
+import { useEffect } from 'react';
 import { ReservationCard } from '../ReservationCard';
 import { Container, Confirmed, Unconfirmed, Text, H2, Past } from './styles';
+import axios from 'axios';
 
 interface Props {
   dashboardState: any;
@@ -10,6 +12,22 @@ interface Props {
 
 export const Reservation = (props: Props) => {
   const currentDate = format(new Date(), 'MMMM do, yyyy');
+
+  useEffect(() => {
+    axios.get(
+      `http://localhost:8080/reservations/search?shelter_id=${props.dashboardState.user.shelter_id}`
+    )
+      .then((res) => {
+        // update dashboard state
+        props.updateDashboardReservations(res.data);
+        const reservationsData = res.data;
+        props.setDashboardState((prev) => ({
+          ...prev,
+          reservations: reservationsData,
+        }));
+      })
+      .catch((e) => console.log(e.message));
+  }, [])
 
   const todayReservations = props.dashboardState.reservations.filter(
     (reservation) =>

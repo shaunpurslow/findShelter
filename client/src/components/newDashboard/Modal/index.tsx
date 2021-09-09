@@ -7,6 +7,7 @@ import { Container, Button } from './styles';
 interface Props {
   shelterId: number;
   buttonText: string;
+  setDashboardState: any;
 }
 
 export default function SimpleModal(props: Props) {
@@ -22,7 +23,10 @@ export default function SimpleModal(props: Props) {
 
   const body = (
     <Container>
-      <ReservationForm shelterId={props.shelterId} handleClose={handleClose} />
+      <ReservationForm
+        shelterId={props.shelterId}
+        handleClose={handleClose}
+        setDashboardState={props.setDashboardState} />
     </Container>
   );
 

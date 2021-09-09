@@ -6,6 +6,7 @@ import axios from 'axios';
 interface Props {
   shelterId: number;
   handleClose: any;
+  setDashboardState: any;
 }
 
 export const ReservationForm = (props: Props) => {
@@ -28,7 +29,10 @@ export const ReservationForm = (props: Props) => {
       .post('http://localhost:8080/reservations', value)
       .then((res) => {
         setReserved(true);
-        window.location.href = '/dashboard';
+        props.handleClose();
+        props.setDashboardState((prev) => ({ ...prev, reservations: [value, ...prev.reservations] })
+        )
+        // window.location.href = '/dashboard';
       })
       .catch((err) => console.log(err));
   };
