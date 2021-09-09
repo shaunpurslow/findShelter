@@ -87,6 +87,7 @@
 }
 
 .marker-icon {
+  color: red;
   &:hover {
     cursor: pointer;
     color: lighten($color: red, $amount: 20%);

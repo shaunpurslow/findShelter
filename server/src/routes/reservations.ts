@@ -13,12 +13,13 @@ export default function (dbconn) {
       res.status(400).json({ error: 'missing shelter id' });
       return;
     }
+    //at time zone 'pst' 
     const query = `
       SELECT 
       reservations.id as id,
       reservations.shelter_id,
       reservations.guest_id,
-      reservations.reservation_date at time zone 'pst' as reservation_date,
+      reservations.reservation_date as reservation_date,
       reservations.is_confirmed,
       guests.first_name,
       guests.last_name,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Shelter from '../newDashboard/Shelter';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import MapGL, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import RoomIcon from '@material-ui/icons/Room';
 import './styles.scss';
@@ -18,9 +18,9 @@ const MapSearch = (props) => {
     latitude: 0,
     longitude: 0,
     zoom: 10,
-    width: '100vw',
-    height: '100vh',
   });
+  const [selectedShelter, setSelectedShelter] = useState({});
+  const [showCard, setShowCard] = useState(false);
 
   // Turn viewport location prop to coordinates for the map viewport
   useEffect(() => {
@@ -29,6 +29,11 @@ const MapSearch = (props) => {
       .then((res) => {
         const initialViewportLatitude = res.data.data[0].latitude;
         const initialViewportLongitude = res.data.data[0].longitude;
+
+        // reload page if data comes back undefined from (semi-reliable) position stack API
+        if (!initialViewportLatitude || !initialViewportLongitude) {
+          window.location.href = '/';
+        }
 
         setViewport((prev) => ({
           ...prev,
@@ -39,49 +44,8 @@ const MapSearch = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const [sheltersWithCoords, setSheltersWithCoords] = useState<any[]>([]);
-
-  // loop through shelters data and and store information with coordinates in localstorage
-  // https://stackoverflow.com/questions/56532652/axios-get-then-in-a-for-loop
-  useEffect(() => {
-    const dataFromShelterCoordsRequest: any[] = [];
-    const getShelterCoordsPromises: any[] = [];
-    props.searchResults.forEach((shelter) => {
-      const shelterLocationQuery = `${shelter.street_address} ${shelter.city}, ${shelter.province}`;
-      getShelterCoordsPromises.push(
-        axios
-          .get(
-            `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITION_KEY}&query=${shelterLocationQuery}`
-          )
-          .then((res) => {
-            dataFromShelterCoordsRequest.push({
-              ...shelter,
-              latitude: res.data.data[0].latitude,
-              longitude: res.data.data[0].longitude,
-            });
-          })
-      );
-    });
-
-    Promise.all(getShelterCoordsPromises)
-      .then(() => {
-        setSheltersWithCoords(dataFromShelterCoordsRequest);
-      })
-      .catch((err) => console.log(err));
-  }, [props.searchResults]);
-
-  const [selectedShelter, setSelectedShelter] = useState({});
-  console.log(selectedShelter);
-
   // add all the pins to the map
-  const shelterMapMarkers = sheltersWithCoords.map((shelter) => {
-    const checkIfShelterIsFull =
-      (shelter.capacity - shelter.confirmedReservations) / shelter.capacity;
-
-    const markerStyle = checkIfShelterIsFull
-      ? 'shelter-marker'
-      : 'shelter-marker--full';
-
+  const shelterMapMarkers = props.searchResults.map((shelter) => {
     const shelterData = JSON.stringify({ ...shelter });
 
     const handleMarkerIconClick = (e) => {
@@ -97,11 +61,10 @@ const MapSearch = (props) => {
     return (
       <Marker
         key={shelter.id}
-        latitude={shelter.latitude}
-        longitude={shelter.longitude}
+        latitude={Number(shelter.latitude)}
+        longitude={Number(shelter.longitude)}
         offsetLeft={-20}
         offsetTop={-10}
-        className={markerStyle}
         captureClick={false}
         capturePointerMove={false}>
         <RoomIcon
@@ -114,9 +77,7 @@ const MapSearch = (props) => {
     );
   });
 
-  const [showCard, setShowCard] = useState(false);
   const handleMapClick = (e) => {
-    console.log(e.target);
     if (e.target.closest('svg')) {
       setShowCard((prev) => true);
     } else {
@@ -126,10 +87,12 @@ const MapSearch = (props) => {
 
   return (
     <div>
-      <ReactMapGL
+      <MapGL
         {...viewport}
+        width='100vw'
+        height='100vh'
         mapStyle='mapbox://styles/mapbox/dark-v9'
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         onClick={handleMapClick}
         getCursor={(e) => 'grab'}>
@@ -169,7 +132,7 @@ const MapSearch = (props) => {
             />
           </div>
         )}
-      </ReactMapGL>
+      </MapGL>
     </div>
   );
 };
