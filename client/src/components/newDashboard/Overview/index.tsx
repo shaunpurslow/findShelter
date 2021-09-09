@@ -103,6 +103,7 @@ export const Overview = (props: Props) => {
           <SimpleModal
             shelterId={props.id}
             buttonText='BOOK IN A GUEST RESERVATION'
+            setDashboardState={props.setDashboardState}
           />
         }
       </BookReservationBtn>
